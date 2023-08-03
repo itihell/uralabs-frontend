@@ -1,10 +1,10 @@
-import FormSumarDos from "../../components/forms/form-sumar-dos";
+import TableRoles from "../../components/tables/table-roles";
 export default function RolesPage() {
   return (
     <div>
       <h1>Listado de roles</h1>
       <div className="min-h-screen">
-        <FormSumarDos />
+        <TableRoles />
       </div>
     </div>
   );
