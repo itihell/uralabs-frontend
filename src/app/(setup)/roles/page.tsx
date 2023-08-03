@@ -8,7 +8,7 @@ export default function RolesPage() {
   let [resultado, setResultado] = useState(0);
   const sumarDosNumeros = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(e.target);
+    setResultado(numero1 + numero2);
   };
   return (
     <form className="" onSubmit={sumarDosNumeros}>
@@ -18,6 +18,7 @@ export default function RolesPage() {
           <label className="basis-3/12 text-right">Número 1</label>
           <div className="basis-9/12 ml-1">
             <input
+              className="p-1"
               type="number"
               name="numero1"
               id="numero1"
@@ -30,6 +31,7 @@ export default function RolesPage() {
           <label className="basis-3/12 text-right">Número 2</label>
           <div className="basis-9/12 ml-1">
             <input
+              className="p-1"
               type="number"
               name="numero2"
               id="numero2"
@@ -42,6 +44,11 @@ export default function RolesPage() {
           <button type="submit" className="bg-blue-500 text-white p-1">
             Sumar
           </button>
+        </div>
+        <div className="flex flex-row mt-2">
+          <label className="basis-auto text-right">
+            El resultado es {resultado}
+          </label>
         </div>
       </div>
     </form>
