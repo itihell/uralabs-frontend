@@ -29,11 +29,16 @@ export default function RootLayout({
               <div className="m-3">
                 <ul>
                   <li>
-                    <div className="text-center">Menu</div>
+                    <div className="text-center text-gray-400 font-thin">Menu</div>
                   </li>
                   {menus.map((menu) => (
                     <li key={`menu-${menu.texto}`}>
-                      <Link href={menu.url}>{menu.texto}</Link>
+                      <Link
+                        href={menu.url}
+                        className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                      >
+                        {menu.texto}
+                      </Link>
                     </li>
                   ))}
                 </ul>

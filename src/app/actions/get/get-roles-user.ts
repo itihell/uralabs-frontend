@@ -1,14 +1,21 @@
+import getHeadersGlobal from "../../utils/header-global";
 export default async function getRolesUser() {
   const url = `${process.env.API_BASE_URL}/roles`;
-  const options = {};
+  const headers = getHeadersGlobal();
 
-  const roles = await fetch(url, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      "api-key": process.env.API_KEY,
-    },
-  }).then((res) => res.json());
+  try {
+    const roles = await fetch(url, {
+      method: "GET",
+      cache: "no-store",
+      headers: headers,
+    }).then((res) => res.json());
 
-  return roles;
+    if (!roles.data) {
+      throw new Error(roles.message);
+    }
+
+    return roles;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 }
