@@ -1,5 +1,6 @@
 import getRolesUser from "@/app/actions/get/get-roles-user";
 import MessageToast from "../message-toast";
+import Link from "next/link";
 
 const TableRoles = async () => {
   const error = true;
@@ -24,7 +25,11 @@ const TableRoles = async () => {
                     {role.id}
                   </td>
                   <td className="px-6 py-4"> {role.role}</td>
-                  <td className="px-6 py-4"></td>
+                  <td className="px-6 py-4">
+                    <div>
+                      <Link href={`/roles/delete/${role.id}`} >X</Link>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
