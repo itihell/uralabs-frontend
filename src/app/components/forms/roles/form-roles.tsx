@@ -4,8 +4,6 @@ export default function FormRoles({ roleId = "" }) {
   return (
     <form action={saveRoles}>
       <div>
-        <h1>Editando el registro número {roleId}</h1>
-
         <FieldsRoles />
 
         <div>
