@@ -1,21 +1,16 @@
 "use server";
 
+import feching from "@/app/utils/cliente-http";
 import getHeadersGlobal from "@/app/utils/header-global";
 
 export async function saveRoles(request: FormData) {
   const data = {
     role: request.get("role"),
   };
+  const endPoind = `/roles`;
 
-  const url = `${process.env.API_BASE_URL}/roles`;
-  const headers = getHeadersGlobal();
-  const roles = await fetch(url, {
-    method: "POST",
-    cache: "no-store",
-    next: { revalidate: 0 },
-    headers: headers,
-    body: JSON.stringify(data),
-  }).then((res) => res.json());
+  const roles = await feching(endPoind, "no-store", "POST", data);
+
   if (!roles.data) {
     throw new Error(roles.error);
   }
@@ -28,14 +23,9 @@ export const updateRole = async (id: number, request: FormData) => {
     role: request.get("role"),
   };
 
-  const url = `${process.env.API_BASE_URL}/roles/${id}`;
-  const headers = getHeadersGlobal();
-  const roles = await fetch(url, {
-    method: "PUT",
-    cache: "no-store",
-    headers: headers,
-    body: JSON.stringify(data),
-  }).then((res) => res.json());
+  const endPoind = `/roles/${id}`;
+
+  const roles = await feching(endPoind, "no-store", "PUT", data);
 
   if (!roles.data) {
     throw new Error(roles.error);
@@ -45,13 +35,9 @@ export const updateRole = async (id: number, request: FormData) => {
 };
 
 export const getRoles = async (id: number) => {
-  const url = `${process.env.API_BASE_URL}/roles/${id}`;
-  const headers = getHeadersGlobal();
-  const roles = await fetch(url, {
-    method: "GET",
-    cache: "no-store",
-    headers: headers,
-  }).then((res) => res.json());
+  const endPoind = `/roles/${id}`;
+  const data = {};
+  const roles = await feching(endPoind, "no-store", "GET");
   if (!roles.data) {
     throw new Error(roles);
   }
