@@ -4,10 +4,15 @@ import FieldsRoles from "./fields-roles";
 import GoToRoles from "../go-to-roles";
 
 export default function FormEditRole({ roleId = 0 }) {
+  const actualizarRole = async (formData: FormData) => {
+    "use server";
+    const data = await updateRole(roleId, formData);
+    console.log(data);
+  };
   return (
-    <form action={updateRole}>
+    <form action={actualizarRole}>
       <div>
-        <h1>Editando el registro número {roleId}</h1>
+        <h1>Desde el formulario {roleId}</h1>
 
         <FieldsRoles roleId={roleId} />
 

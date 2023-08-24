@@ -8,7 +8,7 @@ export default async function FieldsRoles({ roleId = 0 }) {
 
   return (
     <>
-      <input type="number" id="id" name="id" defaultValue={fields.id || ""} />
+      {/* <input type="number" id="id" name="id" defaultValue={fields.id || ""} /> */}
       <div>
         <label
           htmlFor="role"

@@ -19,18 +19,18 @@ export async function saveRoles(request: FormData) {
     if (!roles.data) {
       throw new Error(roles.error);
     }
-    redirect("/");
   } catch (error) {
-    console.log({ error });
     throw new Error(error);
+  } finally {
+    redirect("/roles");
   }
 }
 
-export const updateRole = async (request: FormData) => {
+export const updateRole = async (id: number, request: FormData) => {
   const data = {
     role: request.get("role"),
   };
-  const id = request.get("id");
+  //const id = request.get("id");
   try {
     const url = `${process.env.API_BASE_URL}/roles/${id}`;
     const headers = getHeadersGlobal();
@@ -45,10 +45,10 @@ export const updateRole = async (request: FormData) => {
     if (!roles.data) {
       throw new Error(roles.error);
     }
-    redirect("/roles");
   } catch (error) {
-    console.log({ error });
     throw new Error(error);
+  } finally {
+    redirect("/roles");
   }
 };
 
