@@ -1,19 +1,30 @@
 import getHeadersGlobal from "./header-global";
 
+interface optionsClienteHttp {
+  method?: string;
+  cache?: RequestCache;
+  headers?: any;
+  body?: any;
+}
+
 const feching = async (
   endPoint: string,
-  cache: string = "no-store",
+  cache: RequestCache = "no-store",
   metodo: string,
   body: any = null
 ) => {
   const headers = getHeadersGlobal();
   const url = `${process.env.API_BASE_URL}${endPoint}`;
-  const data = await fetch(url, {
-    method: metodo,
-    cache: cache,
-    headers: headers,
-    body: JSON.stringify(body),
-  }).then((res) => res.json());
+  const options: optionsClienteHttp = {};
+
+  options.method = metodo;
+  options.cache = cache;
+  options.headers = headers;
+  console.log("body", body);
+
+  if (body) options.body = JSON.stringify(body);
+
+  const data = await fetch(url, options).then((res) => res.json());
 
   return data;
 };
