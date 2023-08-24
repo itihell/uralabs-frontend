@@ -19,23 +19,26 @@ export default function RootLayout({
     { texto: "Roles", url: "/roles" },
     { texto: "Usuarios", url: "/users" },
     { texto: "About", url: "/about" },
+    { texto: "Modalidades", url: "/modalidades" },
   ];
   return (
-    <html lang="es">
+    <html lang='es'>
       <body className={inter.className}>
-        <div className="">
-          <div className="flex flex-row">
-            <div className="bg-gray-900 basis-1/6">
-              <div className="m-3">
+        <div className=''>
+          <div className='flex flex-row'>
+            <div className='bg-gray-900 basis-1/6'>
+              <div className='m-3'>
                 <ul>
                   <li>
-                    <div className="text-center text-gray-400 font-thin">Menu</div>
+                    <div className='text-center text-gray-400 font-thin'>
+                      Menu
+                    </div>
                   </li>
                   {menus.map((menu) => (
                     <li key={`menu-${menu.texto}`}>
                       <Link
                         href={menu.url}
-                        className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                       >
                         {menu.texto}
                       </Link>
@@ -44,8 +47,8 @@ export default function RootLayout({
                 </ul>
               </div>
             </div>
-            <div className="bg-gray-300 basis-5/6 text-black">
-              <div className="p-2">{children}</div>
+            <div className='bg-gray-300 basis-5/6 text-black'>
+              <div className='p-2'>{children}</div>
             </div>
           </div>
         </div>
