@@ -28,6 +28,7 @@ const TableRoles = async () => {
                   <td className="px-6 py-4">
                     <div>
                       <Link href={`/roles/delete/${role.id}`} >X</Link>
+                      <Link href={`/roles/edit/${role.id}`} >Editar</Link>
                     </div>
                   </td>
                 </tr>
