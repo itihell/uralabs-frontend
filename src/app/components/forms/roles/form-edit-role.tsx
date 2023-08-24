@@ -2,12 +2,14 @@ import { redirect } from "next/navigation";
 import { updateRole } from "../../../actions/post/save-roles";
 import FieldsRoles from "./fields-roles";
 import GoToRoles from "../go-to-roles";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export default function FormEditRole({ roleId = 0 }) {
   const actualizarRole = async (formData: FormData) => {
     "use server";
     const data = await updateRole(roleId, formData);
-    console.log(data);
+
+    redirect("/roles");
   };
   return (
     <form action={actualizarRole}>

@@ -1,8 +1,17 @@
+import { revalidatePath, revalidateTag } from "next/cache";
 import { saveRoles } from "../../../actions/post/save-roles";
 import FieldsRoles from "./fields-roles";
+import { redirect } from "next/navigation";
 export default function FormRoles({ roleId = "" }) {
+  const crearRole = async (formData: FormData) => {
+    "use server";
+    const data = await saveRoles(formData);
+
+    revalidatePath("/roles");
+  };
+
   return (
-    <form action={saveRoles}>
+    <form action={crearRole}>
       <div>
         <FieldsRoles />
 
