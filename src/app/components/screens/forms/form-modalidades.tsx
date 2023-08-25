@@ -1,16 +1,19 @@
-export default function FormModalidades({ modalidadId = "" }) {
-  //   const crearModalidad = async (formData: FormData) => {
-  //     "use server";
-  //     const data = await saveModalidades(formData);
+import { revalidatePath } from "next/cache";
+import { saveModalidades } from "../actions/post/save-modalidades";
+import FieldsModalidades from "./fields-modalidades";
 
-  //     revalidatePath("/modalidades");
-  //   };
+export default function FormModalidades({ modalidadId = "" }) {
+  const crearModalidad = async (formData: FormData) => {
+    "use server";
+    const data = await saveModalidades(formData);
+
+    revalidatePath("/modalidades");
+  };
 
   return (
-    <form>
-      {/* action={crearModalidad} */}
+    <form action={crearModalidad}>
       <div>
-        {/* <FieldsModalidades /> */}
+        <FieldsModalidades />
 
         <div>
           <button
