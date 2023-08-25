@@ -1,4 +1,4 @@
-import getModalidades from "../actions/get-modalidades";
+import getModalidades from "../actions/get/get-modalidades";
 import Link from "next/link";
 
 const TablesModalidades = async () => {
@@ -11,9 +11,6 @@ const TablesModalidades = async () => {
             <tr>
               <th className='px-6 py-3'>ID</th>
               <th className='px-6 py-3'>Modalidades</th>
-              <th className='px-6 py-3'>Carrera</th>
-              <th className='px-6 py-3'>Descripcion</th>
-              <th className='px-6 py-3'>Turno</th>
               <th className='px-6 py-3'>Config</th>
             </tr>
           </thead>
@@ -24,9 +21,6 @@ const TablesModalidades = async () => {
                   {modalidades.id}
                 </td>
                 <td className='px-6 py-4'> {modalidades.modalidad}</td>
-                <td className='px-6 py-4'> {modalidades.nombreCarrera}</td>
-                <td className='px-6 py-4'> {modalidades.descripcion}</td>
-                <td className='px-6 py-4'> {modalidades.turno}</td>
 
                 <td className='px-6 py-4'>
                   <div>
