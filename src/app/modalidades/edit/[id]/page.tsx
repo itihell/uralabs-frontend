@@ -1,4 +1,4 @@
-import FormEditModalidades from "../../../components/screens/forms/form-edit-modalidades";
+import FormEditModalidades from "@/app/components/screens/forms/form-edit-modalidades";
 
 export default function EditModalidadPage({
   params,

@@ -1,5 +1,6 @@
 import getModalidades from "../actions/get/get-modalidades";
 import Link from "next/link";
+import { IconTrashFilled } from "@tabler/icons-react";
 
 const TablesModalidades = async () => {
   const { data } = await getModalidades();
@@ -28,6 +29,7 @@ const TablesModalidades = async () => {
                       href={`/modalidades/delete/${modalidades.id}`}
                       className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2'
                     >
+                      {/* <IconTrashFilled /> */}
                       Eliminar
                     </Link>
                     <Link
