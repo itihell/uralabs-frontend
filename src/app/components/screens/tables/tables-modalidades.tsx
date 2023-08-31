@@ -24,10 +24,16 @@ const TablesModalidades = async () => {
 
                 <td className='px-6 py-4'>
                   <div>
-                    <Link href={`/modalidades/delete/${modalidades.id}`}>
-                      X
+                    <Link
+                      href={`/modalidades/delete/${modalidades.id}`}
+                      className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2'
+                    >
+                      Eliminar
                     </Link>
-                    <Link href={`/modalidades/edit/${modalidades.id}`}>
+                    <Link
+                      href={`/modalidades/edit/${modalidades.id}`}
+                      className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded'
+                    >
                       Editar
                     </Link>
                   </div>
