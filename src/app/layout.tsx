@@ -21,9 +21,10 @@ export default function RootLayout({
     { texto: "Roles", url: "/roles" },
     { texto: "Usuarios", url: "/users" },
     { texto: "About", url: "/about" },
+    { texto: "Modalidades", url: "/modalidades" },
   ];
   return (
-    <html lang="es" className='dark'>
+    <html lang="es" className="dark">
       <body className={inter.className}>
         <div className="min-h-screen">
           <div className="flex flex-row">
@@ -39,7 +40,7 @@ export default function RootLayout({
                     <li key={`menu-${menu.texto}`}>
                       <Link
                         href={menu.url}
-                        className="block mb-2 py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       >
                         {menu.texto}
                       </Link>
@@ -48,6 +49,7 @@ export default function RootLayout({
                 </ul>
               </div>
             </div>
+
             <div className="bg-gray-300 basis-5/6 text-black">
               <div className="p-2">
                 <Providers>{children}</Providers>
