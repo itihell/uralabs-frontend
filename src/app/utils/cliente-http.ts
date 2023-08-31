@@ -9,7 +9,7 @@ interface optionsClienteHttp {
 
 const feching = async (
   endPoint: string,
-  cache: RequestCache = "no-store",
+  cache: RequestCache = "no-cache",
   metodo: string,
   body: any = null
 ) => {
@@ -20,7 +20,6 @@ const feching = async (
   options.method = metodo;
   options.cache = cache;
   options.headers = headers;
-  console.log("body", body);
 
   if (body) options.body = JSON.stringify(body);
 
