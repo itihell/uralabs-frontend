@@ -1,11 +1,13 @@
-import getRolesUser from "@/app/actions/get/get-roles-user";
-import MessageToast from "../message-toast";
-import Link from "next/link";
 import { revalidatePath } from "next/cache";
+import OptionsRoles from "./options-roles";
+import { getAllRoles } from "@/app/actions/post/save-roles";
+import ButtonDeleteRole from "../forms/roles/button-delete-role";
+import ButtonEditRole from "../forms/roles/button-edit-role";
+import { ButtonGroup } from "@nextui-org/react";
 
 const TableRoles = async () => {
   revalidatePath("/roles");
-  const { data } = await getRolesUser();
+  const data = await getAllRoles();
 
   return (
     <div>
@@ -24,11 +26,11 @@ const TableRoles = async () => {
                 <td className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
                   {role.id}
                 </td>
-                <td className='px-6 py-4'> {role.role}</td>
-                <td className='px-6 py-4'>
-                  <div>
-                    <Link href={`/roles/delete/${role.id}`}>X</Link>
-                    <Link href={`/roles/edit/${role.id}`}>Editar</Link>
+                <td className="px-6 py-4"> {role.role}</td>
+                <td className="px-6 py-4">
+                  <div className="flex flex-row items-center justify-end">
+                    <ButtonDeleteRole id={role.id} />
+                    <ButtonEditRole id={role.id} />
                   </div>
                 </td>
               </tr>

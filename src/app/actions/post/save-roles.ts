@@ -1,7 +1,6 @@
 "use server";
 
 import feching from "@/app/utils/cliente-http";
-import getHeadersGlobal from "@/app/utils/header-global";
 
 export async function saveRoles(request: FormData) {
   const data = {
@@ -28,7 +27,10 @@ export const updateRole = async (id: number, request: FormData) => {
   const roles = await feching(endPoind, "no-store", "PUT", data);
 
   if (!roles.data) {
-    throw new Error(roles.error);
+    const error = {
+      error: roles.error,
+    };
+    return error;
   }
 
   return roles.data;
@@ -36,8 +38,36 @@ export const updateRole = async (id: number, request: FormData) => {
 
 export const getRoles = async (id: number) => {
   const endPoind = `/roles/${id}`;
-  const data = {};
+
   const roles = await feching(endPoind, "no-store", "GET");
+
+  if (!roles.data) {
+    const error = {
+      error: roles.error,
+    };
+    return error;
+  }
+
+  return roles.data;
+};
+
+export const deteteRoleById = async (id: number) => {
+  const endPoind = `/roles/${id}`;
+
+  const roles = await feching(endPoind, "no-store", "DELETE");
+
+  if (!roles.data) {
+    throw new Error(roles);
+  }
+
+  return roles.data;
+};
+
+export const getAllRoles = async () => {
+  const endPoind = `/roles`;
+
+  const roles = await feching(endPoind, "no-store", "GET");
+
   if (!roles.data) {
     throw new Error(roles);
   }
