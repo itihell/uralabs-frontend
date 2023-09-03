@@ -4,17 +4,31 @@ import feching from "@/app/utils/cliente-http";
 
 export async function saveLabUse(request: FormData) {
     const data = {
-        role: request.get("role"),
+        className: request.get("className"),
+        carrera: request.get("carrera"),
+        teacher: request.get("teacher"),
+        date: request.get("date"),
+        modality: request.get("modality"),
+        shift: request.get("shift"),
+        year: request.get("year"),
+        semester: request.get("semester"),
+        female: request.get("female"),
+        male: request.get("male"),
+        total: request.get("total"),
+        hours: request.get("hours"),
+        laboratorio: request.get("laboratorio"),
+
     };
-    const endPoind = `/roles`;
+    const endPoind = `/uselab`;
 
-    const roles = await feching(endPoind, "no-store", "POST", data);
+    const registro = await feching(endPoind, "no-store", "POST", data);
+    console.log(registro);
 
-    if (!roles.data) {
-        throw new Error(roles.error);
+    if (!registro.data) {
+        throw new Error(registro.error);
     }
 
-    return roles.data;
+    return registro.data;
 }
 
 export const updateLabUse = async (id: number, request: FormData) => {
@@ -74,4 +88,40 @@ export const getAllLabUse = async () => {
     }
 
     return labUse.data;
+};
+
+export const getAllCarreras = async () => {
+    const endPoind = `/registro-carreras`;
+
+    const carreras = await feching(endPoind, "no-store", "GET");
+
+    if (!carreras.data) {
+        throw new Error(carreras);
+    }
+
+    return carreras.data;
+};
+
+export const getAllModalidades = async () => {
+    const endPoind = `/modalidades`;
+
+    const modalidades = await feching(endPoind, "no-store", "GET");
+
+    if (!modalidades.data) {
+        throw new Error(modalidades);
+    }
+
+    return modalidades.data;
+};
+
+export const getAllLaboratorio = async () => {
+    const endPoind = `/labregister`;
+
+    const laboratorios = await feching(endPoind, "no-store", "GET");
+
+    if (!laboratorios.data) {
+        return [];
+    }
+
+    return laboratorios.data;
 };

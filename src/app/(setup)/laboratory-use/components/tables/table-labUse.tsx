@@ -4,7 +4,7 @@ import ButtonEditLabUse from "../buttons/button-edit-labUse";
 import { getAllLabUse } from "../../actions/post/save-labUse";
 
 const TableLabUse = async () => {
-  revalidatePath("/labpratory-use");
+  revalidatePath("/laboratory-use");
   const data = await getAllLabUse();
 
   return (
@@ -16,14 +16,18 @@ const TableLabUse = async () => {
               <th className="px-6 py-3">ID</th>
               <th className="px-6 py-3">NOMBRE DE LA CLASE</th>
               <th className="px-6 py-3">CARRERA</th>
-              <th className="px-6 py-3">Area</th>
+              <th className="px-6 py-3">ÁREA</th>
               <th className="px-6 py-3">DOCENTE</th>
               <th className="px-6 py-3">FECHA</th>
               <th className="px-6 py-3">MODALIDAD</th>
               <th className="px-6 py-3">TURNO</th>
               <th className="px-6 py-3">AÑO</th>
               <th className="px-6 py-3">SEMESTRE</th>
+              <th className="px-6 py-3">MUJERES</th>
+              <th className="px-6 py-3">VARONES</th>
+              <th className="px-6 py-3">TOTAL</th>
               <th className="px-6 py-3">HORAS</th>
+              <th className="px-6 py-3">LABORATORIO</th>
               <th className="px-6 py-3">Config</th>
             </tr>
           </thead>
@@ -42,7 +46,11 @@ const TableLabUse = async () => {
                 <td className="px-6 py-4">{uselab.shift}</td>
                 <td className="px-6 py-4">{uselab.year}</td>
                 <td className="px-6 py-4">{uselab.semester}</td>
+                <td className="px-6 py-4">{uselab.female}</td>
+                <td className="px-6 py-4">{uselab.male}</td>
+                <td className="px-6 py-4">{uselab.total}</td>
                 <td className="px-6 py-4">{uselab.hours}</td>
+                <td className="px-6 py-4">{uselab.laboratorio.labName}</td>
                 <td className="px-1 py-4">
                   <div className="flex flex-row items-center justify-end">
                     <ButtonDeleteLabUse id={uselab.id} />
