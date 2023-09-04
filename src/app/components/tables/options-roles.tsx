@@ -4,12 +4,12 @@ import Link from "next/link";
 
 export default function OptionsRoles({ id }: { id: string }) {
   return (
-    <div className="flex justify-end">
+    <div className='flex justify-end'>
       <Link href={`/roles/delete/${id}`}>
-        <IconTrash color="red" />
+        <IconTrash color='red' />
       </Link>
       <Link href={`/roles/edit/${id}`}>
-        <IconPencilMinus  color="lime"/>
+        <IconPencilMinus color='lime' />
       </Link>
     </div>
   );
