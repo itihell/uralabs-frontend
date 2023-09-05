@@ -32,6 +32,17 @@ export const updateModalidad = async (id: number, request: FormData) => {
 
   return modalidades.data;
 };
+export const deteteModalidadById = async (id: number) => {
+  const endPoind = `/modalidades/${id}`;
+
+  const modalidades = await feching(endPoind, "no-store", "DELETE");
+
+  if (!modalidades.data) {
+    throw new Error(modalidades);
+  }
+
+  return modalidades.data;
+};
 
 export const getModalidades = async (id: number) => {
   const endPoind = `/modalidades/${id}`;
@@ -41,5 +52,15 @@ export const getModalidades = async (id: number) => {
     throw new Error(modalidades);
   }
 
+  return modalidades.data;
+};
+
+export const getAllModalidades = async () => {
+  const endPoind = `/modalidades/`;
+
+  const modalidades = await feching(endPoind, "no-store", "GET");
+  if (!modalidades.data) {
+    throw new Error(modalidades);
+  }
   return modalidades.data;
 };
