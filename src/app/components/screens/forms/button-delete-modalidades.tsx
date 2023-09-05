@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import {
   Modal,
@@ -9,21 +10,22 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
+
 import {
   IconArrowBackUpDouble,
   IconCheck,
   IconTrash,
 } from "@tabler/icons-react";
-import { deteteRoleById } from "@/app/actions/post/save-roles";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
+import { deteteModalidadById } from "../actions/post/save-modalidades";
 
-export default function ButtonDeleteRole({ id }: { id: string }) {
+export default function ButtonDeleteModalidades({ id }: { id: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteRole = async (id: string) => {
-    const { data } = await deteteRoleById(parseInt(id));
+  const deleteModalidad = async (id: string) => {
+    const { data } = await deteteModalidadById(parseInt(id));
     router.refresh();
   };
 
@@ -37,10 +39,12 @@ export default function ButtonDeleteRole({ id }: { id: string }) {
           {(onClose) => (
             <>
               <ModalHeader className='flex flex-row justify-start'>
-                <IconTrash color='red' /> Eliminar Role
+                <IconTrash color='red' /> Eliminar Modalidad
               </ModalHeader>
               <ModalBody>
-                <h1>¿Está seguro que desea eliminar el role con id {id}?</h1>
+                <h1>
+                  ¿Está seguro que desea eliminar la modalidad con id {id}?
+                </h1>
               </ModalBody>
               <ModalFooter>
                 <Button color='danger' variant='light' onPress={onClose}>
@@ -50,7 +54,7 @@ export default function ButtonDeleteRole({ id }: { id: string }) {
                 <Button
                   color='primary'
                   onClick={() => {
-                    deleteRole(id);
+                    deleteModalidad(id);
                     onClose();
                   }}
                 >

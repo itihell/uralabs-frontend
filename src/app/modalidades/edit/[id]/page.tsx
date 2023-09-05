@@ -7,8 +7,8 @@ export default function EditModalidadPage({
 }) {
   return (
     <div className='min-h-screen'>
-      <h1>desde la pagina {params.id}</h1>
-      <FormEditModalidades modalidadId={params.id} />
+      {/* <h1>desde la pagina {params.id}</h1>
+      <FormEditModalidades modalidadId={params.id} /> */}
     </div>
   );
 }
