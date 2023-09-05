@@ -16,6 +16,7 @@ export async function saveModalidades(request: FormData) {
 
   return modalidades.data;
 }
+
 export const updateModalidad = async (id: number, request: FormData) => {
   const data = {
     modalidad: request.get("modalidad"),
@@ -25,6 +26,20 @@ export const updateModalidad = async (id: number, request: FormData) => {
 
   const modalidades = await feching(endPoind, "no-store", "PUT", data);
 
+  if (!modalidades.data) {
+    const error = {
+      error: modalidades.error,
+    };
+    return error;
+  }
+
+  return modalidades.data;
+};
+
+export const getModalidades = async (id: number) => {
+  const endPoind = `/modalidades/${id}`;
+
+  const modalidades = await feching(endPoind, "no-store", "GET");
   if (!modalidades.data) {
     const error = {
       error: modalidades.error,
@@ -47,22 +62,8 @@ export const deteteModalidadById = async (id: number) => {
   return modalidades.data;
 };
 
-export const getModalidades = async (id: number) => {
-  const endPoind = `/modalidades/${id}`;
-  const data = {};
-  const modalidades = await feching(endPoind, "no-store", "GET");
-  if (!modalidades.data) {
-    const error = {
-      error: modalidades.error,
-    };
-    return error;
-  }
-
-  return modalidades.data;
-};
-
 export const getAllModalidades = async () => {
-  const endPoind = `/modalidades/`;
+  const endPoind = `/modalidades`;
 
   const modalidades = await feching(endPoind, "no-store", "GET");
   if (!modalidades.data) {
