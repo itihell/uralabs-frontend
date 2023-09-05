@@ -1,7 +1,6 @@
 "use server";
 
 import feching from "@/app/utils/cliente-http";
-import exp from "constants";
 
 export async function saveModalidades(request: FormData) {
   const data = {
@@ -27,11 +26,15 @@ export const updateModalidad = async (id: number, request: FormData) => {
   const modalidades = await feching(endPoind, "no-store", "PUT", data);
 
   if (!modalidades.data) {
-    throw new Error(modalidades.error);
+    const error = {
+      error: modalidades.error,
+    };
+    return error;
   }
 
   return modalidades.data;
 };
+
 export const deteteModalidadById = async (id: number) => {
   const endPoind = `/modalidades/${id}`;
 
@@ -49,7 +52,10 @@ export const getModalidades = async (id: number) => {
   const data = {};
   const modalidades = await feching(endPoind, "no-store", "GET");
   if (!modalidades.data) {
-    throw new Error(modalidades);
+    const error = {
+      error: modalidades.error,
+    };
+    return error;
   }
 
   return modalidades.data;
