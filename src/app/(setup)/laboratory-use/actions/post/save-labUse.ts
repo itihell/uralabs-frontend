@@ -21,7 +21,7 @@ export async function saveLabUse(request: FormData) {
         male: request.get("male"),
         total: total,
         hours: request.get("hours"),
-        laboratorio:  { id: request.get("laboratorio") },
+        laboratorio: { id: request.get("laboratorio") },
 
     };
     const endPoind = `/uselab`;
@@ -33,30 +33,14 @@ export async function saveLabUse(request: FormData) {
         console.log(registro.data);
     }
 
-    redirect("/laboratory-use") ;
+    redirect("/laboratory-use");
 }
 
 export const updateLabUse = async (id: number, request: FormData) => {
-    const maleCount = parseInt(request.get("male") as string, 10);
-    const femaleCount = parseInt(request.get("female") as string, 10);
-
-    const total = maleCount + femaleCount;
     const data = {
-        className: request.get("className"),
-        carrera: { id: request.get("carrera") },
-        teacher: request.get("teacher"),
-        date: request.get("date"),
-        modality: { id: request.get("modality") },
-        shift: request.get("shift"),
-        year: request.get("year"),
-        semester: request.get("semester"),
-        female: request.get("female"),
-        male: request.get("male"),
-        total: total,
-        hours: request.get("hours"),
-        laboratorio:  { id: request.get("laboratorio") },
-
+        uselab: request.get("uselab"),
     };
+
     const endPoind = `/uselab/${id}`;
 
     const uselab = await feching(endPoind, "no-store", "PUT", data);
