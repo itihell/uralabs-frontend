@@ -16,11 +16,11 @@ import { getLabUse } from "../../actions/post/save-labUse";
 
 export default function ButtonEditLabUse({ id }: { id: string }) {
     const router = useRouter();
-    const [fields, setFields] = useState({});
+    const [usoLaboratorios, setUsoLaboratorios] = useState({});
     const { isOpen, onOpen, onOpenChange } = useDisclosure();
     const loadDatas = async (id: number) => {
         const datos = await getLabUse(id);
-        setFields(datos);
+        setUsoLaboratorios(datos);
     };
 
     return (
@@ -35,24 +35,26 @@ export default function ButtonEditLabUse({ id }: { id: string }) {
             >
                 <IconPencilMinus color="lime" />
             </Button>
-            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange} >
                 <ModalContent>
                     {(onClose) => (
-                        <>
+                        < div className="w-full max-w-lg p-4">
                             <ModalHeader className="flex flex-col gap-1">
-                                Editar el registro de uso del laboratorio
+                                <div className="flex flex-col gap-2">
+                                    <h2 className="text-xl font-semibold">Editar el registro de uso del laboratorio</h2>
+                                </div>
                             </ModalHeader>
                             <ModalBody>
                                 <FormEditLabUse
-                                    field={fields}
+                                    usoLaboratorios={usoLaboratorios}
                                     closeModals={(e: any) => {
                                         onClose();
-                                        setFields({});
+                                        setUsoLaboratorios({});
                                         router.refresh();
                                     }}
                                 />
                             </ModalBody>
-                        </>
+                        </div>
                     )}
                 </ModalContent>
             </Modal>
