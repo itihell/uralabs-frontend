@@ -1,6 +1,7 @@
 "use server";
 
 import feching from "@/app/utils/cliente-http";
+import { redirect } from "next/navigation";
 
 export async function saveLabUse(request: FormData) {
     const maleCount = parseInt(request.get("male") as string, 10);
@@ -32,7 +33,7 @@ export async function saveLabUse(request: FormData) {
         console.log(registro.data);
     }
 
-    return [registro.data];
+    redirect("/laboratory-use") ;
 }
 
 export const updateLabUse = async (id: number, request: FormData) => {
