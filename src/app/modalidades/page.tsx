@@ -1,4 +1,4 @@
-import FormModalidades from "../components/screens/forms/form-get-modalidades";
+import FormModalidades from "../components/screens/forms/form-modalidades";
 import TablesModalidades from "../components/screens/tables/tables-modalidades";
 
 export default function ModalidadesPage() {

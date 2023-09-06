@@ -1,4 +1,4 @@
-import FormModalidades from "@/app/components/screens/forms/form-get-modalidades";
+import FormModalidades from "@/app/components/screens/forms/form-modalidades";
 
 export default function AddModalidadePage() {
   return (

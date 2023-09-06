@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
-
-export default function FieldsRoles({ fields }: { fields: any }) {
+export default function FieldsModalidades({ fields }: { fields: any }) {
   const [field, setField] = useState(fields);
 
   const handlerChange = (e: any) => {
@@ -12,14 +11,14 @@ export default function FieldsRoles({ fields }: { fields: any }) {
       [name]: value,
     });
   };
-
+  console.log(fields);
   return (
     <>
       <input type='hidden' id='id' name='id' defaultValue={fields?.id || ""} />
 
       <div>
         <label
-          htmlFor='modalidades'
+          htmlFor='modalidad'
           className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
         >
           Modalidad

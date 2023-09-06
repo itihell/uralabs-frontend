@@ -1,8 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import FieldsModalidades from "./fields-modalidades";
-import { updateModalidad } from "../actions/post/save-modalidades";
 import ButtonUpdateModalidades from "./button-update-modalidades";
+import { updateModalidades } from "../actions/post/save-modalidades";
 
 export default function FormEditModalidades({
   fields,
@@ -15,7 +16,7 @@ export default function FormEditModalidades({
     e.preventDefault();
     const form = new FormData(e.target as HTMLFormElement);
     const id = fields?.id;
-    const data = await updateModalidad(id, form);
+    const data = await updateModalidades(id, form);
 
     closeModal(data);
   };
