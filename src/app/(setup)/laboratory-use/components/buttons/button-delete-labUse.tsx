@@ -22,7 +22,7 @@ export default function ButtonDeleteLabUse({ id }: { id: string }) {
     const router = useRouter();
 
     const deleteLabUse = async (id: string) => {
-        const { data } = await deteleLabUseById(parseInt(id));
+        await deteleLabUseById(parseInt(id));
         router.refresh();
     };
 

@@ -22,7 +22,7 @@ export default function FormEditLabUse({
     return (
         <form onSubmit={actualizarLabUse}>
             <div>
-                <FieldsLabUse fields={field} />
+                <FieldsLabUse usoLaboratorios={field} />
                 <div className="flex justify-end">
                     <ButtonUpdateLabUse close={closeModals} />
                 </div>

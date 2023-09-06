@@ -5,10 +5,10 @@ import feching from "@/app/utils/cliente-http";
 export async function saveLabUse(request: FormData) {
     const data = {
         className: request.get("className"),
-        carrera: request.get("carrera"),
+        carrera: { id: request.get("carrera") },
         teacher: request.get("teacher"),
         date: request.get("date"),
-        modality: request.get("modality"),
+        modality: { id: request.get("modality") },
         shift: request.get("shift"),
         year: request.get("year"),
         semester: request.get("semester"),
@@ -16,7 +16,7 @@ export async function saveLabUse(request: FormData) {
         male: request.get("male"),
         total: request.get("total"),
         hours: request.get("hours"),
-        laboratorio: request.get("laboratorio"),
+        laboratorio:  { id: request.get("laboratorio") },
 
     };
     const endPoind = `/uselab`;
@@ -25,15 +25,15 @@ export async function saveLabUse(request: FormData) {
     console.log(registro);
 
     if (!registro.data) {
-        throw new Error(registro.error);
+        console.log(registro.data);
     }
 
-    return registro.data;
+    return [registro.data];
 }
 
 export const updateLabUse = async (id: number, request: FormData) => {
     const data = {
-        uselabs: request.get("uselabs"),
+        uselab: request.get("uselab"),
     };
 
     const endPoind = `/uselab/${id}`;
@@ -71,8 +71,7 @@ export const deteleLabUseById = async (id: number) => {
     const uselab = await feching(endPoind, "no-store", "DELETE");
 
     if (!uselab.data) {
-        throw new Error(uselab);
-        return uselab.data;
+        return [uselab.data];
     }
 
 
@@ -120,7 +119,7 @@ export const getAllLaboratorio = async () => {
     const laboratorios = await feching(endPoind, "no-store", "GET");
 
     if (!laboratorios.data) {
-        return [];
+        throw new Error(laboratorios);
     }
 
     return laboratorios.data;
