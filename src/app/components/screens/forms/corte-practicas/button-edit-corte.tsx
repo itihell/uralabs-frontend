@@ -1,7 +1,6 @@
 "use client";
 import React, { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getCortePractica } from "../../../actions/post/save-practicantes";
 import {
   Modal,
   ModalContent,
@@ -13,6 +12,7 @@ import {
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
 import FormEditCorte from "./form-edit-corte";
+import { getCortePractica } from "../../actions/post/save-corte-practicas";
 
 export default function ButtonEditCorte({ id }: { id: string }) {
   const router = useRouter();

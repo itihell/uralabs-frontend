@@ -1,4 +1,4 @@
-import FormCortePracticas from "@/app/components/screens/forms/horas-practicas/corte-practicas/form-corte";
+import FormCortePracticas from "@/app/components/screens/forms/corte-practicas/form-corte";
 import TableCortePractica from "@/app/components/screens/tables/table-corte-practica";
 
 export default function CortePracticas() {

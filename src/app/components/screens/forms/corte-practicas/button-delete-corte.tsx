@@ -10,18 +10,17 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { deletePracticante } from "../../../actions/post/save-practicantes";
+import { deleteCortePractica } from "../../actions/post/save-practicantes";
 import {
   IconArrowBackUpDouble,
   IconCheck,
   IconTrash,
 } from "@tabler/icons-react";
-
-export default function ButtonDeletePracticante({ id }: { id: string }) {
+export default function ButtonDeleteCorte({ id }: { id: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
-  const deletPracticante = async (id: string) => {
-    const { data } = await deletePracticante(parseInt(id));
+  const deletCorte = async (id: string) => {
+    const { data } = await deleteCortePractica(parseInt(id));
     router.refresh();
   };
   return (
@@ -34,12 +33,10 @@ export default function ButtonDeletePracticante({ id }: { id: string }) {
           {(onClose) => (
             <>
               <ModalHeader className=" flex flex-row justify-start">
-                <IconTrash color="red" /> Eliminar Practicante
+                <IconTrash color="red" /> Eliminar Corte
               </ModalHeader>
               <ModalBody>
-                <h1>
-                  ¿Está seguro que desea eliminar el practicante con id {id}?
-                </h1>
+                <h1>¿Está seguro que desea eliminar el corte con id {id}?</h1>
                 <ModalFooter>
                   <Button color="danger" variant="light" onPress={onClose}>
                     <IconArrowBackUpDouble color="red" />
@@ -48,7 +45,7 @@ export default function ButtonDeletePracticante({ id }: { id: string }) {
                   <Button
                     color="primary"
                     onClick={() => {
-                      deletPracticante(id);
+                      deletCorte(id);
                       onClose();
                     }}
                   >

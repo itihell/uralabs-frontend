@@ -1,4 +1,4 @@
-import FormPracticante from "@/app/components/screens/forms/horas-practicas/practicante/form-practicante";
+import FormPracticante from "@/app/components/screens/forms/practicante/form-practicante";
 
 export default function AddRolePage() {
   return (

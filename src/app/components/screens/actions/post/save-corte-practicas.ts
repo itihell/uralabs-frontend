@@ -1,16 +1,23 @@
 "use server";
 
 import feching from "@/app/utils/cliente-http";
+import Practicante from "../../../../practicante/page";
 //corte-practicas
 export async function saveCortePractica(request: FormData) {
   const data = {
-    cortePractica: request.get("corte-practicas"),
+    Practicante: request.get("practicante"),
+    fecha_corte: request.get("fecha_corte"),
+    horas_actuales: request.get("horas_actuales"),
+    horas_anteriores: request.get("horas_anteriores"),
+    horas_totales: request.get("horas_totales"),
   };
-  const endPoind = `/corte-practica`;
+  const endPoind = `/corte-practicas`;
   const cortePractica = await feching(endPoind, "no-store", "POST", data);
 
   if (!cortePractica.data) {
-    throw new Error(cortePractica.error);
+    const error = {
+      error: cortePractica.error,
+    };
   }
 
   return cortePractica.data;
@@ -19,7 +26,7 @@ export async function updateCortePractica(id: number, request: FormData) {
   const data = {
     cortePractica: request.get("corte-practicas"),
   };
-  const endPoind = `/corte-practica/${id}`;
+  const endPoind = `/corte-practicas/${id}`;
   const cortePractica = await feching(endPoind, "no-store", "PUT", data);
 
   if (!cortePractica.data) {
@@ -29,7 +36,7 @@ export async function updateCortePractica(id: number, request: FormData) {
   return cortePractica.data;
 }
 export async function getCortePractica(id: number) {
-  const endPoind = `/corte-practica/${id}`;
+  const endPoind = `/corte-practicas/${id}`;
   const cortePractica = await feching(endPoind, "no-store", "GET");
   if (!cortePractica.data) {
     throw new Error(cortePractica);
@@ -37,7 +44,7 @@ export async function getCortePractica(id: number) {
   return cortePractica.data;
 }
 export async function getCortePracticas() {
-  const endPoind = `/corte-practica`;
+  const endPoind = `/corte-practicas`;
   const cortePractica = await feching(endPoind, "no-store", "GET");
   if (!cortePractica.data) {
     throw new Error(cortePractica);
@@ -45,7 +52,7 @@ export async function getCortePracticas() {
   return cortePractica.data;
 }
 export async function deleteCortePractica(id: number) {
-  const endPoind = `/corte-practica/${id}`;
+  const endPoind = `/corte-practicas/${id}`;
   const cortePractica = await feching(endPoind, "no-store", "DELETE");
   if (!cortePractica.data) {
     throw new Error(cortePractica);

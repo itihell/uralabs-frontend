@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getPracticante } from "../../../actions/post/save-practicantes";
+import { getPracticante } from "../../actions/post/save-practicantes";
 import {
   Modal,
   ModalContent,
@@ -44,7 +44,7 @@ export default function ButtonEditPracicante({ id }: { id: string }) {
               </ModalHeader>
               <ModalBody>
                 <FormEditPracticante
-                  fields={fields}
+                  fields={{ fields, id: parseInt(id) }}
                   closeModal={(e: any) => {
                     onClose();
                     setFields({});

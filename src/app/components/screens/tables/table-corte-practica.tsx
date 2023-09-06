@@ -1,10 +1,7 @@
 import { revalidatePath } from "next/cache";
-import {
-  getCortePractica,
-  getCortePracticas,
-} from "../actions/post/save-practicantes";
-import ButtonDeleteCorte from "../forms/horas-practicas/corte-practicas/button-delete-corte";
-import ButtonEditCorte from "../forms/horas-practicas/corte-practicas/button-edit-corte";
+import { getCortePracticas } from "../actions/post/save-corte-practicas";
+import ButtonDeleteCorte from "../forms/corte-practicas/button-delete-corte";
+import ButtonEditCorte from "../forms/corte-practicas/button-edit-corte";
 
 const TableCortePractica = async () => {
   revalidatePath("/horas-practicas/corte-practica");
@@ -16,6 +13,7 @@ const TableCortePractica = async () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th className="px-6 py-3">ID</th>
+              <th className="px-6 py-3">Practicante</th>
               <th className="px-6 py-3">Fecha Corte</th>
               <th className="px-6 py-3">Horas Actuales</th>
               <th className="px-6 py-3">Horas Totales</th>
@@ -28,6 +26,7 @@ const TableCortePractica = async () => {
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {corte.id}
                 </td>
+                <td className="px-6 py-4"> {corte.practicante}</td>
                 <td className="px-6 py-4"> {corte.fecha_corte}</td>
                 <td className="px-6 py-4"> {corte.horas_actuales}</td>
                 <td className="px-6 py-4"> {corte.horas_totales}</td>

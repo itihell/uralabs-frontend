@@ -1,11 +1,13 @@
 import { revalidatePath } from "next/cache";
 import { getPracticantes } from "../actions/post/save-practicantes";
-import ButtonEditPracicante from "../forms/horas-practicas/practicante/button-edit-practicante";
-import ButtonDeletePracticante from "../forms/horas-practicas/practicante/button-delete-practicante";
+
+import ButtonDeletePracticante from "../forms/practicante/button-delete-practicante";
+import ButtonEditPracicante from "../forms/practicante/button-edit-practicante";
 
 const TablePracticante = async () => {
-  revalidatePath("/horas-practicas/practicante");
+  revalidatePath("practicante");
   const data = await getPracticantes();
+  console.log(data);
 
   return (
     <div>

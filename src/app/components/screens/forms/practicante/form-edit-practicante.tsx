@@ -1,6 +1,6 @@
 "use client";
 
-import { updatePracticante } from "../../../actions/post/save-practicantes";
+import { updatePracticante } from "../../actions/post/save-practicantes";
 import ButtonUpdatePracticante from "./button-update-practicante";
 import FieldsPracticantes from "./fields-practicante";
 
@@ -13,8 +13,8 @@ export default function FormEditPracticante({
 }) {
   const actualiarPracticante = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = new FormData(e.target as HTMLFormElement);
     const id = fields?.id;
+    const form = new FormData(e.target as HTMLFormElement);
     const data = await updatePracticante(id, form);
 
     closeModal(data);

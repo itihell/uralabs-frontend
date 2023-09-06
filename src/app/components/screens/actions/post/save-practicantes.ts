@@ -1,6 +1,8 @@
 "user-server";
 
 import feching from "@/app/utils/cliente-http";
+import Practicante from "../../../../practicante/page";
+import { deleteModalidades } from "@/app/components/screens/actions/delete/delete-modalidades";
 
 export async function savePracticante(request: FormData) {
   const data = {
@@ -27,7 +29,7 @@ export async function savePracticante(request: FormData) {
   return practicante.data;
 }
 
-export async function updatePracticante(request: FormData, id: number) {
+export async function updatePracticante(id: number, request: FormData) {
   const data = {
     nombre: request.get("nombre"),
     carrera: request.get("carrera"),
@@ -67,11 +69,18 @@ export async function getPracticantes() {
   }
   return practicante.data;
 }
-export async function deletePracticante(id: number) {
+
+export const deletePracticanteById = async (id: number) => {
   const endPoind = `/practicante/${id}`;
+
+  console.log(endPoind);
   const practicante = await feching(endPoind, "no-store", "DELETE");
+
+  console.log(practicante);
+
   if (!practicante.data) {
     throw new Error(practicante);
   }
+
   return practicante.data;
-}
+};
