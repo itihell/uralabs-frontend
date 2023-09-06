@@ -21,7 +21,7 @@ export async function saveLabUse(request: FormData) {
         male: request.get("male"),
         total: total,
         hours: request.get("hours"),
-        laboratorio:  { id: request.get("laboratorio") },
+        laboratorio: { id: request.get("laboratorio") },
 
     };
     const endPoind = `/uselab`;
@@ -33,7 +33,7 @@ export async function saveLabUse(request: FormData) {
         console.log(registro.data);
     }
 
-    redirect("/laboratory-use") ;
+    redirect("/laboratory-use");
 }
 
 export const updateLabUse = async (id: number, request: FormData) => {
@@ -78,8 +78,6 @@ export const deteleLabUseById = async (id: number) => {
     if (!uselab.data) {
         return [uselab.data];
     }
-
-
 };
 
 export const getAllLabUse = async () => {

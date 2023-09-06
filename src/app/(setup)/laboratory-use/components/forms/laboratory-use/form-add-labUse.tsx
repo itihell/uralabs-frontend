@@ -4,7 +4,7 @@ import { saveLabUse } from "../../../actions/post/save-labUse";
 import FieldsLabuse from "./fields-labUse";
 
 
-export default function FormAddLabUse({ roleId = "" }) {
+export default function FormAddLabUse({ labUseId = "" }) {
 
   const crearRegistro = async (formData: FormData) => {
     "use server";
@@ -16,7 +16,7 @@ export default function FormAddLabUse({ roleId = "" }) {
   //   usoLaboratorios = await getRoles(roleId);
 
   // }
-  
+
 
 
   return (
