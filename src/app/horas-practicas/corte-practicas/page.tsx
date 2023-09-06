@@ -1,7 +1,5 @@
-import MessageToast from "@/app/components/message-toast";
-import TableRoles from "../../components/tables/table-roles";
-import Link from "next/link";
-import FormRoles from "@/app/components/forms/roles/form-roles";
+import FormCortePracticas from "@/app/components/screens/forms/horas-practicas/corte-practicas/form-corte";
+import TableCortePractica from "@/app/components/screens/tables/table-corte-practica";
 
 export default function CortePracticas() {
   return (
@@ -12,10 +10,10 @@ export default function CortePracticas() {
         </h1>
         <div className="mb-3">
           <div>
-            <FormRoles />
+            <FormCortePracticas />
           </div>
         </div>
-        <TableRoles />
+        <TableCortePractica />
       </div>
     </div>
   );
