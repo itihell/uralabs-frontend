@@ -10,17 +10,18 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
-import FormEditRole from "./form-edit-role";
-import { getRoles } from "@/app/actions/post/save-roles";
+import FormEditModalidades from "./form-edit-modalidades";
+
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
+import { getModalidades } from "../actions/post/save-modalidades";
 
-export default function ButtonEditRole({ id }: { id: string }) {
+export default function ButtonEditModalidades({ id }: { id: string }) {
   const router = useRouter();
   const [fields, setFields] = useState({});
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const loadData = async (id: number) => {
-    const datos = await getRoles(id);
+    const datos = await getModalidades(id);
     setFields(datos);
   };
 
@@ -43,11 +44,11 @@ export default function ButtonEditRole({ id }: { id: string }) {
           {(onClose) => (
             <>
               <ModalHeader className='flex flex-col gap-1'>
-                Editar Role
+                Editar Modalidad
               </ModalHeader>
               <ModalBody>
-                <FormEditRole
-                  fields={fields}
+                <FormEditModalidades
+                  fields={{ ...fields, id: parseInt(id) }}
                   closeModal={(e: any) => {
                     onClose();
                     setFields({});

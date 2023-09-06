@@ -14,7 +14,6 @@ export default function FormModalidades({ modalidadId = "" }) {
     <form action={crearModalidad}>
       <div>
         <FieldsModalidades />
-
         <div>
           <button
             type='submit'

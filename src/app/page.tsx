@@ -14,7 +14,7 @@ export default function Home() {
 
         <div className="ml-2">
           <h1>
-            UNIVERSIDAD DE LAS REGIONES AUTONOMAS DE LA COSTA CARIBE DE
+            UNIVERSIDAD DE LAS REGIONES AUTÓNOMAS DE LA COSTA CARIBE DE
             NICARAGUA
           </h1>
           <h1>URACCAN</h1>

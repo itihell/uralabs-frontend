@@ -1,9 +1,13 @@
-import getModalidades from "../actions/get/get-modalidades";
+import { revalidatePath } from "next/cache";
+import { getAllModalidades } from "../actions/post/save-modalidades";
+import ButtonDeleteModalidades from "../forms/button-delete-modalidades";
+import ButtonEditModalidades from "../forms/button-edit-modalidades";
 import Link from "next/link";
 import { IconTrashFilled } from "@tabler/icons-react";
 
 const TablesModalidades = async () => {
-  const { data } = await getModalidades();
+  revalidatePath("/modalidades");
+  const data = await getAllModalidades();
   return (
     <div>
       <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
@@ -24,20 +28,9 @@ const TablesModalidades = async () => {
                 <td className='px-6 py-4'> {modalidades.modalidad}</td>
 
                 <td className='px-6 py-4'>
-                  <div>
-                    <Link
-                      href={`/modalidades/delete/${modalidades.id}`}
-                      className='bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2'
-                    >
-                      {/* <IconTrashFilled /> */}
-                      Eliminar
-                    </Link>
-                    <Link
-                      href={`/modalidades/edit/${modalidades.id}`}
-                      className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded'
-                    >
-                      Editar
-                    </Link>
+                  <div className='flex flex-row items-center justify-end'>
+                    <ButtonDeleteModalidades id={modalidades.id} />
+                    <ButtonEditModalidades id={modalidades.id} />
                   </div>
                 </td>
               </tr>
