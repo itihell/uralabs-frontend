@@ -11,7 +11,7 @@ export default function FormEditModalidades({
   fields: any;
   closeModal: any;
 }) {
-  const actualiarRole = async (e: React.FormEvent<HTMLFormElement>) => {
+  const actualiarModalidad = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.target as HTMLFormElement);
     const id = fields?.id;
@@ -20,7 +20,7 @@ export default function FormEditModalidades({
     closeModal(data);
   };
   return (
-    <form onSubmit={actualiarRole}>
+    <form onSubmit={actualiarModalidad}>
       <div>
         <FieldsModalidades fields={fields} />
         <div className='flex justify-end'>

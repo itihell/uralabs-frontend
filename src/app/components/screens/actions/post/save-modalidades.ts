@@ -27,10 +27,7 @@ export const updateModalidad = async (id: number, request: FormData) => {
   const modalidades = await feching(endPoind, "no-store", "PUT", data);
 
   if (!modalidades.data) {
-    const error = {
-      error: modalidades.error,
-    };
-    return error;
+    throw new Error(modalidades.error);
   }
 
   return modalidades.data;

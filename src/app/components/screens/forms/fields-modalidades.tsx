@@ -28,9 +28,9 @@ export default function FieldsRoles({ fields }: { fields: any }) {
       <div className='mb-6'>
         <input
           type='text'
-          name='modalidades'
-          id='modalidades'
-          defaultValue={fields?.modalidades || ""}
+          name='modalidad'
+          id='modalidad'
+          defaultValue={fields?.modalidad || ""}
           onChange={handlerChange}
           className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
         />
