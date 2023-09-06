@@ -24,6 +24,8 @@ export default function ButtonEditRole({ id }: { id: string }) {
     setFields(datos);
   };
 
+  console.log(id);
+
   return (
     <>
       <Button

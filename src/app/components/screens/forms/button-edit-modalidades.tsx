@@ -25,6 +25,8 @@ export default function ButtonEditModalidades({ id }: { id: string }) {
     setFields(datos);
   };
 
+  console.log(id);
+
   return (
     <>
       <Button
@@ -46,7 +48,7 @@ export default function ButtonEditModalidades({ id }: { id: string }) {
               </ModalHeader>
               <ModalBody>
                 <FormEditModalidades
-                  fields={fields}
+                  fields={{ ...fields, id: parseInt(id) }}
                   closeModal={(e: any) => {
                     onClose();
                     setFields({});
