@@ -1,8 +1,7 @@
 import { revalidatePath } from "next/cache";
-import {
-  getPracticante,
-  getPracticantes,
-} from "../actions/post/save-horas-practicas";
+import { getPracticantes } from "../actions/post/save-horas-practicas";
+import ButtonEditPracicante from "../forms/horas-practicas/practicante/button-edit-practicante";
+import ButtonDeletePracticante from "../forms/horas-practicas/practicante/button-delete-practicante";
 
 const TablePracticante = async () => {
   revalidatePath("/horas-practicas/practicante");
@@ -20,7 +19,7 @@ const TablePracticante = async () => {
               <th className="px-6 py-3">Fecha_inicio</th>
               <th className="px-6 py-3">Fecha_fin</th>
               <th className="px-6 py-3">Cantidad_horas</th>
-              <th className="px-6 py-3">Estado</th>
+              <th className="px-6 py-3">config</th>
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
@@ -34,7 +33,12 @@ const TablePracticante = async () => {
                 <td className="px-6 py-4"> {practicante.fecha_inicio}</td>
                 <td className="px-6 py-4"> {practicante.fecha_fin}</td>
                 <td className="px-6 py-4"> {practicante.cantidad_horas}</td>
-                <td className="px-6 py-4"> {practicante.estado}</td>
+                <td className="px-6 py-4">
+                  <div className="flex flex-row items-center justify-end">
+                    <ButtonDeletePracticante id={practicante.id} />
+                    <ButtonEditPracicante id={practicante.id} />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>
