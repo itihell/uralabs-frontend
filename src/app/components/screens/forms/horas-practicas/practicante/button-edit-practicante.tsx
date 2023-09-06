@@ -44,7 +44,7 @@ export default function ButtonEditPracicante({ id }: { id: string }) {
               </ModalHeader>
               <ModalBody>
                 <FormEditPracticante
-                  fields={{ ...fields, id: parseInt(id) }}
+                  fields={fields}
                   closeModal={(e: any) => {
                     onClose();
                     setFields({});

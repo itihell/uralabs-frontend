@@ -27,15 +27,26 @@ export async function savePracticante(request: FormData) {
   return practicante.data;
 }
 
-export async function updatePracticante(id: number, request: FormData) {
+export async function updatePracticante(request: FormData, id: number) {
   const data = {
-    practicante: request.get("practicante"),
+    nombre: request.get("nombre"),
+    carrera: request.get("carrera"),
+    fecha_inicio: request.get("fecha_inicio"),
+    fecha_fin: request.get("fecha_fin"),
+    cantidad_horas: request.get("cantidad_horas"),
   };
+
+  console.log(data);
   const endPoind = `/practicante/${id}`;
+
+  console.log(endPoind);
   const practicante = await feching(endPoind, "no-store", "PUT", data);
 
   if (!practicante.data) {
-    throw new Error(practicante.error);
+    const error = {
+      error: practicante.error,
+    };
+    return error;
   }
 
   return practicante.data;

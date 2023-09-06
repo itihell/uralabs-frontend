@@ -1,12 +1,8 @@
 "use client";
 import { useState } from "react";
 
-export default function FieldsPracticantes({
-  practicante,
-}: {
-  practicante: any;
-}) {
-  const [practicanteData, setPracticanteData] = useState(practicante);
+export default function FieldsPracticantes({ fields }: { fields: any }) {
+  const [practicanteData, setPracticanteData] = useState(fields);
 
   const handlerChange = (e: any) => {
     const { name, value } = e.target;
@@ -17,7 +13,7 @@ export default function FieldsPracticantes({
     });
   };
 
-  console.log(practicante);
+  console.log(fields);
 
   return (
     <div
@@ -38,7 +34,7 @@ export default function FieldsPracticantes({
           type="hidden"
           id="id"
           name="id"
-          defaultValue={practicante?.id || ""}
+          defaultValue={fields?.id || ""}
         />
 
         <div
@@ -56,7 +52,7 @@ export default function FieldsPracticantes({
             type="text"
             name="nombre"
             id="nombre"
-            defaultValue={practicante?.nombre || ""}
+            defaultValue={fields?.nombre || ""}
             onChange={handlerChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           />
@@ -73,7 +69,7 @@ export default function FieldsPracticantes({
             type="text"
             name="carrera"
             id="carrera"
-            defaultValue={practicante?.carrera || ""}
+            defaultValue={fields?.carrera || ""}
             onChange={handlerChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           />
@@ -90,7 +86,7 @@ export default function FieldsPracticantes({
             type="date"
             name="fecha_inicio"
             id="fecha_inicio"
-            defaultValue={practicante?.fecha_inicio || ""}
+            defaultValue={fields?.fecha_inicio || ""}
             onChange={handlerChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           />
@@ -107,7 +103,7 @@ export default function FieldsPracticantes({
             type="date"
             name="fecha_fin"
             id="fecha_fin"
-            defaultValue={practicante?.fecha_fin || ""}
+            defaultValue={fields?.fecha_fin || ""}
             onChange={handlerChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           />
@@ -124,7 +120,7 @@ export default function FieldsPracticantes({
             type="number"
             name="cantidad_horas"
             id="cantidad_horas"
-            defaultValue={practicante?.cantidad_horas || ""}
+            defaultValue={fields?.cantidad_horas || ""}
             onChange={handlerChange}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           />

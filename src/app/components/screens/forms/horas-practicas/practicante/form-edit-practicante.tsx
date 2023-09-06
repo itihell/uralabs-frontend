@@ -22,7 +22,7 @@ export default function FormEditPracticante({
   return (
     <form onSubmit={actualiarPracticante}>
       <div>
-        <FieldsPracticantes practicante={fields} />
+        <FieldsPracticantes fields={fields} />
         <div className="flex justify-end">
           <ButtonUpdatePracticante close={closeModal} />
         </div>

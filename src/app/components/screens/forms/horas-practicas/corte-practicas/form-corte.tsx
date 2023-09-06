@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
-import { saveCortePractica } from "../../../actions/post/save-practicantes";
+
 import FieldsCortePracticas from "./filds-corte";
+import { saveCortePractica } from "../../../actions/post/save-corte-practicas";
 
 export default function FormCortePracticas({ corteId = "" }) {
   const crearCorte = async (formData: FormData) => {
