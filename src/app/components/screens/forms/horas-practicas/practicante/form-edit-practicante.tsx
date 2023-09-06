@@ -1,8 +1,8 @@
 "use client";
 
-import { updatePracticante } from "../../../actions/post/save-horas-practicas";
+import { updatePracticante } from "../../../actions/post/save-practicantes";
 import ButtonUpdatePracticante from "./button-update-practicante";
-import FieldsPracticantes from "./filds-practicante";
+import FieldsPracticantes from "./fields-practicante";
 
 export default function FormEditPracticante({
   fields,

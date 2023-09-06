@@ -1,5 +1,5 @@
 import { revalidatePath } from "next/cache";
-import { saveCortePractica } from "../../../actions/post/save-horas-practicas";
+import { saveCortePractica } from "../../../actions/post/save-practicantes";
 import FieldsCortePracticas from "./filds-corte";
 
 export default function FormCortePracticas({ corteId = "" }) {

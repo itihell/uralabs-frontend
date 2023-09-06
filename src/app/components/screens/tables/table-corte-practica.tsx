@@ -2,7 +2,7 @@ import { revalidatePath } from "next/cache";
 import {
   getCortePractica,
   getCortePracticas,
-} from "../actions/post/save-horas-practicas";
+} from "../actions/post/save-practicantes";
 import ButtonDeleteCorte from "../forms/horas-practicas/corte-practicas/button-delete-corte";
 import ButtonEditCorte from "../forms/horas-practicas/corte-practicas/button-edit-corte";
 

@@ -1,7 +1,7 @@
 "use client";
 import React, { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getCortePractica } from "../../../actions/post/save-horas-practicas";
+import { getCortePractica } from "../../../actions/post/save-practicantes";
 import {
   Modal,
   ModalContent,

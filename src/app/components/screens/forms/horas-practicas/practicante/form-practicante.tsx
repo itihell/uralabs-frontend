@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache";
-import { savePracticante } from "../../../actions/post/save-horas-practicas";
-import FieldsPracticantes from "./filds-practicante";
+import { savePracticante } from "../../../actions/post/save-practicantes";
+import FieldsPracticantes from "./fields-practicante";
 
 export default function FormPracticante({ practicanteId = "" }) {
   const crearPracticante = async (formData: FormData) => {

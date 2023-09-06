@@ -17,6 +17,8 @@ export default function FieldsPracticantes({
     });
   };
 
+  console.log(practicante);
+
   return (
     <div
       className="

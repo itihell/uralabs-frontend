@@ -22,11 +22,7 @@ export default function RootLayout({
     { texto: "Usuarios", url: "/users" },
     { texto: "About", url: "/about" },
     { texto: "Modalidades", url: "/modalidades" },
-<<<<<<< HEAD
     { texto: "Horas practicas", url: "/horas-practicas" },
-=======
-    { texto: "Reservaciones", url: "/reservations" },
->>>>>>> main
   ];
   return (
     <html lang="es" className="dark">

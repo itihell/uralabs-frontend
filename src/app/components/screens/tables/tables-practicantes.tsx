@@ -1,5 +1,5 @@
 import { revalidatePath } from "next/cache";
-import { getPracticantes } from "../actions/post/save-horas-practicas";
+import { getPracticantes } from "../actions/post/save-practicantes";
 import ButtonEditPracicante from "../forms/horas-practicas/practicante/button-edit-practicante";
 import ButtonDeletePracticante from "../forms/horas-practicas/practicante/button-delete-practicante";
 
