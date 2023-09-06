@@ -5,16 +5,16 @@ import ButtonUpdateLabUse from "../../buttons/button-update-labUse";
 import { updateLabUse } from "../../../actions/post/save-labUse";
 
 export default function FormEditLabUse({
-    field,
+    usoLaboratorios,
     closeModals,
 }: {
-    field: any;
+    usoLaboratorios: any;
     closeModals: any;
 }) {
     const actualizarLabUse = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const form = new FormData(e.target as HTMLFormElement);
-        const id = field?.id;
+        const id = usoLaboratorios?.id;
         const data = await updateLabUse(id, form);
 
         closeModals(data);
@@ -22,7 +22,7 @@ export default function FormEditLabUse({
     return (
         <form onSubmit={actualizarLabUse}>
             <div>
-                <FieldsLabUse usoLaboratorios={field} />
+                <FieldsLabUse usoLaboratorios={usoLaboratorios} />
                 <div className="flex justify-end">
                     <ButtonUpdateLabUse close={closeModals} />
                 </div>
