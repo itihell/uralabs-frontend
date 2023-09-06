@@ -3,6 +3,10 @@
 import feching from "@/app/utils/cliente-http";
 
 export async function saveLabUse(request: FormData) {
+    const maleCount = parseInt(request.get("male") as string, 10);
+    const femaleCount = parseInt(request.get("female") as string, 10);
+
+    const total = maleCount + femaleCount;
     const data = {
         className: request.get("className"),
         carrera: { id: request.get("carrera") },
@@ -14,7 +18,7 @@ export async function saveLabUse(request: FormData) {
         semester: request.get("semester"),
         female: request.get("female"),
         male: request.get("male"),
-        total: request.get("total"),
+        total: total,
         hours: request.get("hours"),
         laboratorio:  { id: request.get("laboratorio") },
 

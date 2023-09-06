@@ -39,8 +39,8 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
   return (
     <>
       {/* <input type="hidden" id="id" name="id" defaultValue={usoLaboratorios?.id || ""} /> */}
-
-      <div>
+    <div>
+    <div>
         <label htmlFor="className" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Nombre de la Clase</label>
       </div>
       <div className="mb-6">
@@ -121,18 +121,26 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
         </select>
       </div>
       <div>
-        <label htmlFor="shift" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Turno</label>
+        <label htmlFor="shift" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">
+          Turno
+        </label>
       </div>
       <div className="mb-6">
-        <input
-          type="text"
-          name="shift"
+        <select
           id="shift"
-          defaultValue={usoLaboratorios?.shift || ""}
+          name="shift"
           onChange={handlerChange}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
+        >
+          <option value="ninguno">
+            Seleccionar Turno
+          </option>
+          <option value="Matutino">Mañana</option>
+          <option value="Matutino">Tarde</option>
+          <option value="Matutino">Noche</option>
+        </select>
       </div>
+
       <div>
         <label htmlFor="year" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Año</label>
       </div>
@@ -150,14 +158,22 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
         <label htmlFor="semester" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Semestre</label>
       </div>
       <div className="mb-6">
-        <input
-          type="text"
-          name="semester"
+        <select
           id="semester"
-          defaultValue={usoLaboratorios?.semester || ""}
+          name="semester"
           onChange={handlerChange}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
+        >
+          <option value="ninguno">
+            Seleccionar Semestre
+          </option>
+          <option value="I SEMESTRE">I SEMESTRE</option>
+          <option value="II SEMESTRE">II SEMESTRE</option>
+          <option value="III SEMESTRE">III SEMESTRE</option>
+          <option value="IV SEMESTRE">IV SEMESTRE</option>
+          <option value="V SEMESTRE">V SEMESTRE</option>
+          <option value="VI SEMESTRE">VI SEMESTRE</option>
+        </select>
       </div>
       <div>
         <label htmlFor="female" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Mujeres</label>
@@ -185,19 +201,7 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         />
       </div>
-      <div>
-        <label htmlFor="total" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Total</label>
-      </div>
-      <div className="mb-6">
-        <input
-          type="text"
-          name="total"
-          id="total"
-          defaultValue={usoLaboratorios?.total || ""}
-          onChange={handlerChange}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
+
       <div>
         <label htmlFor="hours" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Horas</label>
       </div>
@@ -230,6 +234,8 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
           ))}
         </select>
       </div>
+    </div>
+      
     </>
   );
 }
