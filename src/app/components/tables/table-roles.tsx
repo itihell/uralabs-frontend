@@ -26,9 +26,9 @@ const TableRoles = async () => {
                 <td className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
                   {role.id}
                 </td>
-                <td className="px-6 py-4"> {role.role}</td>
-                <td className="px-6 py-4">
-                  <div className="flex flex-row items-center justify-end">
+                <td className='px-6 py-4'> {role.role}</td>
+                <td className='px-6 py-4'>
+                  <div className='flex flex-row items-center justify-end'>
                     <ButtonDeleteRole id={role.id} />
                     <ButtonEditRole id={role.id} />
                   </div>

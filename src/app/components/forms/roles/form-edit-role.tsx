@@ -23,7 +23,7 @@ export default function FormEditRole({
     <form onSubmit={actualiarRole}>
       <div>
         <FieldsRoles fields={fields} />
-        <div className="flex justify-end">
+        <div className='flex justify-end'>
           <ButtonUpdateRole close={closeModal} />
         </div>
       </div>
