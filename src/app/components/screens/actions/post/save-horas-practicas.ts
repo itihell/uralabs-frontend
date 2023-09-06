@@ -1,4 +1,5 @@
 "user-server";
+
 import feching from "@/app/utils/cliente-http";
 export async function savePracticante(request: FormData) {
   const data = {
