@@ -16,6 +16,7 @@ export default function FormEditLabUse({
         const form = new FormData(e.target as HTMLFormElement);
         const id = usoLaboratorios?.id;
         const data = await updateLabUse(id, form);
+        console.log(data);
 
         closeModals(data);
     };
