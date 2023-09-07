@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
 import {
   addReservation,
   ReservationFormData,
@@ -22,7 +23,7 @@ function Reservations() {
   useEffect(() => {
     // Obtener el token JWT (esto debe hacerse de manera segura)
     const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsIm5hbWUiOiJOb21icmUgZGUgVXN1YXJpbyIsImlhdCI6MTY5Mzg4OTMxMSwiZXhwIjoxNjkzODk2NTExfQ.digdz9IsRfvc4QBSMqXb42FsR088kZOd4XV4mhMBrAI"; // Reemplaza con tu token JWT real
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsIm5hbWUiOiJOb21icmUgZGUgVXN1YXJpbyIsImlhdCI6MTY5NDA0OTg5MSwiZXhwIjoxNjk0MDU3MDkxfQ.d9ywj8o5TZft7XWDhlwxGlAPOgtOtJF0Qaw4HL5IH8w"; // Reemplaza con tu token JWT real
     setAuthToken(token);
 
     const fetchLaboratories = async () => {
