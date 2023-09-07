@@ -24,6 +24,10 @@ export default function RootLayout({
     { texto: "Modalidades", url: "/modalidades" },
     { texto: "Practicante", url: "/practicante" },
     { texto: "Cortes Practicas", url: "/corte-practicas" },
+    { texto: "Reservaciones", url: "/reservations" },
+    { texto: "Registro de uso del laboratorio", url: "/laboratory-use" },
+    { texto: "Areas", url: "/areas" },
+    { texto: "Carreras", url: "/carreras" },
   ];
   return (
     <html lang="es" className="dark">

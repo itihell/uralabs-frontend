@@ -1,6 +1,11 @@
 "use client";
-import { useState } from "react";
+import { getCarreras } from "@/app/actions/post/save-carreras";
+import { useEffect, useState } from "react";
 
+interface Carrera {
+  id: number;
+  carrera: string;
+}
 export default function FieldsPracticantes({ fields }: { fields: any }) {
   const [fieldsData, setFieldsData] = useState(fields);
 
@@ -14,6 +19,27 @@ export default function FieldsPracticantes({ fields }: { fields: any }) {
   };
 
   console.log(fields);
+
+  const [carreras, setCarreras] = useState<Carrera[]>([]); // Usamos la interfaz Carrera y declaramos carreras como un arreglo vacío
+  const [carreraSeleccionada, setCarreraSeleccionada] = useState("");
+
+  useEffect(() => {
+    // Llama a la función getCarreras para obtener la lista de carreras cuando el componente se monta
+    async function fetchCarreras() {
+      try {
+        const id = fields?.carrera || "";
+        const data = await getCarreras(id);
+        setCarreras(data); // Establece la lista de carreras en el estado
+      } catch (error) {
+        console.error("Error al obtener las carreras", error);
+      }
+    }
+
+    fetchCarreras();
+  }, []);
+  const handler_Change = (e) => {
+    setCarreraSeleccionada(e.target.value);
+  };
 
   return (
     <div
@@ -58,21 +84,31 @@ export default function FieldsPracticantes({ fields }: { fields: any }) {
           />
         </div>
 
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">
+        <div
+          className="w-full md:w-1/2 px-3 mb-6 md:mb-0 
+          p-1
+        "
+        >
           <label
             htmlFor="carrera"
             className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
           >
             Carrera
           </label>
-          <input
-            type="text"
+          <select
             name="carrera"
             id="carrera"
-            defaultValue={fields?.carrera || ""}
-            onChange={handlerChange}
+            value={carreraSeleccionada}
+            onChange={handler_Change}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          />
+          >
+            <option value="">Selecciona una carrera</option>
+            {carreras.map((carrera, index) => (
+              <option key={index} value={carrera.carrera}>
+                {carrera.carrera}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">

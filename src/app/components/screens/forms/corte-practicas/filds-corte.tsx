@@ -29,6 +29,7 @@ export default function FieldsCortePracticas({ corte }: { corte: any }) {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
           />
         </div>
+
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">
           <label
             htmlFor="fecha_corte"
