@@ -17,6 +17,7 @@ const TableCarreras = async () => {
               <th className="px-6 py-3">ID</th>
               <th className="px-6 py-3">Carrera</th>
               <th className="px-6 py-3">Area</th>
+              <th className="px-6 py-3">Opciones</th>
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
