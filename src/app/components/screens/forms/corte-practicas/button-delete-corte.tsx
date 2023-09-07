@@ -10,12 +10,13 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { deleteCortePractica } from "../../actions/post/save-practicantes";
+
 import {
   IconArrowBackUpDouble,
   IconCheck,
   IconTrash,
 } from "@tabler/icons-react";
+import { deleteCortePractica } from "../../actions/post/save-corte-practicas";
 export default function ButtonDeleteCorte({ id }: { id: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();

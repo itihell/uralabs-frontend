@@ -19,9 +19,9 @@ export default function ButtonEditPracicante({ id }: { id: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const loadData = async (id: number) => {
     const datos = await getPracticante(id);
+
     setFields(datos);
   };
-
   console.log(id);
   return (
     <>
@@ -44,7 +44,7 @@ export default function ButtonEditPracicante({ id }: { id: string }) {
               </ModalHeader>
               <ModalBody>
                 <FormEditPracticante
-                  fields={{ fields, id: parseInt(id) }}
+                  fields={fields}
                   closeModal={(e: any) => {
                     onClose();
                     setFields({});

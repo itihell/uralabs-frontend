@@ -16,6 +16,7 @@ const feching = async (
   const headers = getHeadersGlobal();
   const url = `${process.env.API_BASE_URL}${endPoint}`;
   const options: optionsClienteHttp = {};
+  console.log(endPoint, url, process.env.API_BASE_UR);
 
   options.method = metodo;
   options.cache = cache;

@@ -2,13 +2,13 @@
 import { useState } from "react";
 
 export default function FieldsPracticantes({ fields }: { fields: any }) {
-  const [practicanteData, setPracticanteData] = useState(fields);
+  const [fieldsData, setFieldsData] = useState(fields);
 
   const handlerChange = (e: any) => {
     const { name, value } = e.target;
 
-    setPracticanteData({
-      ...practicanteData,
+    setFieldsData({
+      ...fieldsData,
       [name]: value,
     });
   };

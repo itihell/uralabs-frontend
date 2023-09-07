@@ -1,5 +1,5 @@
-import TablePracticante from "@/app/components/screens/tables/tables-practicantes";
-import FormPracticante from "@/app/components/screens/forms/practicante/form-practicante";
+import FormPracticante from "../components/screens/forms/practicante/form-practicante";
+import TablePracticante from "../components/screens/tables/tables-practicantes";
 
 export default function Practicante() {
   return (
