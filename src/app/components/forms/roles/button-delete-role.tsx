@@ -40,7 +40,7 @@ export default function ButtonDeleteRole({ id }: { id: string }) {
                 <IconTrash color="red" /> Eliminar Role
               </ModalHeader>
               <ModalBody>
-                <h1>¿Está seguro que desea eliminar el role con id {id}?</h1>
+                <h1>¿Está seguro que desea eliminar el roleeee con id {id}?</h1>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>

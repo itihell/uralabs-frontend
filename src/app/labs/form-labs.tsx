@@ -1,22 +1,23 @@
 import { revalidatePath, revalidateTag } from "next/cache";
-import { saveRoles } from "../../../actions/post/save-roles";
-import FieldsRoles from "./fields-roles";
+import { saveLabs } from "../actions/post/save-labs"; 
+import FieldsLabs from "./fields-labs";
 import { redirect } from "next/navigation";
 
 
-export default function FormRoles({ roleId = "" }) { 
-  const crearRole = async (formData: FormData) => {
+export default function FormLabs({ labId = "" }) { 
+  const crearLab = async (formData: FormData) => { 
     "use server";
-    const data = await saveRoles(formData);
+    const data = await saveLabs(formData);
 
-    revalidatePath("/roles");
+    revalidatePath("/labregirter"); 
   };
 
   return (
-    <form action={crearRole}>
+    
+    <form action={crearLab}> 
       <div>
-        {/* <FieldsRoles /> */}
-         <FieldsRoles fields={{ id: 1, role: "Admin" }} /> {/*  este se lo añadi  */}
+        {/* <FieldsLab /> */}
+         <FieldsLabs fields={{ id: 1, lab: "admin" }} /> {/*  este se lo añadi  */}
         <div>
           <button
             type="submit"
@@ -27,6 +28,8 @@ export default function FormRoles({ roleId = "" }) {
           </button>
         </div>
       </div>
+
+      <div></div>
     </form>
   );
 }

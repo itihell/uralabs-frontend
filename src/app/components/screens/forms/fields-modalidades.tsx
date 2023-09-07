@@ -5,6 +5,7 @@ export default async function FieldsModalidades({ modalidadId = 0 }) {
   if (modalidadId > 0) {
     fields = await getModalidades(modalidadId);
   }
+
   return (
     <>
       <div>

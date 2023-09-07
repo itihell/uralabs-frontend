@@ -8,7 +8,7 @@ export default function Alerta() {
       <div className="flex items-center justify-center h-screen">
         <Alert color="info">
           <span>
-            <span className="font-medium">Flowbite </span>
+            <span className="font-medium">Flowbite </span> 
             with NextJS using Tailwind CSS
           </span>
         </Alert>

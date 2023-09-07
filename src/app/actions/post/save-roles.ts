@@ -2,11 +2,11 @@
 
 import feching from "@/app/utils/cliente-http";
 
-export async function saveRoles(request: FormData) {
-  const data = {
-    role: request.get("role"),
-  };
-  const endPoind = `/roles`;
+export async function saveRoles(request: FormData) { 
+    const data = {
+      role: request.get("role"),
+    };
+    const endPoind = `/roles`;
 
   const roles = await feching(endPoind, "no-store", "POST", data);
 

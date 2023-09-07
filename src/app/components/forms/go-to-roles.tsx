@@ -2,8 +2,8 @@
 import { redirect } from "next/navigation";
 
 export default function GoToRoles() {
-  const goto = () => {
-    console.log('probanaod');
+      const goto = () => {
+      console.log('probanaod');
     
     redirect("/roles");
   };

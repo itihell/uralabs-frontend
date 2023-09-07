@@ -18,10 +18,11 @@ export default function RootLayout({
 }) {
   const menus = [
     { texto: "Home", url: "/" },
-    { texto: "Roles", url: "/roles" },
+    { texto: "Roles", url: "/rolles" },
     { texto: "Usuarios", url: "/users" },
     { texto: "About", url: "/about" },
-    { texto: "Modalidades", url: "/modalidades" },
+    { texto: "Modalidades", url: "/modalidades" }, 
+    { texto: "Laboratorio", url: "/Labs" },
   ];
   return (
     <html lang="es" className="dark">

@@ -14,7 +14,7 @@ export default function FormSumarDos() {
     setResultado(suma);
   };
   return (
-    <form className="" onSubmit={handleSubmit}>
+    <form className="" onSubmit={handleSubmit}> 
       <div className="h-auto">
         <div className="flex flex-row">
           <label className="basis-3/12 text-right">Número 1</label>
@@ -25,7 +25,7 @@ export default function FormSumarDos() {
               name="numero1"
               id="numero1"
               value={String(numero1)}
-              onChange={(e) => setNumero1(parseInt(e.target.value))}
+              onChange={(e) => setNumero1(parseInt(e.target.value))} 
             />
           </div>
         </div>
