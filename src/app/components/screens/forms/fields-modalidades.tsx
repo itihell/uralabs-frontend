@@ -1,13 +1,30 @@
-import getModalidades from "../actions/get/get-modalidades";
+"use client";
+import { useState } from "react";
+export default function FieldsModalidades({ fields }: { fields: any }) {
+  const [field, setField] = useState(fields);
 
+<<<<<<< HEAD
 export default async function FieldsModalidades({ modalidadId = 0 }) {
   let fields: any = {};
   if (modalidadId > 0) {
     fields = await getModalidades(modalidadId);
   }
 
+=======
+  const handlerChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setField({
+      ...field,
+      [name]: value,
+    });
+  };
+  console.log(fields);
+>>>>>>> main
   return (
     <>
+      <input type='hidden' id='id' name='id' defaultValue={fields?.id || ""} />
+
       <div>
         <label
           htmlFor='modalidad'
@@ -21,7 +38,8 @@ export default async function FieldsModalidades({ modalidadId = 0 }) {
           type='text'
           name='modalidad'
           id='modalidad'
-          defaultValue={fields.modalidad || ""}
+          defaultValue={fields?.modalidad || ""}
+          onChange={handlerChange}
           className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
         />
       </div>

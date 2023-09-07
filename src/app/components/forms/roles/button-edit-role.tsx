@@ -24,6 +24,8 @@ export default function ButtonEditRole({ id }: { id: string }) {
     setFields(datos);
   };
 
+  console.log(id);
+
   return (
     <>
       <Button
@@ -31,16 +33,16 @@ export default function ButtonEditRole({ id }: { id: string }) {
           onOpen();
           loadData(parseInt(id));
         }}
-        variant="light"
-        size="sm"
+        variant='light'
+        size='sm'
       >
-        <IconPencilMinus color="lime" />
+        <IconPencilMinus color='lime' />
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader className='flex flex-col gap-1'>
                 Editar Role
               </ModalHeader>
               <ModalBody>
