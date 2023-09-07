@@ -52,7 +52,7 @@ export const updateLabUse = async (id: number, request: FormData) => {
         semester: request.get("semester"),
         female: request.get("female"),
         male: request.get("male"),
-        total: 2,
+        total: total,
         hours: request.get("hours"),
         laboratorio: { id: request.get("laboratorio") },
 
