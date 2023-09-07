@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 interface Carrera {
   id: number;
-  carrera: string;
+  nombre: string;
 }
 export default function FieldsPracticantes({ fields }: { fields: any }) {
   const [fieldsData, setFieldsData] = useState(fields);
@@ -18,13 +18,10 @@ export default function FieldsPracticantes({ fields }: { fields: any }) {
     });
   };
 
-  console.log(fields);
-
-  const [carreras, setCarreras] = useState<Carrera[]>([]); // Usamos la interfaz Carrera y declaramos carreras como un arreglo vacío
+  const [carreras, setCarreras] = useState<Carrera[]>([]);
   const [carreraSeleccionada, setCarreraSeleccionada] = useState("");
 
   useEffect(() => {
-    // Llama a la función getCarreras para obtener la lista de carreras cuando el componente se monta
     async function fetchCarreras() {
       try {
         const id = fields?.carrera || "";
@@ -37,7 +34,7 @@ export default function FieldsPracticantes({ fields }: { fields: any }) {
 
     fetchCarreras();
   }, []);
-  const handler_Change = (e) => {
+  const handler_Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCarreraSeleccionada(e.target.value);
   };
 
@@ -104,8 +101,8 @@ export default function FieldsPracticantes({ fields }: { fields: any }) {
           >
             <option value="">Selecciona una carrera</option>
             {carreras.map((carrera, index) => (
-              <option key={index} value={carrera.carrera}>
-                {carrera.carrera}
+              <option key={index} value={carrera.nombre}>
+                {carrera.nombre}
               </option>
             ))}
           </select>

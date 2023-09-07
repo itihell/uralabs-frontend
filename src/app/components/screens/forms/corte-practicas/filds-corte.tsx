@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+
 export default function FieldsCortePracticas({ corte }: { corte: any }) {
   const [corteData, setCorteData] = useState(corte);
   const handlerChange = (e: any) => {
