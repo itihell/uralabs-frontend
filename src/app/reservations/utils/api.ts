@@ -74,6 +74,32 @@ export const addReservation = async (
   }
 };
 
+// En tu archivo de utilidades (api.ts)
+export const updateReservation = async (
+  reservationId: number,
+  updatedData: ReservationFormData
+): Promise<ReservationFormData> => {
+  const apiUrl = `${API_URL}/reservations/${reservationId}`;
+
+  try {
+    const response = await axios.put<ReservationFormData>(apiUrl, updatedData, {
+      headers: {
+        Authorization: `Bearer ${"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjQsIm5hbWUiOiJOb21icmUgZGUgVXN1YXJpbyIsImlhdCI6MTY5NDA0ODM1MCwiZXhwIjoxNjk0MDU1NTUwfQ.utvLb78i0gdIbEMhOnLAzjiRGm9Ge5KHw7x_x5df8Ls"}`,
+      },
+    });
+
+    if (response.status === 200) {
+      const updatedReservation = response.data;
+      return updatedReservation;
+    } else {
+      throw new Error(`Error al actualizar la reserva: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Error al actualizar la reserva:", error);
+    throw error;
+  }
+};
+
 export async function getLaboratories() {
   try {
     const response = await axios.get<{ data: Laboratory[] }>(
@@ -106,13 +132,14 @@ export async function getCareers() {
 }
 
 export interface ReservationFormData {
+  id: number;
   date: string;
   startTime: string;
   endTime: string;
   laboratoryId: number;
-  userId: number;
+  userId?: number;
   careerId: number;
-  shift: Shift;
+  shift: string;
 }
 
 export enum Shift {
@@ -122,31 +149,21 @@ export enum Shift {
 }
 
 export interface Reservation {
-  id: number;
+  id?: number;
   date: string;
   startTime: string;
   endTime: string;
+  shift: Shift;
+  laboratoryId: number;
+  careerId: number;
   laboratory: {
     id: number;
     labName: string;
-    description: string;
-    fundation: string;
-    builder: string;
-    isActive: boolean;
-  };
-  userId: {
-    id: number;
-    name: string;
-    email: string;
-    telefono: string;
-    token: string | null;
-    isActive: boolean;
   };
   carrera: {
     id: number;
     nombre: string;
   };
-  shift: Shift; // Agregamos el campo 'shift' aquí
 }
 
 export interface Laboratory {
