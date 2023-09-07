@@ -26,7 +26,7 @@
       const { data } = await deteteLabById(parseInt(id));
       router.refresh();
     };
-
+//commit
     return (
       <>
         <Button onPress={onOpen} variant="light" size="sm"> 
