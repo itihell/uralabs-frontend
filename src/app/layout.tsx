@@ -23,6 +23,8 @@ export default function RootLayout({
     { texto: "About", url: "/about" },
     { texto: "Modalidades", url: "/modalidades" },
     { texto: "Reservaciones", url: "/reservations" },
+    { texto: "Registro de uso del laboratorio", url: "/laboratory-use" },
+
   ];
   return (
     <html lang="es" className="dark">
