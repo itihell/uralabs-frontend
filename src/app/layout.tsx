@@ -21,10 +21,8 @@ export default function RootLayout({
     { texto: "Roles", url: "/rolles" },
     { texto: "Usuarios", url: "/users" },
     { texto: "About", url: "/about" },
-<<<<<<< HEAD
     { texto: "Modalidades", url: "/modalidades" }, 
     { texto: "Laboratorio", url: "/Labs" },
-=======
     { texto: "Modalidades", url: "/modalidades" },
     { texto: "Practicante", url: "/practicante" },
     { texto: "Cortes Practicas", url: "/corte-practicas" },
@@ -32,7 +30,6 @@ export default function RootLayout({
     { texto: "Registro de uso del laboratorio", url: "/laboratory-use" },
     { texto: "Areas", url: "/areas" },
     { texto: "Carreras", url: "/carreras" },
->>>>>>> main
   ];
   return (
     <html lang="es" className="dark">
