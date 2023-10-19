@@ -21,7 +21,6 @@ export default function RootLayout({
     { texto: "Roles", url: "/rolles" },
     { texto: "Usuarios", url: "/users" },
     { texto: "About", url: "/about" },
-    { texto: "Modalidades", url: "/modalidades" }, 
     { texto: "Laboratorio", url: "/Labs" },
     { texto: "Modalidades", url: "/modalidades" },
     { texto: "Practicante", url: "/practicante" },
