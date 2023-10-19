@@ -9,18 +9,10 @@ export default async function ListRoles() {
 
   const roles = await getRoles();
   return (
-    <div>
-      <h1>List Roles</h1>
-      <select>
-        {roles.map((role: any) => {
-          return <option key={`role-${role.id}`}>{role.role}</option>;
-        })}
-      </select>
-      <ul>
-        {roles.map((role: any) => {
-          return <li key={`role-${role.id}`}>{role.role}</li>;
-        })}
-      </ul>
-    </div>
+    <select>
+      {roles.map((role: any) => {
+        return <option key={`role-${role.id}`}>{role.role}</option>;
+      })}
+    </select>
   );
 }
