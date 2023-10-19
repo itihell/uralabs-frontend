@@ -1,8 +1,6 @@
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { saveRoles } from "../../../actions/post/save-roles";
 import FieldsRoles from "./fields-roles";
-import { redirect } from "next/navigation";
-
 
 export default function FormRoles({ roleId = "" }) { 
   const crearRole = async (formData: FormData) => {
@@ -15,12 +13,9 @@ export default function FormRoles({ roleId = "" }) {
   return (
     <form action={crearRole}>
       <div>
-<<<<<<< HEAD
-        {/* <FieldsRoles /> */}
-         <FieldsRoles fields={{ id: 1, role: "Admin" }} /> {/*  este se lo añadi  */}
-=======
+        
         <FieldsRoles />
->>>>>>> main
+
         <div>
           <button
             type='submit'

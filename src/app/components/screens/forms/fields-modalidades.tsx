@@ -3,14 +3,6 @@ import { useState } from "react";
 export default function FieldsModalidades({ fields }: { fields: any }) {
   const [field, setField] = useState(fields);
 
-<<<<<<< HEAD
-export default async function FieldsModalidades({ modalidadId = 0 }) {
-  let fields: any = {};
-  if (modalidadId > 0) {
-    fields = await getModalidades(modalidadId);
-  }
-
-=======
   const handlerChange = (e: any) => {
     const { name, value } = e.target;
 
@@ -20,7 +12,6 @@ export default async function FieldsModalidades({ modalidadId = 0 }) {
     });
   };
   console.log(fields);
->>>>>>> main
   return (
     <>
       <input type='hidden' id='id' name='id' defaultValue={fields?.id || ""} />
