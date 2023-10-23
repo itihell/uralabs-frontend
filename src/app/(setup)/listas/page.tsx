@@ -1,5 +1,6 @@
 import ListAreas from "@/app/components/listas/ListAreas";
-import ListCortePracticante from "@/app/components/listas/ListCortePracticante copy";
+import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
+
 import ListPracticante from "@/app/components/listas/ListPracticante";
 import ListRoles from "@/app/components/listas/ListRoles";
 
