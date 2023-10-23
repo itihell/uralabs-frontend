@@ -2,9 +2,9 @@ import feching from "@/app/utils/cliente-http";
 
 export default async function ListPracticante() {
     const getPracticante = async () => {
-        const endPoind = "/practicante";
+        const endPoind = "/catalogos/practicante";
         const practicante = await feching(endPoind, "no-store", "GET");
-        return practicante.data;
+        return practicante;
     };
 
     const practicante = await getPracticante();
