@@ -2,9 +2,9 @@ import feching from "@/app/utils/cliente-http";
 
 export default async function ListAreas() {
   const getAllAreas = async () => {
-    const endPoind = `/registro-area`;
+    const endPoind = `/catalogos/areas`;
     const areas = await feching(endPoind, "no-store", "GET");
-    return areas.data;
+    return areas;
   };
 
   const dataRoles = await getAllAreas();
