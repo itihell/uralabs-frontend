@@ -15,11 +15,7 @@ export default function ListasPages() {
       <ListAreas />
       <ListCortePracticante />
       <ListPracticante />
-<<<<<<< HEAD
       <ListUsoLab/>
-
-=======
->>>>>>> 927df0f909d4021b418f47ee84dd3e60aab71df7
     </div>
   );
 }
