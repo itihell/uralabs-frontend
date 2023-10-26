@@ -8,7 +8,7 @@ import ListUsoLab from "@/app/components/listas/ListUsoLab";
 
 export default function ListasPages() {
   return (
-    <div>
+    <div className="min-h-screen flex-col items-center justify-between">
       <h1>Listas Pages</h1>
       <ListRoles />
       <ListModalidades />
