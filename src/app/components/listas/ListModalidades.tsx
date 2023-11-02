@@ -1,25 +1,27 @@
+"use client";
 import feching from "@/app/utils/cliente-http";
+import SelectSearch from "../select/select";
+import { useEffect, useState } from "react";
 
-export default async function ListModalidades() {
-  const getModalidades = async () => {
-    const endPoind = "/catalogos/modalidades";
-    const roles = await feching(endPoind, "no-store", "GET");
-    return roles;
+export default function ListModalidades() {
+  const [modalidades, setModalidades] = useState([]);
+
+  const searchData = async (buscar = "") => {
+    const endPoind = `/catalogos/modalidades?buscar=${buscar}`;
+    const datos = await feching(endPoind, "no-store", "GET");
+    setModalidades(datos);
   };
 
-  const modalidades = await getModalidades();
+  useEffect(() => {
+    searchData("");
+  }, []);
+
   return (
-    <div>
-      <h1>List Modalidades</h1>
-      <select>
-        {modalidades.map((modalidades: any) => {
-          return (
-            <option key={`modalidad-${modalidades.id}`}>
-              {modalidades.modalidad}
-            </option>
-          );
-        })}
-      </select>
-    </div>
+    <SelectSearch
+      items={modalidades}
+      label='modalidad'
+      placeholder='Buscar Modalidades'
+      search={searchData}
+    />
   );
 }
