@@ -1,23 +1,31 @@
-
-import ListModalidades from "@/app/components/listas/ListModalidades";
-import ListAreas from "@/app/components/listas/ListAreas";
-import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
-import ListPracticante from "@/app/components/listas/ListPracticante";
-import ListRoles from "@/app/components/listas/ListRoles";
-import ListUseres from "@/app/components/listas/ListUsers";
-import ListUsoLab from "@/app/components/listas/ListUsoLab";
+"use client";
+import SelectSearch from "@/app/components/select/select";
+import feching from "@/app/utils/cliente-http";
+import { useEffect, useState } from "react";
 
 export default function ListasPages() {
+  const [roles, setRoles] = useState([]);
+
+  const searchData = async (buscar = "") => {
+    const endPoind = `/catalogos/roles?buscar=${buscar}`;
+    const datos = await feching(endPoind, "no-store", "GET");
+    setRoles(datos);
+  };
+
+  useEffect(() => {
+    searchData("");
+  }, []);
+
   return (
-    <div>
+    <div className="min-h-screen flex-col items-center justify-between">
       <h1>Listas Pages</h1>
-      <ListRoles />
-      <ListModalidades />
-      <ListAreas />
-      <ListCortePracticante />
-      <ListPracticante />
-      <ListUseres/>
-      <ListUsoLab/>
+
+      <SelectSearch
+        items={roles}
+        label="role"
+        placeholder="Buscar Roles"
+        search={searchData}
+      />
     </div>
   );
 }
