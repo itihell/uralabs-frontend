@@ -1,18 +1,27 @@
+"use client";
 import feching from "@/app/utils/cliente-http";
+import SelectSearch from "../select/select";
+import { useEffect, useState } from "react";
 
-export default async function ListRoles() {
-  const getRoles = async () => {
-    const endPoind = "/catalogos/roles";
-    const roles = await feching(endPoind, "no-store", "GET");
-    return roles;
+export default function ListRoles() {
+  const [roles, setRoles] = useState([]);
+
+  const searchData = async (buscar = "") => {
+    const endPoind = `/catalogos/roles?buscar=${buscar}`;
+    const datos = await feching(endPoind, "no-store", "GET");
+    setRoles(datos);
   };
 
-  const roles = await getRoles();
+  useEffect(() => {
+    searchData("");
+  }, []);
+
   return (
-    <select>
-      {roles.map((role: any) => {
-        return <option key={`role-${role.id}`}>{role.role}</option>;
-      })}
-    </select>
+    <SelectSearch
+      items={roles}
+      label="role"
+      placeholder="Buscar Roles"
+      search={searchData}
+    />
   );
 }
