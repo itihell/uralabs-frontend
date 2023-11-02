@@ -4,12 +4,14 @@ import feching from "@/app/utils/cliente-http";
 //corte-practicas
 export async function saveCortePractica(request: FormData) {
   const data = {
-    Practicante: request.get("practicante"),
+    practicante: request.get("practicante"),
     fecha_corte: request.get("fecha_corte"),
     horas_actuales: request.get("horas_actuales"),
     horas_anteriores: request.get("horas_anteriores"),
     horas_totales: request.get("horas_totales"),
   };
+
+  console.log(data);
   const endPoind = `/corte-practicas`;
   const cortePractica = await feching(endPoind, "no-store", "POST", data);
 
@@ -17,6 +19,7 @@ export async function saveCortePractica(request: FormData) {
     const error = {
       error: cortePractica.error,
     };
+    return error;
   }
 
   return cortePractica.data;
@@ -24,7 +27,7 @@ export async function saveCortePractica(request: FormData) {
 
 export async function updateCortePractica(id: number, request: FormData) {
   const data = {
-    Practicante: request.get("practicante"),
+    Practicante: request.get("nombre"),
     fecha_corte: request.get("fecha_corte"),
     horas_actuales: request.get("horas_actuales"),
     horas_anteriores: request.get("horas_anteriores"),

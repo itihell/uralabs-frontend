@@ -1,6 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getPracticante } from "../../actions/post/save-practicantes";
 
+interface Practicante {
+  id: number;
+  nombre: string;
+}
 export default function FieldsCortePracticas({ corte }: { corte: any }) {
   const [corteData, setCorteData] = useState(corte);
   const handlerChange = (e: any) => {
@@ -9,6 +14,26 @@ export default function FieldsCortePracticas({ corte }: { corte: any }) {
       ...corteData,
       [name]: value,
     });
+  };
+
+  const [practicantes, setPracticantes] = useState<Practicante[]>([]);
+  const [practicanteSeleccionado, setPracticanteSeleccionado] = useState("");
+
+  useEffect(() => {
+    async function fetchPracticantes() {
+      try {
+        const id = corte?.practicante || "";
+        const data = await getPracticante(id);
+        setPracticantes(data); // Establece la lista de practicantes en el estado
+      } catch (error) {
+        console.error("Error al obtener los practicantes", error);
+      }
+    }
+
+    fetchPracticantes();
+  }, []);
+  const handler_Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setPracticanteSeleccionado(e.target.value);
   };
   return (
     <div className="flex flex-col justify-center sm:py-5">
@@ -21,14 +46,20 @@ export default function FieldsCortePracticas({ corte }: { corte: any }) {
           >
             Practicante
           </label>
-          <input
-            type="text"
+          <select
             name="practicante"
             id="practicante"
-            defaultValue={corte?.practicante || ""}
-            onChange={handlerChange}
+            value={practicanteSeleccionado}
+            onChange={handler_Change}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          />
+          >
+            <option value="">Seleccione un practicante</option>
+            {practicantes.map((practicante, index) => (
+              <option key={index} value={practicante.nombre}>
+                {practicante.nombre}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">

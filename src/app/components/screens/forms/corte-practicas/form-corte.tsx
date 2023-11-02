@@ -8,6 +8,7 @@ export default function FormCortePracticas({ corteId = "" }) {
     "use server";
     const data = await saveCortePractica(formData);
     revalidatePath("/corte-practicas");
+    console.log(data);
   };
   return (
     <form action={crearCorte}>
