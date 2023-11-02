@@ -1,9 +1,3 @@
-
-export default function SelectItem(){
-    return (
-        <div></div>
-    )
-}
 "use client";
 interface SelectItemProps {
   id: number | string;
@@ -27,4 +21,3 @@ export default function SelectItem({ id, label, selected }: SelectItemProps) {
     </div>
   );
 }
-
