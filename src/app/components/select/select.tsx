@@ -2,7 +2,6 @@
 import { useState } from "react";
 import SelectBtn from "./select-btn";
 import SelectInput from "./select-input";
-import SelectItem from "./select-item";
 import SelectList from "./select-lists";
 import { Selected } from "./interfaces/selected";
 interface SelectSearchProps {
@@ -25,9 +24,12 @@ export default function SelectSearch({
   };
 
   const selectedItems = (e: Selected) => {
-    console.log(e);
     setOpen(!open);
     setTexto(e.label);
+  };
+
+  const openCloseCare = (e: boolean) => {
+    setOpen(e);
   };
 
   return (
@@ -39,7 +41,7 @@ export default function SelectSearch({
           value={texto}
           focus={setOpen}
         />
-        <SelectBtn />
+        <SelectBtn opened={openCloseCare} />
       </div>
       {open && (
         <SelectList items={items} label={label} selected={selectedItems} />
