@@ -1,3 +1,4 @@
+import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
 import ListModalidades from "@/app/components/listas/ListModalidades";
 import ListRoles from "@/app/components/listas/ListRoles";
 
@@ -9,6 +10,9 @@ export default function ListasPages() {
       <hr />
       <h1>Modalidades</h1>
       <ListModalidades />
+      <hr />
+      <h1>Corte Practcas</h1>
+      <ListCortePracticante />
     </div>
   );
 }
