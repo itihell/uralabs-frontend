@@ -1,6 +1,7 @@
 import ListAreas from "@/app/components/listas/ListAreas";
 import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
 import ListModalidades from "@/app/components/listas/ListModalidades";
+import ListPracticante from "@/app/components/listas/ListPracticante";
 import ListRoles from "@/app/components/listas/ListRoles";
 
 export default function ListasPages() {
@@ -15,7 +16,9 @@ export default function ListasPages() {
       <h1>Corte Practcas</h1>
       <ListCortePracticante />
       <h1>Listas de Areas</h1>
-      <ListAreas/>
+      <ListAreas />
+      <h1>Lista de Practicante</h1>
+      <ListPracticante />
     </div>
   );
 }
