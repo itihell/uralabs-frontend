@@ -1,3 +1,4 @@
+import ListAreas from "@/app/components/listas/ListAreas";
 import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
 import ListModalidades from "@/app/components/listas/ListModalidades";
 import ListRoles from "@/app/components/listas/ListRoles";
@@ -13,6 +14,8 @@ export default function ListasPages() {
       <hr />
       <h1>Corte Practcas</h1>
       <ListCortePracticante />
+      <h1>Listas de Areas</h1>
+      <ListAreas/>
     </div>
   );
 }
