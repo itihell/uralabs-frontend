@@ -1,6 +1,7 @@
 import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
 import ListModalidades from "@/app/components/listas/ListModalidades";
 import ListRoles from "@/app/components/listas/ListRoles";
+import ListUsoLab from "@/app/components/listas/ListUsoLab";
 
 export default function ListasPages() {
   return (
@@ -13,6 +14,9 @@ export default function ListasPages() {
       <hr />
       <h1>Corte Practcas</h1>
       <ListCortePracticante />
+
+      <h1>Uso del laboratorio</h1>
+      <ListUsoLab />
     </div>
   );
 }

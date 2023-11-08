@@ -1,15 +1,14 @@
 // import { getRoles } from "@/app/actions/post/save-roles";
-import { revalidatePath } from "next/cache";
 import { saveLabUse } from "../../../actions/post/save-labUse";
 import FieldsLabuse from "./fields-labUse";
-
+import { redirect } from "next/navigation";
 
 export default function   FormAddLabUse({ roleId = "" }) {
 
   const crearRegistro = async (formData: FormData) => {
     "use server";
     const data = await saveLabUse(formData);
-    revalidatePath("/uselab");
+     redirect("/laboratory-use");
   }
   // let usoLaboratorios: any = {};
   // if (roleId > 0) {
