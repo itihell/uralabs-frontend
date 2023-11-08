@@ -1,25 +1,28 @@
+"use client";
 import feching from "@/app/utils/cliente-http";
+import SelectSearch from "../select/select";
+import { useEffect, useState } from "react";
 
+export default function ListCortePracticante() {
+  const [CortePracticas, setCortePracticas] = useState([]);
 
-export default async function ListCortePracticante() {
-  const getCortePracticas = async () => {
-    const endPoind = "/catalogos/corte-practicas";
-    const CortePractica = await feching(endPoind, "no-store", "GET");
-    return CortePractica;
+  const searchData = async (buscar = "") => {
+    const endPoind = `/catalogos/corte-practicas?buscar=${buscar}`;
+    const datos = await feching(endPoind, "no-store", "GET");
+    setCortePracticas(datos);
   };
 
-  const dataCortePractica = await getCortePracticas();
+  useEffect(() => {
+    searchData("");
+  }, []);
+
   return (
-    <div className="my-8">
-      <h1>Lista de Corte de Practica</h1>
-      <select
-      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-      >
-      {dataCortePractica.map((CortePractica: any) => {
-        return <option key={`CortePractica-${CortePractica.id}`}>{CortePractica.fecha_corte}</option>;
-      })}
-    </select>
-    </div>
-    
+    <SelectSearch
+      items={CortePracticas}
+      label="fecha_corte"
+      placeholder="Buscar Corte Practicas"
+      search={searchData}
+    />
   );
 }
+
