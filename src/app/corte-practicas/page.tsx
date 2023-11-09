@@ -1,3 +1,4 @@
+import React from "react";
 import FormCortePracticas from "../components/screens/forms/corte-practicas/form-corte";
 import TableCortePractica from "../components/screens/tables/table-corte-practica";
 

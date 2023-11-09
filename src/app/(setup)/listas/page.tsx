@@ -12,9 +12,15 @@ export default function ListasPages() {
   const changeRole = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
+
   const changeArea = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
+
+  const changeUser = (e: any) => {
+    console.log("desde la pagina ", e.id);
+  }
+
   return (
     <div className="min-h-screen flex-col items-center justify-between">
       <h1>Listas Pages</h1>
@@ -36,7 +42,7 @@ export default function ListasPages() {
       <ListPracticante />
 
       <h1>Lista de Usuarios</h1>
-      <ListUsers />
+      <ListUsers selected={changeUser} />
       <h1>Lista de Carreras</h1>
       <ListCarrera />
     </div>
