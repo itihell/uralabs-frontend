@@ -3,7 +3,11 @@ import feching from "@/app/utils/cliente-http";
 import { useEffect, useState } from "react";
 import SelectSearch from "../select/select";
 
-export default  function ListUsers() {
+interface ListUsersProps {
+  selected: (e: Object) => void;
+}
+
+export default  function ListUsers({ selected }: ListUsersProps) {
   const [users, setUsers] = useState([]);
   const searchData = async (buscar = "") => {
     const endPoind = `/catalogos/users?buscar=${buscar}`;
@@ -16,6 +20,7 @@ export default  function ListUsers() {
   return (
     <SelectSearch
       items={users}
+      selectedItem={selected}
       label="name"
       placeholder="Buscar Usuarios"
       search={searchData}
