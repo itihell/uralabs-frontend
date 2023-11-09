@@ -12,6 +12,14 @@ export default function ListasPages() {
   const changeRole = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
+
+
+
+
+
+
+
+  
   const changeUsolab = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
