@@ -3,6 +3,7 @@ import ListCortePracticante from "@/app/components/listas/ListCortePracticante";
 import ListModalidades from "@/app/components/listas/ListModalidades";
 import ListPracticante from "@/app/components/listas/ListPracticante";
 import ListRoles from "@/app/components/listas/ListRoles";
+import ListUsers from "@/app/components/listas/ListUsers";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
 
 export default function ListasPages() {
@@ -25,6 +26,9 @@ export default function ListasPages() {
       
       <h1>Lista de Practicante</h1>
       <ListPracticante />
+
+      <h1>Lista de Usuarios</h1>
+      <ListUsers/>
 
     </div>
   );
