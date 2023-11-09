@@ -42,7 +42,6 @@ export default function ListRoles({ selected }: ListRolesProps) {
       variant="bordered"
       onInputChange={list.setFilterText}
       onSelectionChange={(e) => {
-        console.log(e);
         changeRol(e);
       }}
     >
