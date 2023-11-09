@@ -27,6 +27,10 @@ export default function ListasPages() {
   const changePracticante = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
+  
+  const changeCarrea = (e: any) => {
+    console.log("desde la pagina ", e.id);
+  };
 
   return (
     <div className="min-h-screen flex-col items-center justify-between">
@@ -50,8 +54,9 @@ export default function ListasPages() {
 
       <h1>Lista de Usuarios</h1>
       <ListUsers selected={changeUser} />
+
       <h1>Lista de Carreras</h1>
-      <ListCarrera />
+      <ListCarrera selected={changeCarrea} />
     </div>
   );
 }

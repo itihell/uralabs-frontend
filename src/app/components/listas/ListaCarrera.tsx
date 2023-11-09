@@ -3,7 +3,11 @@ import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 
-export default function ListCarrera() {
+interface ListCarrerasProps {
+  selected: (e: Object) => void;
+}
+
+export default function ListCarrera({ selected}: ListCarrerasProps) {
   const [areas, setCarrera] = useState([]);
 
   const searchData = async (buscar = "") => {
@@ -22,6 +26,8 @@ export default function ListCarrera() {
       label="nombre"
       placeholder="Buscar Carreras"
       search={searchData}
+      selectedItem={selected}
+      
     />
   );
 }
