@@ -7,6 +7,7 @@ import ListRoles from "@/app/components/listas/ListRoles";
 import ListUsers from "@/app/components/listas/ListUsers";
 import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
+import ListReservaciones from "@/app/components/listas/ListReservaciones";
 
 export default function ListasPages() {
   const changeRole = (e: any) => {
@@ -22,12 +23,12 @@ export default function ListasPages() {
 
   const changeUser = (e: any) => {
     console.log("desde la pagina ", e.id);
-  }
+  };
 
   const changePracticante = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
-  
+
   const changeCarrea = (e: any) => {
     console.log("desde la pagina ", e.id);
   };
@@ -57,6 +58,9 @@ export default function ListasPages() {
 
       <h1>Lista de Carreras</h1>
       <ListCarrera selected={changeCarrea} />
+
+      <h1>Lista Reservaciones</h1>
+      <ListReservaciones />
     </div>
   );
 }
