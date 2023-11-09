@@ -29,17 +29,18 @@ export default function RootLayout({
     { texto: "Registro de uso del laboratorio", url: "/laboratory-use" },
     { texto: "Areas", url: "/areas" },
     { texto: "Carreras", url: "/carreras" },
+    { texto: "Listas", url: "/listas"}
   ];
   return (
-    <html lang="es" className="dark">
+    <html lang='es' className='dark'>
       <body className={inter.className}>
-        <div className="min-h-screen">
-          <div className="flex flex-row">
-            <div className="bg-gray-900 basis-1/6">
-              <div className="m-3 mt-8">
+        <div className='min-h-screen'>
+          <div className='flex flex-row'>
+            <div className='bg-gray-900 basis-1/6'>
+              <div className='m-3 mt-8'>
                 <ul>
                   <li>
-                    <div className="text-center  text-gray-400 font-thin">
+                    <div className='text-center  text-gray-400 font-thin'>
                       Menu
                     </div>
                   </li>
@@ -47,7 +48,7 @@ export default function RootLayout({
                     <li key={`menu-${menu.texto}`}>
                       <Link
                         href={menu.url}
-                        className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className='block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent'
                       >
                         {menu.texto}
                       </Link>
@@ -57,8 +58,8 @@ export default function RootLayout({
               </div>
             </div>
 
-            <div className="bg-gray-300 basis-5/6 text-black">
-              <div className="p-2">
+            <div className='bg-gray-300 basis-5/6 text-black'>
+              <div className='p-2'>
                 <Providers>{children}</Providers>
               </div>
             </div>

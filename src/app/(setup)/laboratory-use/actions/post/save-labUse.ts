@@ -1,12 +1,12 @@
 "use server";
 
 import feching from "@/app/utils/cliente-http";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function saveLabUse(request: FormData) {
     const maleCount = parseInt(request.get("male") as string, 10);
     const femaleCount = parseInt(request.get("female") as string, 10);
-
     const total = maleCount + femaleCount;
     const data = {
         className: request.get("className"),
@@ -32,7 +32,6 @@ export async function saveLabUse(request: FormData) {
     if (!registro.data) {
         console.log(registro.data);
     }
-
     redirect("/laboratory-use");
 }
 

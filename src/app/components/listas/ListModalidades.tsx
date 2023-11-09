@@ -3,13 +3,13 @@ import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 
-export default function ListCarrera() {
-  const [areas, setCarrera] = useState([]);
+export default function ListModalidades() {
+  const [modalidades, setModalidades] = useState([]);
 
   const searchData = async (buscar = "") => {
-    const endPoind = `/catalogos/registro-carreras?buscar=${buscar}`;
+    const endPoind = `/catalogos/modalidades?buscar=${buscar}`;
     const datos = await feching(endPoind, "no-store", "GET");
-    setCarrera(datos);
+    setModalidades(datos);
   };
 
   useEffect(() => {
@@ -18,9 +18,9 @@ export default function ListCarrera() {
 
   return (
     <SelectSearch
-      items={areas}
-      label="nombre"
-      placeholder="Buscar Carreras"
+      items={modalidades}
+      label='modalidad'
+      placeholder='Buscar Modalidades'
       search={searchData}
     />
   );
