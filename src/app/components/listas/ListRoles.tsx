@@ -3,8 +3,15 @@ import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 
-export default function ListRoles() {
+interface ListRolesProps {
+  selected: (e: Object) => void;
+}
+export default function ListRoles({ selected }: ListRolesProps) {
   const [roles, setRoles] = useState([]);
+
+  const changeRol = (e: any) => {
+    selected(e);
+  };
 
   const searchData = async (buscar = "") => {
     const endPoind = `/catalogos/roles?buscar=${buscar}`;
@@ -19,6 +26,7 @@ export default function ListRoles() {
   return (
     <SelectSearch
       items={roles}
+      selectedItem={changeRol}
       label="role"
       placeholder="Buscar Roles"
       search={searchData}

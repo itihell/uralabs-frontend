@@ -9,12 +9,14 @@ interface SelectSearchProps {
   label: string;
   placeholder?: string;
   search: (buscar: string) => void;
+  selectedItem: (e: Object) => void;
 }
 export default function SelectSearch({
   items,
   label,
   placeholder,
   search,
+  selectedItem,
 }: SelectSearchProps) {
   const [texto, setTexto] = useState("");
   const [open, setOpen] = useState(false);
@@ -24,6 +26,8 @@ export default function SelectSearch({
   };
 
   const selectedItems = (e: Selected) => {
+    selectedItem(e);
+
     setOpen(!open);
     setTexto(e.label);
   };
