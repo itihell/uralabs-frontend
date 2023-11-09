@@ -3,8 +3,16 @@ import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 
-export default function ListPracticante() {
+interface ListPracticanteProps {
+    selected: (e: Object) => void;
+}
+
+export default function ListPracticante({ selected }: ListPracticanteProps) {
     const [practicantes, setPracticantes] = useState([]);
+
+    const changePracticante = (e: any) => {
+        selected(e);
+    };
 
     const searchData = async (buscar = "") => {
         const endPoind = `/catalogos/practicante?buscar=${buscar}`;
@@ -19,6 +27,7 @@ export default function ListPracticante() {
     return (
         <SelectSearch
             items={practicantes}
+            selectedItem={changePracticante}
             label="nombre"
             placeholder="Buscar Practicante"
             search={searchData}

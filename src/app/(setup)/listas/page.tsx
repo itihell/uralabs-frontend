@@ -23,6 +23,11 @@ export default function ListasPages() {
   const changeUser = (e: any) => {
     console.log("desde la pagina ", e.id);
   }
+
+  const changePracticante = (e: any) => {
+    console.log("desde la pagina ", e.id);
+  };
+
   return (
     <div className="min-h-screen flex-col items-center justify-between">
       <h1>Listas Pages</h1>
@@ -35,13 +40,13 @@ export default function ListasPages() {
       <ListCortePracticante />
 
       <h1>Uso del laboratorio</h1>
-      <ListUsoLab selected={changeUsolab}/>
+      <ListUsoLab selected={changeUsolab} />
 
       <h1>Listas de Areas</h1>
-      <ListAreas selected={changeArea}/>
+      <ListAreas selected={changeArea} />
 
       <h1>Lista de Practicante</h1>
-      <ListPracticante />
+      <ListPracticante selected={changePracticante} />
 
       <h1>Lista de Usuarios</h1>
       <ListUsers selected={changeUser} />
