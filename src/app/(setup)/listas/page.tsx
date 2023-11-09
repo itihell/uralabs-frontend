@@ -7,33 +7,36 @@ import ListRoles from "@/app/components/listas/ListRoles";
 import ListUsers from "@/app/components/listas/ListUsers";
 import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
+import { useState } from "react";
 
 export default function ListasPages() {
+  const [fields, setFields] = useState<any>({});
   const changeRole = (e: any) => {
-    console.log("desde la pagina ", e.id);
+    setFields({ ...fields, role_id: e.id });
   };
   const changeUsolab = (e: any) => {
-    console.log("desde la pagina ", e.id);
+    setFields({ ...fields, uso_lab_id: e.id });
   };
 
   const changeArea = (e: any) => {
-    console.log("desde la pagina ", e.id);
+    setFields({ ...fields, area_id: e.id });
   };
 
   const changeUser = (e: any) => {
-    console.log("desde la pagina ", e.id);
-  }
+    setFields({ ...fields, user_id: e.id });
+  };
 
   const changePracticante = (e: any) => {
-    console.log("desde la pagina ", e.id);
+    setFields({ ...fields, practicante_id: e.id });
   };
-  
+
   const changeCarrea = (e: any) => {
-    console.log("desde la pagina ", e.id);
+    setFields({ ...fields, carrera_id: e.id });
   };
 
   return (
     <div className="min-h-screen flex-col items-center justify-between">
+      <pre>{JSON.stringify(fields, null, 2)}</pre>
       <h1>Listas Pages</h1>
       <ListRoles selected={changeRole} />
       <hr />
