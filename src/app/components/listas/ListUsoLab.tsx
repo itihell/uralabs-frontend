@@ -27,8 +27,15 @@ import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 
-export default function ListUsoLab() {
+interface ListRolesProps {
+  selected: (e: Object) => void;
+}
+
+export default function ListUsoLab({ selected }: ListRolesProps) {
   const [usoLab, setUsoLab] = useState([]);
+  const changeRol = (e: any) => {
+    selected(e);
+  };
 
   const searchData = async (buscar = "") => {
     const endPoind = `/catalogos/uselab?buscar=${buscar}`;
@@ -43,6 +50,7 @@ export default function ListUsoLab() {
   return (
     <SelectSearch
       items={usoLab}
+      selectedItem={changeRol}
       label="teacher"
       placeholder="Buscar docente que reservó de laboratorios"
       search={searchData}
