@@ -27,8 +27,16 @@ import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 
-export default function ListAreas() {
+interface ListAreasProps {
+  selected: (e: Object) => void;
+}
+
+export default function ListAreas({ selected }: ListAreasProps) {
   const [areas, setAreas] = useState([]);
+
+  const changeArea = (e: any) => {
+    selected(e);
+  };
 
   const searchData = async (buscar = "") => {
     const endPoind = `/catalogos/areas?buscar=${buscar}`;
@@ -43,6 +51,7 @@ export default function ListAreas() {
   return (
     <SelectSearch
       items={areas}
+      selectedItem={changeArea}
       label="nombre"
       placeholder="Buscar Areas"
       search={searchData}
