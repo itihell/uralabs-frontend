@@ -11,8 +11,8 @@ import { useState } from "react";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
-  const changeRole = (e: any) => {
-    setFields({ ...fields, role_id: e.id });
+  const changeRole = (id: number) => {
+    setFields({ ...fields, role_id: id });
   };
   const changeUsolab = (e: any) => {
     setFields({ ...fields, uso_lab_id: e.id });
