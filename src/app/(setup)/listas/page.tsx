@@ -9,6 +9,8 @@ import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
 import { useState } from "react";
 
+import ListReservaciones from "@/app/components/listas/ListReservaciones";
+
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
   const changeRole = (id: number) => {
@@ -24,6 +26,7 @@ export default function ListasPages() {
 
   const changeUser = (e: any) => {
     setFields({ ...fields, user_id: e.id });
+    console.log("desde la pagina ", e.id);
   };
 
   const changePracticante = (e: any) => {
@@ -60,6 +63,9 @@ export default function ListasPages() {
 
       <h1>Lista de Carreras</h1>
       <ListCarrera selected={changeCarrea} />
+
+      <h1>Lista Reservaciones</h1>
+      <ListReservaciones />
     </div>
   );
 }
