@@ -6,7 +6,7 @@ import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useAsyncList } from "@react-stately/data";
 
 interface ListRolesProps {
-  selected: (e: Object) => void;
+  selected: (e: number) => void;
 }
 
 type SWCharacter = {
