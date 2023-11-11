@@ -29,8 +29,8 @@ export default function ListasPages() {
     console.log("desde la pagina ", e.id);
   };
 
-  const changePracticante = (e: any) => {
-    setFields({ ...fields, practicante_id: e.id });
+  const changePracticante = (id: number) => {
+    setFields({ ...fields, practicante_id: id });
   };
 
   const changeCarrea = (e: any) => {
