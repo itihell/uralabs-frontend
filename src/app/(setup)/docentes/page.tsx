@@ -1,4 +1,3 @@
-import FormAreas from "@/app/components/forms/areas/form-areas";
 import FormDocentes from "@/app/components/forms/docentes/form-docentes";
 import TableDocentes from "@/app/components/tables/table-docentes";
 
