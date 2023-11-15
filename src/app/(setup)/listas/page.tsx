@@ -10,6 +10,7 @@ import ListUsoLab from "@/app/components/listas/ListUsoLab";
 import { useState } from "react";
 
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
+import ListAsignatura from "@/app/components/listas/ListAsignatura";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -36,6 +37,11 @@ export default function ListasPages() {
   const changeCarrera = (e: any) => {
     setFields({ ...fields, carrera_id: e.id });
   };
+
+  const changeAsignatura = (id: number) => {
+    setFields({ ...fields, asignatura_id: id });
+  };
+
 
   return (
     <div className="min-h-screen flex-col items-center justify-between">
@@ -66,6 +72,11 @@ export default function ListasPages() {
 
       <h1>Lista Reservaciones</h1>
       <ListReservaciones />
+
+      <h1>Lista Asignaturas</h1>
+      <ListAsignatura selected={changeAsignatura}/>
+    
+
     </div>
   );
 }

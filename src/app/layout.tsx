@@ -30,7 +30,8 @@ export default function RootLayout({
     { texto: "Areas", url: "/areas" },
     { texto: "Carreras", url: "/carreras" },
     { texto: "Docentes", url: "/docentes"},
-    { texto: "Listas", url: "/listas"}
+    { texto: "Listas", url: "/listas"},
+    { texto: "Asignatura", url: "/asignatura"}
   ];
   return (
     <html lang='es' className='dark'>
