@@ -33,7 +33,7 @@ export default function ListasPages() {
     setFields({ ...fields, practicante_id: id });
   };
 
-  const changeCarrea = (e: any) => {
+  const changeCarrera = (e: any) => {
     setFields({ ...fields, carrera_id: e.id });
   };
 
@@ -62,7 +62,7 @@ export default function ListasPages() {
       <ListUsers selected={changeUser} />
 
       <h1>Lista de Carreras</h1>
-      <ListCarrera selected={changeCarrea} />
+      <ListCarrera selected={changeCarrera} />
 
       <h1>Lista Reservaciones</h1>
       <ListReservaciones />
