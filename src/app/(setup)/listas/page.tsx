@@ -37,6 +37,10 @@ export default function ListasPages() {
     setFields({ ...fields, carrera_id: e.id });
   };
 
+  const changeReservation = (e: any) => {
+    setFields({ ...fields, reservation_id: e.id });
+  };
+
   return (
     <div className="min-h-screen flex-col items-center justify-between">
       <pre>{JSON.stringify(fields, null, 2)}</pre>
@@ -65,7 +69,7 @@ export default function ListasPages() {
       <ListCarrera selected={changeCarrea} />
 
       <h1>Lista Reservaciones</h1>
-      <ListReservaciones />
+      <ListReservaciones selected={changeReservation} />
     </div>
   );
 }
