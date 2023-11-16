@@ -8,14 +8,17 @@ import ListUsers from "@/app/components/listas/ListUsers";
 import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
 import { useState } from "react";
-
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
 import ListDocentes from "@/app/components/listas/ListDocentes";
-
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
   const changeRole = (id: number) => {
     setFields({ ...fields, role_id: id });
+  };
+
+  const changeModalidad = (e: any) => {
+    setFields({ ...fields, modalidad_id: e.id });
+    console.log("desde la pagina ", e.id);
   };
   const changeUsolab = (e: any) => {
     setFields({ ...fields, uso_lab_id: e.id });
@@ -43,13 +46,13 @@ export default function ListasPages() {
   };
 
   return (
-    <div className="min-h-screen flex-col items-center justify-between">
+    <div className='min-h-screen flex-col items-center justify-between'>
       <pre>{JSON.stringify(fields, null, 2)}</pre>
       <h1>Listas Pages</h1>
       <ListRoles selected={changeRole} />
       <hr />
       <h1>Modalidades</h1>
-      <ListModalidades />
+      <ListModalidades selected={changeModalidad} />
       <hr />
       <h1>Corte Practcas</h1>
       <ListCortePracticante />

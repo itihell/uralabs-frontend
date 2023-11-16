@@ -33,20 +33,20 @@ export default function ListRoles({ selected }: ListRolesProps) {
 
   return (
     <Autocomplete
-      className="max-w-xs"
+      className='max-w-xs'
       inputValue={list.filterText}
       isLoading={list.isLoading}
       items={list.items}
-      label="Seleccione un role"
-      placeholder="Escriba un role..."
-      variant="bordered"
+      label='Seleccione un role'
+      placeholder='Escriba un role...'
+      variant='bordered'
       onInputChange={list.setFilterText}
       onSelectionChange={(e) => {
         changeRol(e);
       }}
     >
       {(item) => (
-        <AutocompleteItem key={item.id} className="capitalize">
+        <AutocompleteItem key={item.id} className='capitalize'>
           {item.role}
         </AutocompleteItem>
       )}
