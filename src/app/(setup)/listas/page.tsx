@@ -42,13 +42,12 @@ export default function ListasPages() {
     setFields({ ...fields, carrera_id: e.id });
   };
 
-<<<<<<< HEAD
   const changeDocente = (id: number) => {
     setFields({ ...fields, docente_id: id });
-=======
+
   const changeLaboratory = (e: any) => {
     setFields({ ...fields, laboratory_id: e.id });
->>>>>>> cambios
+
   };
 
   return (
