@@ -16,8 +16,8 @@ export default function ListasPages() {
   const changeRole = (id: number) => {
     setFields({ ...fields, role_id: id });
   };
-  const changeUsolab = (e: any) => {
-    setFields({ ...fields, uso_lab_id: e.id });
+  const changeUsolab = (id: number) => {
+    setFields({ ...fields, uso_lab_id: id });
   };
 
   const changeArea = (e: any) => {
