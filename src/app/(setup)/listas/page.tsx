@@ -34,12 +34,17 @@ export default function ListasPages() {
     setFields({ ...fields, practicante_id: id });
   };
 
-  const changeCarrea = (e: any) => {
+  const changeCarrera = (e: any) => {
     setFields({ ...fields, carrera_id: e.id });
   };
 
+<<<<<<< HEAD
   const changeDocente = (id: number) => {
     setFields({ ...fields, docentes_id: id });
+=======
+  const changeReservation = (e: any) => {
+    setFields({ ...fields, reservation_id: e.id });
+>>>>>>> a2b20bf3bef08ef7f6140642fb0b8d36a1bf1477
   };
 
   return (
@@ -67,14 +72,18 @@ export default function ListasPages() {
       <ListUsers selected={changeUser} />
 
       <h1>Lista de Carreras</h1>
-      <ListCarrera selected={changeCarrea} />
+      <ListCarrera selected={changeCarrera} />
 
       <h1>Lista Reservaciones</h1>
+<<<<<<< HEAD
       <ListReservaciones />
 
       <h1>Lista de Docentes</h1>
       <ListDocentes selected={changeDocente} />
       
+=======
+      <ListReservaciones selected={changeReservation} />
+>>>>>>> a2b20bf3bef08ef7f6140642fb0b8d36a1bf1477
     </div>
   );
 }
