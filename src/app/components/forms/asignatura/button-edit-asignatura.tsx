@@ -1,26 +1,17 @@
 "use client";
-import React, { useState } from "react"; 
-import {    
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Button,
-  useDisclosure,
-} from "@nextui-org/react";
-import { IconPencilMinus } from "@tabler/icons-react"; 
-import { revalidatePath } from "next/cache";
+import React, { useState } from "react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import { IconPencilMinus } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { getLabs } from "@/app/actions/post/save-labs";
-import FormEditLab from "./form-edit-lab";
+import { getAsignatura } from "@/app/actions/post/save-asignatura";
+import FormEditAsignatura from "./form-edit-asignatura";
 
-export default function ButtonEditLab({ id }: { id: string }) {
+export default function ButtonEditAsignatura({ id }: { id: string }) {
   const router = useRouter();
-  const [fields, setFields] = useState({});
+  const [field, setFields] = useState({});
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const loadData = async (id: number) => {
-    const datos = await getLabs(id);
+    const datos = await getAsignatura(id);
     setFields(datos);
   };
 
@@ -40,12 +31,10 @@ export default function ButtonEditLab({ id }: { id: string }) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Editar Laboratorio
-              </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Editar Asignatura</ModalHeader>
               <ModalBody>
-                <FormEditLab
-                  fields={fields}
+                <FormEditAsignatura
+                  field={field}
                   closeModal={(e: any) => {
                     onClose();
                     setFields({});

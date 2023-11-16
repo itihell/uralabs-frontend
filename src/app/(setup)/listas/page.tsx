@@ -7,21 +7,30 @@ import ListRoles from "@/app/components/listas/ListRoles";
 import ListUsers from "@/app/components/listas/ListUsers";
 import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
+import ListLab from "@/app/components/listas/ListLaboratory";
 import { useState } from "react";
-
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
+import ListAsignatura from "@/app/components/listas/ListAsignatura";
+import ListDocentes from "@/app/components/listas/ListDocentes";
+
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
   const changeRole = (id: number) => {
     setFields({ ...fields, role_id: id });
   };
+
   const changeUsolab = (id: number) => {
     setFields({ ...fields, uso_lab_id: id });
+
+  }
+  const changeModalidad = (e: any) => {
+    setFields({ ...fields, modalidad_id: e.id });
+    console.log("desde la pagina ", e.id);
   };
 
-  const changeArea = (e: any) => {
-    setFields({ ...fields, area_id: e.id });
+  const changeArea = (id: number) => {
+    setFields({ ...fields, area_id: id });
   };
 
   const changeUser = (e: any) => {
@@ -33,18 +42,32 @@ export default function ListasPages() {
     setFields({ ...fields, practicante_id: id });
   };
 
-  const changeCarrera = (e: any) => {
+  const changeCarrea = (e: any) => {
     setFields({ ...fields, carrera_id: e.id });
   };
 
+  const changeAsignatura = (id: number) => {
+    setFields({ ...fields, asignatura_id: id });
+  };
+
+
+  const changeDocente = (id: number) => {
+    setFields({ ...fields, docente_id: id });
+  }
+  const changeLaboratory = (e: any) => {
+    setFields({ ...fields, laboratory_id: e.id });
+
+  };
+
+
   return (
-    <div className="min-h-screen flex-col items-center justify-between">
+    <div className='min-h-screen flex-col items-center justify-between'>
       <pre>{JSON.stringify(fields, null, 2)}</pre>
       <h1>Listas Pages</h1>
       <ListRoles selected={changeRole} />
       <hr />
       <h1>Modalidades</h1>
-      <ListModalidades />
+      <ListModalidades selected={changeModalidad} />
       <hr />
       <h1>Corte Practcas</h1>
       <ListCortePracticante />
@@ -61,11 +84,22 @@ export default function ListasPages() {
       <h1>Lista de Usuarios</h1>
       <ListUsers selected={changeUser} />
 
+      <h1>Lista de Laboratorios</h1>
+      <ListLab selected={changeLaboratory} />
+
       <h1>Lista de Carreras</h1>
-      <ListCarrera selected={changeCarrera} />
+      <ListCarrera selected={changeCarrea} />
 
       <h1>Lista Reservaciones</h1>
-      <ListReservaciones />
+      
+
+      <h1>Lista Asignaturas</h1>
+      <ListAsignatura selected={changeAsignatura}/>
+    
+      <h1>Lista de Docentes</h1>
+      <ListDocentes selected={changeDocente} />
+      
     </div>
+  
   );
 }
