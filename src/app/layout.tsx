@@ -29,6 +29,7 @@ export default function RootLayout({
     { texto: "Registro de uso del laboratorio", url: "/laboratory-use" },
     { texto: "Areas", url: "/areas" },
     { texto: "Carreras", url: "/carreras" },
+    { texto: "Docentes", url: "/docentes"},
     { texto: "Listas", url: "/listas"}
   ];
   return (

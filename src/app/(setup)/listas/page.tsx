@@ -10,6 +10,7 @@ import ListUsoLab from "@/app/components/listas/ListUsoLab";
 import { useState } from "react";
 
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
+import ListDocentes from "@/app/components/listas/ListDocentes";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -29,12 +30,16 @@ export default function ListasPages() {
     console.log("desde la pagina ", e.id);
   };
 
-  const changePracticante = (e: any) => {
-    setFields({ ...fields, practicante_id: e.id });
+  const changePracticante = (id: number) => {
+    setFields({ ...fields, practicante_id: id });
   };
 
   const changeCarrea = (e: any) => {
     setFields({ ...fields, carrera_id: e.id });
+  };
+
+  const changeDocente = (id: number) => {
+    setFields({ ...fields, docente_id: id });
   };
 
   return (
@@ -66,6 +71,10 @@ export default function ListasPages() {
 
       <h1>Lista Reservaciones</h1>
       <ListReservaciones />
+
+      <h1>Lista de Docentes</h1>
+      <ListDocentes selected={changeDocente} />
+      
     </div>
   );
 }
