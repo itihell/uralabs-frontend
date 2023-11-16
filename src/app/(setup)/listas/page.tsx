@@ -8,8 +8,8 @@ import ListUsers from "@/app/components/listas/ListUsers";
 import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
 import { useState } from "react";
-import ListReservaciones from "@/app/components/listas/ListReservaciones";
-import ListDocentes from "@/app/components/listas/ListDocentes";
+
+import ListDocente from "@/app/components/listas/ListDocentes";
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
   const changeRole = (id: number) => {
@@ -73,10 +73,10 @@ export default function ListasPages() {
       <ListCarrera selected={changeCarrea} />
 
       <h1>Lista Reservaciones</h1>
-      <ListReservaciones />
+      
 
       <h1>Lista de Docentes</h1>
-      <ListDocentes selected={changeDocente} />
+      <ListDocente selected={changeDocente} />
       
     </div>
   );

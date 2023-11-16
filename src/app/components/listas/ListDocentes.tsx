@@ -5,15 +5,17 @@ import { useEffect, useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useAsyncList } from "@react-stately/data";
 
-interface ListDocentesProps {
+interface ListDocenteProps {
   selected: (e: number) => void;
 }
 
 type SWCharacter = {
+ 
   id: number;
   nombre: string;
+  
 };
-export default function ListDocentes({ selected }: ListDocentesProps) {
+export default function ListDocente({ selected }: ListDocenteProps) {
   let list = useAsyncList<SWCharacter>({
     async load({ signal, filterText }) {
       const endPoind = `/catalogos/docentes?buscar=${filterText}`;
@@ -31,20 +33,20 @@ export default function ListDocentes({ selected }: ListDocentesProps) {
 
   return (
     <Autocomplete
-      className="max-w-xs"
+      className='max-w-xs'
       inputValue={list.filterText}
       isLoading={list.isLoading}
       items={list.items}
-      label="Seleccione un docente"
-      placeholder="Escriba un docente..."
-      variant="bordered"
+      label='Seleccione un docente'
+      placeholder='Escriba un docente...'
+      variant='bordered'
       onInputChange={list.setFilterText}
       onSelectionChange={(e) => {
         changeDocente(e);
       }}
     >
       {(item) => (
-        <AutocompleteItem key={item.id} className="capitalize">
+        <AutocompleteItem key={item.id} className='capitalize'>
           {item.nombre}
         </AutocompleteItem>
       )}
