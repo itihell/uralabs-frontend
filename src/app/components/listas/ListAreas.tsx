@@ -76,7 +76,7 @@ interface ListAreasProps {
 type SWCharacter = {
   isActive: boolean;
   id: number;
-  area: string;
+  nombre: string;
   delete_at: string;
 };
 export default function Listas({ selected }: ListAreasProps) {
