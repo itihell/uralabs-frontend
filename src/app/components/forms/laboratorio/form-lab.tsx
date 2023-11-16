@@ -1,23 +1,20 @@
 import { revalidatePath, revalidateTag } from "next/cache";
-import { saveLabs } from "../actions/post/save-labs"; 
-import FieldsLabs from "./fields-labs";
-import { redirect } from "next/navigation";
+import FieldsLab from "./fields-lab";
+import { saveLab } from "@/app/actions/post/save-lab";
 
-
-export default function FormLabs({ labId = "" }) { 
-  const crearLab = async (formData: FormData) => { 
+export default function FormLab({ docenteId = "" }) {
+  const crearLaboratorio = async (formData: FormData) => {
     "use server";
-    const data = await saveLabs(formData);
+    const data = await saveLab(formData);
 
-    revalidatePath("/labregirter"); 
+    revalidatePath("/labregister");
   };
 
   return (
-    
-    <form action={crearLab}> 
+    <form action={crearLaboratorio}>
       <div>
-        {/* <FieldsLab /> */}
-         <FieldsLabs fields={{ id: 1, lab: "admin" }} /> {/*  este se lo añadi  */}
+        <FieldsLab fields={{}} />
+
         <div>
           <button
             type="submit"
@@ -28,8 +25,6 @@ export default function FormLabs({ labId = "" }) {
           </button>
         </div>
       </div>
-
-      <div></div>
     </form>
   );
 }

@@ -7,6 +7,7 @@ import ListRoles from "@/app/components/listas/ListRoles";
 import ListUsers from "@/app/components/listas/ListUsers";
 import ListCarrera from "@/app/components/listas/ListaCarrera";
 import ListUsoLab from "@/app/components/listas/ListUsoLab";
+import ListLab from "@/app/components/listas/ListLaboratory";
 import { useState } from "react";
 
 import ListDocente from "@/app/components/listas/ListDocentes";
@@ -43,6 +44,10 @@ export default function ListasPages() {
 
   const changeDocente = (id: number) => {
     setFields({ ...fields, docente_id: id });
+
+  const changeLaboratory = (e: any) => {
+    setFields({ ...fields, laboratory_id: e.id });
+
   };
 
   return (
@@ -68,6 +73,9 @@ export default function ListasPages() {
 
       <h1>Lista de Usuarios</h1>
       <ListUsers selected={changeUser} />
+
+      <h1>Lista de Laboratorios</h1>
+      <ListLab selected={changeLaboratory} />
 
       <h1>Lista de Carreras</h1>
       <ListCarrera selected={changeCarrea} />
