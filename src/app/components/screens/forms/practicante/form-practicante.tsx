@@ -12,7 +12,7 @@ export default function FormPracticante({ practicanteId = "" }) {
   return (
     <form action={crearPracticante}>
       <div>
-        <FieldsPracticantes />
+        <FieldsPracticantes fields={{}} />
         <div>
           <button
             type="submit"

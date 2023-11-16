@@ -10,6 +10,7 @@ import ListUsoLab from "@/app/components/listas/ListUsoLab";
 import { useState } from "react";
 
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
+import ListDocentes from "@/app/components/listas/ListDocentes";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -29,12 +30,21 @@ export default function ListasPages() {
     console.log("desde la pagina ", e.id);
   };
 
-  const changePracticante = (e: any) => {
-    setFields({ ...fields, practicante_id: e.id });
+  const changePracticante = (id: number) => {
+    setFields({ ...fields, practicante_id: id });
   };
 
-  const changeCarrea = (e: any) => {
+  const changeCarrera = (e: any) => {
     setFields({ ...fields, carrera_id: e.id });
+  };
+
+<<<<<<< HEAD
+  const changeDocente = (id: number) => {
+    setFields({ ...fields, docentes_id: id });
+=======
+  const changeReservation = (e: any) => {
+    setFields({ ...fields, reservation_id: e.id });
+>>>>>>> a2b20bf3bef08ef7f6140642fb0b8d36a1bf1477
   };
 
   return (
@@ -62,10 +72,18 @@ export default function ListasPages() {
       <ListUsers selected={changeUser} />
 
       <h1>Lista de Carreras</h1>
-      <ListCarrera selected={changeCarrea} />
+      <ListCarrera selected={changeCarrera} />
 
       <h1>Lista Reservaciones</h1>
+<<<<<<< HEAD
       <ListReservaciones />
+
+      <h1>Lista de Docentes</h1>
+      <ListDocentes selected={changeDocente} />
+      
+=======
+      <ListReservaciones selected={changeReservation} />
+>>>>>>> a2b20bf3bef08ef7f6140642fb0b8d36a1bf1477
     </div>
   );
 }
