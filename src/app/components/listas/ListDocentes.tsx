@@ -1,5 +1,3 @@
-
-
 "use client";
 import feching from "@/app/utils/cliente-http";
 import SelectSearch from "../select/select";
@@ -14,7 +12,6 @@ interface ListDocentesProps {
 type SWCharacter = {
   id: number;
   nombre: string;
-  apellido: string;
 };
 export default function ListDocentes({ selected }: ListDocentesProps) {
   let list = useAsyncList<SWCharacter>({
@@ -28,7 +25,7 @@ export default function ListDocentes({ selected }: ListDocentesProps) {
     },
   });
 
-  const changeDocentes = (e: any) => {
+  const changeDocente = (e: any) => {
     selected(e);
   };
 
@@ -38,17 +35,17 @@ export default function ListDocentes({ selected }: ListDocentesProps) {
       inputValue={list.filterText}
       isLoading={list.isLoading}
       items={list.items}
-      label="Seleccione un docentes"
-      placeholder="Escriba un docentes..."
+      label="Seleccione un docente"
+      placeholder="Escriba un docente..."
       variant="bordered"
       onInputChange={list.setFilterText}
       onSelectionChange={(e) => {
-        changeDocentes(e);
+        changeDocente(e);
       }}
     >
       {(item) => (
         <AutocompleteItem key={item.id} className="capitalize">
-          {`${item.nombre} ${item.apellido}`}
+          {item.nombre}
         </AutocompleteItem>
       )}
     </Autocomplete>
