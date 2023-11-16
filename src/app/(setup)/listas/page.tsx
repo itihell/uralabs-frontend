@@ -20,8 +20,8 @@ export default function ListasPages() {
     setFields({ ...fields, uso_lab_id: e.id });
   };
 
-  const changeArea = (e: any) => {
-    setFields({ ...fields, area_id: e.id });
+  const changeArea = (id: number) => {
+    setFields({ ...fields, area_id: id });
   };
 
   const changeUser = (e: any) => {
