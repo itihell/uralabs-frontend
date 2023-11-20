@@ -15,16 +15,25 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import { deteteRoleById } from "@/app/actions/post/save-roles";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
+import { useRoles } from "@/app/hooks/use-roles";
+import { Role } from "@/app/interfaces/roles-interfaces";
 
-export default function ButtonDeleteRole({ id }: { id: string }) {
+interface ButtonDeleteRoleProps {
+  id: number;
+  onDeleted: (e: Role) => void;
+}
+export default function ButtonDeleteRole({
+  id,
+  onDeleted,
+}: ButtonDeleteRoleProps) {
+  const { onDelete } = useRoles();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteRole = async (id: string) => {
-    const { data } = await deteteRoleById(parseInt(id));
-    router.refresh();
+  const deleteRole = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
 
   return (
