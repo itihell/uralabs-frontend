@@ -55,6 +55,7 @@ export default function BtnAddRole({ onSaved }: BtnAddRoleProps) {
                 Datos del rol
               </ModalHeader>
               <ModalBody>
+                <div>{JSON.stringify(fields)}</div>
                 <div>
                   <FieldsRols onChangeRole={handleChangeRole} />
                 </div>
