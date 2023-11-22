@@ -10,25 +10,25 @@ import {
   Switch,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { useRoles } from "@/app/hooks/use-roles";
-import { Role } from "@/app/interfaces/roles-interfaces";
-import FieldsRols from "@/app/(setup)/rolles/fields-rols";
 import { setterData } from "@/app/interfaces/setter-interfaces";
+import { Modalidad } from "@/app/interfaces/modalidades-interface";
+import { useModalidad } from "@/app/hooks/use-modalidadades";
+import FieldsModalidades from "../forms/modalidades/fields-modalidades";
 
-interface BtnAddRoleProps {
-  onSaved: (data: Role) => void;
+interface BtnAddModalidadProps {
+  onSaved: (data: Modalidad) => void;
 }
-export default function BtnAddRole({ onSaved }: BtnAddRoleProps) {
-  const [fields, setFields] = useState<Role>({} as Role);
-  const handleChangeRole = ({ clave, valor }: setterData) => {
+export default function BtnAddModalidad({ onSaved }: BtnAddModalidadProps) {
+  const [fields, setFields] = useState<Modalidad>({} as Modalidad);
+  const handleChangeModal = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
   };
-  const { onStore } = useRoles();
+  const { onStore } = useModalidad();
 
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => {
     setOpen(!isOpen);
-    setFields({} as Role);
+    setFields({} as Modalidad);
   };
 
   const handleOnStore = async () => {
@@ -39,7 +39,7 @@ export default function BtnAddRole({ onSaved }: BtnAddRoleProps) {
   return (
     <>
       <Button variant='light' size='sm' color='primary' onPress={onOpen}>
-        Agregar Rol
+        Agregar Modalidad
       </Button>
       <Modal
         placement='top'
@@ -52,12 +52,12 @@ export default function BtnAddRole({ onSaved }: BtnAddRoleProps) {
           {(onClose) => (
             <>
               <ModalHeader className='flex flex-col gap-1'>
-                Datos del rol
+                Datos de la modalidad
               </ModalHeader>
               <ModalBody>
                 <div>{JSON.stringify(fields)}</div>
                 <div>
-                  <FieldsRols onChangeRole={handleChangeRole} />
+                  <FieldsModalidades onchangeModalidad={handleChangeModal} />
                 </div>
               </ModalBody>
               <ModalFooter>

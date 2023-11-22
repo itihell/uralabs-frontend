@@ -1,9 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import FieldsModalidades from "./fields-modalidades";
+import { updateModalidades } from "../../screens/actions/post/save-modalidades";
 import ButtonUpdateModalidades from "./button-update-modalidades";
-import { updateModalidades } from "../actions/post/save-modalidades";
+import FieldsModalidades from "./fields-modalidades";
 
 export default function FormEditModalidades({
   fields,

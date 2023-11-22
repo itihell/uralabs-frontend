@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import {
   Modal,
@@ -10,23 +9,30 @@ import {
   Button,
   useDisclosure,
 } from "@nextui-org/react";
-
 import {
   IconArrowBackUpDouble,
   IconCheck,
   IconTrash,
 } from "@tabler/icons-react";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
-import { deteteModalidadById } from "../actions/post/save-modalidades";
+import { Modalidad } from "@/app/interfaces/modalidades-interface";
+import { useModalidad } from "@/app/hooks/use-modalidadades";
 
-export default function ButtonDeleteModalidades({ id }: { id: string }) {
+interface ButtonDeleteModalidadProps {
+  id: number;
+  onDeleted: (e: Modalidad) => void;
+}
+export default function ButtonDeleteModalidad({
+  id,
+  onDeleted,
+}: ButtonDeleteModalidadProps) {
+  const { onDelete } = useModalidad();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteModalidad = async (id: string) => {
-    const { data } = await deteteModalidadById(parseInt(id));
-    router.refresh();
+  const deletedModalidad = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
 
   return (
@@ -54,7 +60,7 @@ export default function ButtonDeleteModalidades({ id }: { id: string }) {
                 <Button
                   color='primary'
                   onClick={() => {
-                    deleteModalidad(id);
+                    deletedModalidad(id);
                     onClose();
                   }}
                 >
