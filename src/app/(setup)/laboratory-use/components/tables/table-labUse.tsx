@@ -37,7 +37,7 @@ const TableLabUse = async () => {
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {uselab.id}
                 </td>
-                <td className="px-6 py-4">{uselab.className}</td>
+                <td className="px-6 py-4">{uselab.className.nombre}</td>
                 <td className="px-6 py-4">{uselab.carrera.nombre}</td>
                 <td className="px-6 py-4">{uselab.carrera.area.nombre}</td>
                 <td className="px-6 py-4">{uselab.teacher}</td>

@@ -7,13 +7,14 @@ import { useEffect, useState } from "react";
 import SearchRoles from "./search-roles";
 
 export default function RolesPage() {
-  const { onShowAll } = useRoles();
 
+  const { onShowAll, onStore } = useRoles();
   const [roles, setRoles] = useState<Role[]>([]);
   const [search, setSearch] = useState<string>("");
   const [rolesSearch, setRolesSearch] = useState<Role[]>([]);
 
   useEffect(() => {
+    
     const getRoles = async () => {
       const { data } = await onShowAll("");
       console.log("data", data);
@@ -21,14 +22,14 @@ export default function RolesPage() {
       setRoles(data);
       console.log("roles", roles);
 
-      setRolesSearch(roles);
+      setRolesSearch(data);
       console.log("busqueda", rolesSearch);
     };
     getRoles();
   }, []);
 
   const onSaved = async (rol: Role) => {
-    const { data } = await onShowAll("");
+    const {data } = await onStore(rol);
     setRoles(data);
   };
 
