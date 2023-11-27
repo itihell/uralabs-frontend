@@ -15,6 +15,7 @@ import { Role } from "@/app/interfaces/roles-interfaces";
 import FieldsRols from "@/app/components/roles/fields-rols";
 import { setterData } from "@/app/interfaces/setter-interfaces";
 
+
 interface BtnAddRoleProps {
   onSaved: (data: Role) => void;
 }

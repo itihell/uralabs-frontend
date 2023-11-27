@@ -20,12 +20,13 @@ export default function ListasPages() {
     setFields({ ...fields, role_id: id });
   };
 
+  const changeUsolab = (id: number) => {
+    setFields({ ...fields, uso_lab_id: id });
+
+  }
   const changeModalidad = (e: any) => {
     setFields({ ...fields, modalidad_id: e.id });
     console.log("desde la pagina ", e.id);
-  };
-  const changeUsolab = (e: any) => {
-    setFields({ ...fields, uso_lab_id: e.id });
   };
 
   const changeArea = (id: number) => {
@@ -52,11 +53,12 @@ export default function ListasPages() {
 
   const changeDocente = (id: number) => {
     setFields({ ...fields, docente_id: id });
-
+  }
   const changeLaboratory = (e: any) => {
     setFields({ ...fields, laboratory_id: e.id });
 
   };
+
 
   return (
     <div className='min-h-screen flex-col items-center justify-between'>
@@ -100,5 +102,4 @@ export default function ListasPages() {
     </div>
   
   );
-}
 }
