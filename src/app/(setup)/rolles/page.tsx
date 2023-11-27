@@ -4,7 +4,7 @@ import BtnAddRole from "@/app/components/roles/btn-add-role";
 import { Role } from "@/app/interfaces/roles-interfaces";
 import { useRoles } from "@/app/hooks/use-roles";
 import { useEffect, useState } from "react";
-import SearchRoles from "./search-roles";
+import SearchRoles from "../../components/roles/search-roles";
 
 export default function RolesPage() {
   const { onShowAll } = useRoles();
@@ -19,10 +19,17 @@ export default function RolesPage() {
       console.log("data", data);
 
       setRoles(data);
+      setRolesSearch(data);
+
       console.log("roles", roles);
 
-      setRolesSearch(roles);
-      console.log("busqueda", rolesSearch);
+      setTimeout(() => {
+        console.error("roles", roles);
+
+        //setRolesSearch(roles);
+        console.log("busqueda", rolesSearch);
+      }, 400);
+      //setRolesSearch(data);
     };
     getRoles();
   }, []);
@@ -55,7 +62,6 @@ export default function RolesPage() {
     <div>
       <div className="min-h-screen">
         <h1 className="mb-3">Listado de roles</h1>
-        <p>Buscando {search}</p>
 
         <div className="mb-3 flex content-end justify-items-end">
           <BtnAddRole onSaved={onSaved} />

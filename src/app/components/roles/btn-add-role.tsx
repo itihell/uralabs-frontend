@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import { useRoles } from "@/app/hooks/use-roles";
 import { Role } from "@/app/interfaces/roles-interfaces";
-import FieldsRols from "@/app/(setup)/rolles/fields-rols";
+import FieldsRols from "@/app/components/roles/fields-rols";
 import { setterData } from "@/app/interfaces/setter-interfaces";
 
 interface BtnAddRoleProps {
