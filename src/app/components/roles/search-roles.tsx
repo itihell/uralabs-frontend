@@ -1,3 +1,5 @@
+import { Input } from "@nextui-org/react";
+
 interface SearchRolesProps {
   search: string;
   setSearch: (search: string) => void;
@@ -5,11 +7,16 @@ interface SearchRolesProps {
 function SearchRoles({ search, setSearch }: SearchRolesProps) {
   return (
     <div>
-      <input
+      <Input
         type="text"
+        size="sm"
         defaultValue={search}
         onKeyUp={(e) => {
           e.key === "Enter" && setSearch(e.target.value);
+        }}
+        label="Buscar rol"
+        onChange={(e) => {
+          setSearch(e.target.value);
         }}
       />
     </div>
