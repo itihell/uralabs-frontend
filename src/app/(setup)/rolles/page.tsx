@@ -6,9 +6,7 @@ import { useRoles } from "@/app/hooks/use-roles";
 import { useEffect, useState } from "react";
 import SearchRoles from "../../components/roles/search-roles";
 
-
-export default function RolesPage() {
-
+function RolesPage() {
   const { onShowAll, onStore } = useRoles();
   const [roles, setRoles] = useState<Role[]>([]);
   const [search, setSearch] = useState<string>("");
