@@ -13,7 +13,7 @@ import { IconPencilMinus } from "@tabler/icons-react";
 import { setterData } from "@/app/interfaces/setter-interfaces";
 import { useModalidad } from "@/app/hooks/use-modalidadades";
 import { Modalidad } from "@/app/interfaces/modalidades-interface";
-import FieldsModalidades from "./fields-modalidades";
+import FieldsModalidades from "../../../(setup)/modalidades/fields-modalidades";
 
 interface ButtonEditModalidadProp {
   id: number;
@@ -24,6 +24,7 @@ export default function ButtonEditModalidad({
   onSaved,
 }: ButtonEditModalidadProp) {
   const { onUpdate, onShow } = useModalidad();
+  console.log("id", id);
 
   const [fields, setFields] = useState<Modalidad>({} as Modalidad);
 
@@ -33,6 +34,7 @@ export default function ButtonEditModalidad({
     const { data } = await onShow(id);
 
     setFields(data);
+    console.log("data Modalidades", data);
     setTimeout(() => {
       onOpen();
     }, 200);
@@ -44,17 +46,19 @@ export default function ButtonEditModalidad({
 
   const handleChangeModalidad = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
+    console.log("fields", fields);
   };
 
   const handleOnStore = async () => {
     const rest = await onUpdate(id, fields);
+    console.log("rest", rest);
     return rest;
   };
 
   const handleOnClick = async (e: any) => {
     await loadData(id);
+    console.log("id", id);
   };
-
   const handleOnClickSaved = async (e: any) => {
     const { data } = await handleOnStore();
     onSaved(data);

@@ -41,6 +41,7 @@ export default function ModalidadesPage() {
   const onUpdated = async (modal: Modalidad) => {
     const { data } = await onShowAll("");
     setModalidad(data);
+    console.log("data onUpdate", data);
   };
 
   const onSearch = (buscar: string) => {

@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache";
 import { saveModalidades } from "../../screens/actions/post/save-modalidades";
-import FieldsModalidades from "./fields-modalidades";
+import FieldsModalidades from "../../../(setup)/modalidades/fields-modalidades";
 import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 import FieldsModal from "./fields-modalidad";
 

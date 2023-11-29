@@ -18,12 +18,14 @@ export function useModalidad() {
   const onDelete = async (id: number) => {
     const url = `/modalidades/${id}`;
     const rest = await feching(url, "no-cache", "DELETE");
+    console.log(rest);
     return rest;
   };
 
   const onUpdate = async (id: number, payload: Modalidad) => {
     const url = `/modalidades/${id}`;
     const rest = await feching(url, "no-store", "PUT", payload);
+    console.log(rest);
     return rest;
   };
 

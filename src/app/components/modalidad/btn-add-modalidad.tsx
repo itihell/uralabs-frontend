@@ -13,7 +13,7 @@ import { useState } from "react";
 import { setterData } from "@/app/interfaces/setter-interfaces";
 import { Modalidad } from "@/app/interfaces/modalidades-interface";
 import { useModalidad } from "@/app/hooks/use-modalidadades";
-import FieldsModalidades from "../forms/modalidades/fields-modalidades";
+import FieldsModalidades from "../../(setup)/modalidades/fields-modalidades";
 
 interface BtnAddModalidadProps {
   onSaved: (data: Modalidad) => void;
