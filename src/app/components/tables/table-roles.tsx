@@ -8,7 +8,7 @@ interface TableRolesProps {
   onUpdated: (e: Role) => void;
   roles: Role[];
 }
-const TableRoles = async ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
+const TableRoles = ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
   const handlerOnDeleted = async (rol: Role) => {
     onDeleted(rol);
   };
