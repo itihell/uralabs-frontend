@@ -4,61 +4,64 @@ import BtnAddRole from "@/app/components/roles/btn-add-role";
 import { Role } from "@/app/interfaces/roles-interfaces";
 import { useRoles } from "@/app/hooks/use-roles";
 import { useEffect, useState } from "react";
-import SearchRoles from "./search-roles";
+import SearchRoles from "../../components/roles/search-roles";
 
-export default function RolesPage() {
-  const { onShowAll } = useRoles();
-
+function RolesPage() {
+  const { onShowAll, onStore } = useRoles();
   const [roles, setRoles] = useState<Role[]>([]);
   const [search, setSearch] = useState<string>("");
   const [rolesSearch, setRolesSearch] = useState<Role[]>([]);
 
   useEffect(() => {
-    const getRoles = async () => {
-      const { data } = await onShowAll("");
-      console.log("data", data);
-
-      setRoles(data);
-      console.log("roles", roles);
-
-      setRolesSearch(roles);
-      console.log("busqueda", rolesSearch);
+    const loadRoles = async () => {
+      await onShowAll("").then(({ data }) => {
+        setRoles(() => {
+          setRolesSearch(data);
+          return data;
+        });
+      });
     };
-    getRoles();
+
+    loadRoles();
   }, []);
+
+  const setRolesAndSearch = (data: Role[]) => {
+    setRoles(() => {
+      setRolesSearch(data);
+      return data;
+    });
+  };
 
   const onSaved = async (rol: Role) => {
     const { data } = await onShowAll("");
-    setRoles(data);
+    setRolesAndSearch(data);
   };
 
   const onDeleted = async (rol: Role) => {
     const { data } = await onShowAll("");
-    setRoles(data);
+    setRolesAndSearch(data);
   };
 
   const onUpdated = async (rol: Role) => {
     const { data } = await onShowAll("");
-    setRoles(data);
+    setRolesAndSearch(data);
   };
 
   const onSearch = (buscar: string) => {
-    const row = roles.filter((rol) => {
+    const rows = roles.filter((rol) => {
       const campo = rol.role.toUpperCase();
       const textSearch = buscar.toUpperCase();
       return campo.includes(textSearch);
     });
-    setRolesSearch(row);
+    setRolesSearch(rows);
   };
 
   return (
     <div>
-      <div className='min-h-screen'>
-        <h1 className='mb-3'>Listado de roles</h1>
-        <p>Buscando {search}</p>
+      <div className="min-h-screen">
+        <h1 className="mb-3">Listado de roles</h1>
 
-        <div className='mb-3 flex content-end justify-items-end'>
-          <BtnAddRole onSaved={onSaved} />
+        <div className="flex justify-between mb-2">
           <SearchRoles
             search={search}
             setSearch={(e) => {
@@ -66,6 +69,7 @@ export default function RolesPage() {
               onSearch(e);
             }}
           />
+          <BtnAddRole onSaved={onSaved} />
         </div>
 
         <TableRoles
@@ -77,3 +81,5 @@ export default function RolesPage() {
     </div>
   );
 }
+
+export default RolesPage;

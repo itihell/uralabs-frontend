@@ -1,8 +1,6 @@
 import { revalidatePath } from "next/cache";
-import { saveModalidades } from "../../screens/actions/post/save-modalidades";
-import FieldsModalidades from "../../../(setup)/modalidades/fields-modalidades";
-import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
-import FieldsModal from "./fields-modalidad";
+import { saveModalidades } from "../actions/post/save-modalidades";
+import FieldsModalidades from "./fields-modalidades";
 
 export default function FormModalidades({ modalidadId = "modalidades" }) {
   const crearModalidad = async (formData: FormData) => {
@@ -15,7 +13,7 @@ export default function FormModalidades({ modalidadId = "modalidades" }) {
   return (
     <form action={crearModalidad}>
       <div>
-        <FieldsModal fields={fields} />
+        <FieldsModalidades />
         <div>
           <button
             type='submit'

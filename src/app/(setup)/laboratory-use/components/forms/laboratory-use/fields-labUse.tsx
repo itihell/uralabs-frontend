@@ -1,10 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getAllCarreras, getAllLaboratorio, getAllModalidades } from "../../../actions/post/save-labUse";
+import { getAllAsignaturas, getAllCarreras, getAllLaboratorio, getAllModalidades,getAllDocentes } from "../../../actions/post/save-labUse";
+
 
 export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any }) {
 
   const [carreras, setCarreras] = useState([]);
+  const [asignaturas, setAsignaturas] = useState([]);
+  const [docentes, setDocentes] = useState([]);
   const [modalidades, setModalidades] = useState([]);
   const [laboratorios, setLaboratorios] = useState([]);
   const [usoLaboratorio, setUsoLaboratorios] = useState(usoLaboratorios);
@@ -13,9 +16,14 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
     const fetchData = async () => {
       try {
         const carrerasData = await getAllCarreras();
+        const asignaturaData = await getAllAsignaturas();
+        const docentesData = await getAllDocentes();
         const modalidadesData = await getAllModalidades();
         const laboratoriosData = await getAllLaboratorio();
+        setAsignaturas(asignaturaData);
         setCarreras(carrerasData);
+        setDocentes(docentesData);
+
         setModalidades(modalidadesData);
         setLaboratorios(laboratoriosData);
       } catch (error) {
@@ -44,15 +52,21 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
             <div>
               <label htmlFor="className" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Nombre de la Clase</label>
             </div>
-            <input
-              type="text"
-              name="className"
+            <select
               id="className"
-              defaultValue={usoLaboratorios.className || ""}
+              name="className"
               onChange={handlerChange}
-              placeholder="Nombre de la Clase"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
+              className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-gray-900"
+            >
+              <option value="className" >
+                Seleccionar Asignatura
+              </option>
+              {asignaturas.map((asignatura: any) => (
+                <option  key={asignatura.id} value={asignatura.id}  >
+                  {asignatura.nombre}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="mb-6">
@@ -69,7 +83,7 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
                 Seleccionar Carrera
               </option>
               {carreras.map((carrera: any) => (
-                <option  key={carrera.id} value={carrera.id}  >
+                <option key={carrera.id} value={carrera.id}  >
                   {carrera.nombre}
                 </option>
               ))}
@@ -80,15 +94,21 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
             <div>
               <label htmlFor="teacher" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Docente</label>
             </div>
-            <input
-              type="text"
-              name="teacher"
-              id="teacher"
-              defaultValue={usoLaboratorios?.teacher || ""}
+            <select
+              name="docente"
+              id="docente"
               onChange={handlerChange}
-              placeholder="Nombre del Docente"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
+              className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-gray-900"
+            >
+              <option value="docente" >
+                Seleccionar docente
+              </option>
+              {docentes.map((docente: any) => (
+                <option key={docente.id} value={docente.id}  >
+                  {docente.nombre} {docente.apellido}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="mb-6">

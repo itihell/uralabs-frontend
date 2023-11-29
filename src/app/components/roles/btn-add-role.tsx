@@ -12,8 +12,9 @@ import {
 import { useState } from "react";
 import { useRoles } from "@/app/hooks/use-roles";
 import { Role } from "@/app/interfaces/roles-interfaces";
-import FieldsRols from "@/app/(setup)/rolles/fields-rols";
+import FieldsRols from "@/app/components/roles/fields-rols";
 import { setterData } from "@/app/interfaces/setter-interfaces";
+
 
 interface BtnAddRoleProps {
   onSaved: (data: Role) => void;
@@ -38,12 +39,12 @@ export default function BtnAddRole({ onSaved }: BtnAddRoleProps) {
 
   return (
     <>
-      <Button variant='light' size='sm' color='primary' onPress={onOpen}>
+      <Button variant="light" size="sm" color="primary" onPress={onOpen}>
         Agregar Rol
       </Button>
       <Modal
-        placement='top'
-        backdrop='blur'
+        placement="top"
+        backdrop="blur"
         isOpen={isOpen}
         onOpenChange={onOpen}
         isDismissable={false}
@@ -51,21 +52,20 @@ export default function BtnAddRole({ onSaved }: BtnAddRoleProps) {
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className='flex flex-col gap-1'>
+              <ModalHeader className="flex flex-col gap-1">
                 Datos del rol
               </ModalHeader>
               <ModalBody>
-                <div>{JSON.stringify(fields)}</div>
                 <div>
                   <FieldsRols onChangeRole={handleChangeRole} />
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color='danger' variant='light' onPress={onClose}>
+                <Button color="danger" variant="light" onPress={onClose}>
                   Cancelar
                 </Button>
                 <Button
-                  color='primary'
+                  color="primary"
                   onPress={async (e) => {
                     const { data } = await handleOnStore();
 

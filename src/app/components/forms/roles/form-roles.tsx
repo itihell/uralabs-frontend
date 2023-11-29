@@ -1,9 +1,8 @@
 import { revalidatePath } from "next/cache";
 import { saveRoles } from "../../../actions/post/save-roles";
 import FieldsRoles from "./fields-roles";
-import { fields } from "@hookform/resolvers/ajv/src/__tests__/__fixtures__/data.js";
 
-export default function FormRoles({ roleId = "" }) {
+export default function FormRoles({ roleId = "" }) { 
   const crearRole = async (formData: FormData) => {
     "use server";
     const data = await saveRoles(formData);
@@ -14,7 +13,8 @@ export default function FormRoles({ roleId = "" }) {
   return (
     <form action={crearRole}>
       <div>
-        <FieldsRoles fields={fields} />
+        
+        <FieldsRoles />
 
         <div>
           <button

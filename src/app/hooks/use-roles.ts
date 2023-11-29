@@ -31,13 +31,13 @@ export function useRoles() {
     const url = `/roles/${id}`;
     const rest = await feching(url, "no-cache", "GET");
     return rest;
-  };
+  }
 
   return {
     onShowAll,
     onStore,
     onDelete,
     onUpdate,
-    onShow,
+    onShow
   };
 }

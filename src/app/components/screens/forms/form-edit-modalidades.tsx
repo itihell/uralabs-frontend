@@ -1,9 +1,9 @@
 "use client";
 
-import { updateModalidades } from "../../screens/actions/post/save-modalidades";
+import { useRouter } from "next/navigation";
+import FieldsModalidades from "./fields-modalidades";
 import ButtonUpdateModalidades from "./button-update-modalidades";
-import FieldsModalidades from "../../../(setup)/modalidades/fields-modalidades";
-import FieldsModal from "./fields-modalidad";
+import { updateModalidades } from "../actions/post/save-modalidades";
 
 export default function FormEditModalidades({
   fields,
@@ -17,14 +17,13 @@ export default function FormEditModalidades({
     const form = new FormData(e.target as HTMLFormElement);
     const id = fields?.id;
     const data = await updateModalidades(id, form);
-    console.log(data, "data prueba");
 
     closeModal(data);
   };
   return (
     <form onSubmit={actualiarModalidad}>
       <div>
-        <FieldsModal fields={fields} />
+        <FieldsModalidades fields={fields} />
         <div className='flex justify-end'>
           <ButtonUpdateModalidades close={closeModal} />
         </div>

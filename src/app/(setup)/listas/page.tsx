@@ -12,7 +12,7 @@ import { useState } from "react";
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
 import ListAsignatura from "@/app/components/listas/ListAsignatura";
 import ListDocentes from "@/app/components/listas/ListDocentes";
-
+import { Role } from "@/app/interfaces/roles-interfaces";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -22,8 +22,7 @@ export default function ListasPages() {
 
   const changeUsolab = (id: number) => {
     setFields({ ...fields, uso_lab_id: id });
-
-  }
+  };
   const changeModalidad = (e: any) => {
     setFields({ ...fields, modalidad_id: e.id });
     console.log("desde la pagina ", e.id);
@@ -50,21 +49,24 @@ export default function ListasPages() {
     setFields({ ...fields, asignatura_id: id });
   };
 
-
   const changeDocente = (id: number) => {
     setFields({ ...fields, docente_id: id });
-  }
+  };
   const changeLaboratory = (e: any) => {
     setFields({ ...fields, laboratory_id: e.id });
-
   };
 
+  const role: Role = {
+    id: 1,
+    role: "Admin",
+    is_active: true,
+  };
 
   return (
-    <div className='min-h-screen flex-col items-center justify-between'>
+    <div className="min-h-screen flex-col items-center justify-between">
       <pre>{JSON.stringify(fields, null, 2)}</pre>
       <h1>Listas Pages</h1>
-      <ListRoles selected={changeRole} />
+      <ListRoles selected={changeRole} datos={role} />
       <hr />
       <h1>Modalidades</h1>
       <ListModalidades selected={changeModalidad} />
@@ -91,15 +93,12 @@ export default function ListasPages() {
       <ListCarrera selected={changeCarrea} />
 
       <h1>Lista Reservaciones</h1>
-      
 
       <h1>Lista Asignaturas</h1>
-      <ListAsignatura selected={changeAsignatura}/>
-    
+      <ListAsignatura selected={changeAsignatura} />
+
       <h1>Lista de Docentes</h1>
       <ListDocentes selected={changeDocente} />
-      
     </div>
-  
   );
 }
