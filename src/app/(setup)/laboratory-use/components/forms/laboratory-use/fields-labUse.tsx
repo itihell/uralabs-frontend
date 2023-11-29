@@ -277,6 +277,9 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
               ))}
             </select>
           </div>
+
+
+          
         </div>
       </div>
     </>
