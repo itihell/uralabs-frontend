@@ -16,7 +16,8 @@ const TablePracticante = async () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th className="px-6 py-3">ID</th>
-              <th className="px-6 py-3">Nombre</th>
+              <th className="px-6 py-3">Nombres</th>
+              <th className="px-6 py-3">Apellidos</th>
               <th className="px-6 py-3">Carrera</th>
               <th className="px-6 py-3">Fecha_inicio</th>
               <th className="px-6 py-3">Fecha_fin</th>
@@ -30,7 +31,8 @@ const TablePracticante = async () => {
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {practicante.id}
                 </td>
-                <td className="px-6 py-4"> {practicante.nombre}</td>
+                <td className="px-6 py-4"> {practicante.nombres}</td>
+                <td className="px-6 py-4"> {practicante.apellidos}</td>
                 <td className="px-6 py-4"> {practicante.carrera}</td>
                 <td className="px-6 py-4"> {practicante.fecha_inicio}</td>
                 <td className="px-6 py-4"> {practicante.fecha_fin}</td>
