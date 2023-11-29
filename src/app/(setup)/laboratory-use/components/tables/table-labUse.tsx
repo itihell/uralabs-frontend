@@ -20,6 +20,7 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
     onUpdated(registroUsoLab);
   };
   // const data = await getAllLabUse();
+  console.log(usoLaboratorio);
 
   return (
     <div>
@@ -51,7 +52,7 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {uselab.id}
                 </td>
-                <td className="px-6 py-4">{uselab.className}</td>
+                <td className="px-6 py-4">{uselab.role}</td>
                 <td className="px-6 py-4">{uselab.carrera}</td>
                 <td className="px-6 py-4">{uselab.carrera}</td>
                 <td className="px-6 py-4">{uselab.docente} {uselab.docente}</td>

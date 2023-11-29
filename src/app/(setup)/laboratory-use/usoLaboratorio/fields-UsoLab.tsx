@@ -32,6 +32,8 @@ export default function FieldsUsoLab(
   const [modalidades, setModalidades] = useState([]);
   const [laboratorios, setLaboratorios] = useState([]);
   
+  
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,7 +59,7 @@ export default function FieldsUsoLab(
 
   const handlerChange = (e: any) => {
     const { data, value } = e.target;
-
+    
   //   setUsoLaboratorios({
   //     ...usoLaboratorio,
   //     [data]: value,
@@ -260,7 +262,13 @@ export default function FieldsUsoLab(
               name="male"
               id="male"
               defaultValue={fields?.male || ""}
-              onChange={handlerChange}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: e.target.name,
+                  valor: e.target.value,
+                };
+                handleChangeUsoLab(data);
+              }}
               placeholder="Cantidad de Varones"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
@@ -276,7 +284,13 @@ export default function FieldsUsoLab(
               name="hours"
               id="hours"
               defaultValue={fields?.hours || ""}
-              onChange={handlerChange}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: e.target.name,
+                  valor: e.target.value,
+                };
+                handleChangeUsoLab(data);
+              }}
               placeholder="Horas"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             />
@@ -287,13 +301,7 @@ export default function FieldsUsoLab(
               id="laboratorio"
               name="laboratorio"
               className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              onChange={(e) => {
-                const data: setterData = {
-                  clave: e.target.name,
-                  valor: e.target.value,
-                };
-                handleChangeUsoLab(data);
-              }}
+              onChange={handlerChange}
               defaultValue={fields?.id} // Asegúrate de tener una variable para almacenar el valor seleccionado, por ejemplo, selectedLabId
             >
               <option value="laboratorio">
@@ -327,7 +335,7 @@ export default function FieldsUsoLab(
       </div>
       <div className="w-full flex flex-col gap-4 mt-2">
         <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-          <Switch
+          {/* <Switch
             name="is_active"
             defaultSelected={usoLaboratorio?.is_active}
             onChange={(e) => {
@@ -338,7 +346,7 @@ export default function FieldsUsoLab(
 
               handleChangeUsoLab(data);
             }}
-          />
+          /> */}
         </div>
       </div>
     </div>
