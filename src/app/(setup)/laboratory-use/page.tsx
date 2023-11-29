@@ -27,18 +27,19 @@ import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
 import TableLabUse from "./components/tables/table-labUse";
 import BtnAddUsoLab from "./usoLaboratorio/btn-add-usoLab";
 import SearchUsoLab from "./usoLaboratorio/search-UsoLab";
+import { useLaboratorio } from "@/app/hooks/uso-lab";
 
 function LabUsePage() {
-  const { onShowAll, onStore } = useRoles();
+  const { onShowAll, onStore } = useLaboratorio();
   const [usoLaboratorio, setLaboratorio] = useState<UsoLab[]>([]);
   const [search, setSearch] = useState<string>("");
-  const [usoLabSearch, setRolesSearch] = useState<UsoLab[]>([]);
+  const [usoLabSearch, setUsoLabSearch] = useState<UsoLab[]>([]);
 
   useEffect(() => {
     const loadUsoLab = async () => {
-      await onShowAll("").then(({ data }) => {
+      await onShowAll(0).then(({ data }) => {
         setLaboratorio(() => {
-          setRolesSearch(data);
+          setUsoLabSearch(data);
           return data;
         });
       });
@@ -49,33 +50,33 @@ function LabUsePage() {
 
   const setUsoLabAndSearch = (data: UsoLab[]) => {
     setLaboratorio(() => {
-      setRolesSearch(data);
+      setUsoLabSearch(data);
       return data;
     });
   };
 
   const onSaved = async (rol: UsoLab) => {
-    const { data } = await onShowAll("");
+    const { data } = await onShowAll(0);
     setUsoLabAndSearch(data);
   };
 
   const onDeleted = async (rol: UsoLab) => {
-    const { data } = await onShowAll("");
+    const { data } = await onShowAll(0);
     setUsoLabAndSearch(data);
   };
 
   const onUpdated = async (rol: UsoLab) => {
-    const { data } = await onShowAll("");
+    const { data } = await onShowAll(0);
     setUsoLabAndSearch(data);
   };
 
   const onSearch = (buscar: string) => {
-    const rows = usoLaboratorio.filter((rol) => {
-      const campo = rol.semester.toUpperCase();
+    const rows = usoLaboratorio.filter((usoLab) => {
+      const campo = usoLab.className.nombre.toUpperCase();
       const textSearch = buscar.toUpperCase();
       return campo.includes(textSearch);
     });
-    setRolesSearch(rows);
+    setUsoLabSearch(rows);
   };
 
   return (

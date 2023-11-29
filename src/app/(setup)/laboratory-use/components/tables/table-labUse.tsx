@@ -19,7 +19,7 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
   const handlerOnUpdate = async (registroUsoLab: UsoLab) => {
     onUpdated(registroUsoLab);
   };
-  // const data = await getAllLabUse();
+  //  const data = await getAllLabUse();
   console.log(usoLaboratorio);
 
   return (
@@ -52,12 +52,12 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {uselab.id}
                 </td>
-                <td className="px-6 py-4">{uselab.role}</td>
-                <td className="px-6 py-4">{uselab.carrera}</td>
-                <td className="px-6 py-4">{uselab.carrera}</td>
-                <td className="px-6 py-4">{uselab.docente} {uselab.docente}</td>
+                <td className="px-6 py-4">{uselab.className.nombre}</td>
+                <td className="px-6 py-4">{uselab.carrera.nombre}</td>
+                <td className="px-6 py-4">{uselab.carrera.area.nombre}</td>
+                <td className="px-6 py-4">{uselab.docente.nombre} {uselab.docente.apellido}</td>
                 <td className="px-6 py-4">{uselab.date}</td>
-                <td className="px-6 py-4">{uselab.modality}</td>
+                <td className="px-6 py-4">{uselab.modality.modalidad}</td>
                 <td className="px-6 py-4">{uselab.shift}</td>
                 <td className="px-6 py-4">{uselab.year}</td>
                 <td className="px-6 py-4">{uselab.semester}</td>
@@ -65,7 +65,7 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
                 <td className="px-6 py-4">{uselab.male}</td>
                 <td className="px-6 py-4">{uselab.total}</td>
                 <td className="px-6 py-4">{uselab.hours}</td>
-                <td className="px-6 py-4">{uselab.laboratorio}</td>
+                <td className="px-6 py-4">{uselab.laboratorio.labName}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
                     <ButtonDeleteUsoLab
