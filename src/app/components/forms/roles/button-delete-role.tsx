@@ -38,32 +38,32 @@ export default function ButtonDeleteRole({
 
   return (
     <>
-      <Button onPress={onOpen} variant="light" size="sm">
-        <IconTrash color="red" />
+      <Button onPress={onOpen} variant='light' size='sm'>
+        <IconTrash color='red' />
       </Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-row justify-start">
-                <IconTrash color="red" /> Eliminar Role
+              <ModalHeader className='flex flex-row justify-start'>
+                <IconTrash color='red' /> Eliminar Role
               </ModalHeader>
               <ModalBody>
                 <h1>¿Está seguro que desea eliminar el roleeee con id {id}?</h1>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  <IconArrowBackUpDouble color="red" />
+                <Button color='danger' variant='light' onPress={onClose}>
+                  <IconArrowBackUpDouble color='red' />
                   Cancelar
                 </Button>
                 <Button
-                  color="primary"
+                  color='primary'
                   onClick={() => {
                     deleteRole(id);
                     onClose();
                   }}
                 >
-                  <IconCheck color="lime" />
+                  <IconCheck color='lime' />
                   Si
                 </Button>
               </ModalFooter>

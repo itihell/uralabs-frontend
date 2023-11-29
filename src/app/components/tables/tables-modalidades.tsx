@@ -1,20 +1,23 @@
-import ButtonDeleteRole from "../forms/roles/button-delete-role";
-import ButtonEditRole from "../forms/roles/button-edit-role";
+import { Modalidad } from "@/app/interfaces/modalidades-interface";
+import ButtonEditModalidades from "../forms/modalidades/button-edit-modalidades";
+import ButtonDeleteModalidades from "../forms/modalidades/button-delete-modalidades";
 
-import { Role } from "@/app/interfaces/roles-interfaces";
-
-interface TableRolesProps {
-  onDeleted: (e: Role) => void;
-  onUpdated: (e: Role) => void;
-  roles: Role[];
+interface TableModalidadProps {
+  onDeleted: (e: Modalidad) => void;
+  onUpdated: (e: Modalidad) => void;
+  modalidades: Modalidad[];
 }
-const TableRoles = async ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
-  const handlerOnDeleted = async (rol: Role) => {
-    onDeleted(rol);
+const TableModalidades = async ({
+  modalidades,
+  onDeleted,
+  onUpdated,
+}: TableModalidadProps) => {
+  const handlerOnDeleted = async (modalidads: Modalidad) => {
+    onDeleted(modalidads);
   };
 
-  const handlerOnUpdate = async (rol: Role) => {
-    onUpdated(rol);
+  const handlerOnUpdate = async (modalidads: Modalidad) => {
+    onUpdated(modalidads);
   };
   return (
     <div>
@@ -23,34 +26,34 @@ const TableRoles = async ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
           <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
             <tr className='text-center'>
               <th className='px-6 py-3'>ID</th>
-              <th className='px-6 py-3'>Role</th>
+              <th className='px-6 py-3'>Modalidad</th>
               {/* <th className="px-6 py-3">Activo</th> */}
               <th className='px-6 py-3'>Config</th>
             </tr>
           </thead>
           <tbody className='bg-white border-b dark:bg-gray-900 dark:border-gray-700'>
-            {Object.values(roles).map((role: any) => (
-              <tr key={`role-${role.id}`}>
+            {Object.values(modalidades).map((modalidades: any) => (
+              <tr key={`modalidades-${modalidades.id}`}>
                 <td className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                  {role.id}
+                  {modalidades.id}
                 </td>
-                <td className='px-6 py-4'> {role.role}</td>
+                <td className='px-6 py-4'> {modalidades.modalidad}</td>
                 {/* <td className="px-6 py-4 text-center">
-                  {role.is_active ? <span>Si</span> : <span>No</span>}
+                  {modalidades.is_active ? <span>Si</span> : <span>No</span>}
                 </td> */}
                 <td className='px-6 py-4'>
                   <div className='flex flex-row items-center justify-end'>
-                    <ButtonDeleteRole
+                    <ButtonDeleteModalidades
                       onDeleted={async (e) => {
                         await handlerOnDeleted(e);
                       }}
-                      id={role.id}
+                      id={modalidades.id}
                     />
-                    <ButtonEditRole
+                    <ButtonEditModalidades
                       onSaved={async (e) => {
                         await handlerOnUpdate(e);
                       }}
-                      id={role.id}
+                      id={modalidades.id}
                     />
                   </div>
                 </td>
@@ -62,4 +65,4 @@ const TableRoles = async ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
     </div>
   );
 };
-export default TableRoles;
+export default TableModalidades;

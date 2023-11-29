@@ -10,22 +10,23 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
-import FormEditRole from "./form-edit-role";
-import { getRoles } from "@/app/actions/post/save-roles";
-import { useRouter } from "next/navigation";
-import FieldsRols from "../../../(setup)/rolles/fields-rols";
-import { Role } from "@/app/interfaces/roles-interfaces";
 import { setterData } from "@/app/interfaces/setter-interfaces";
-import { useRoles } from "@/app/hooks/use-roles";
+import { useModalidad } from "@/app/hooks/use-modalidadades";
+import { Modalidad } from "@/app/interfaces/modalidades-interface";
+import FieldsModalidades from "../../../(setup)/modalidades/fields-modalidades";
 
-interface ButtonEditRoleProps {
+interface ButtonEditModalidadProp {
   id: number;
-  onSaved: (e: Role) => void;
+  onSaved: (e: Modalidad) => void;
 }
-export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
-  const { onUpdate, onShow } = useRoles();
+export default function ButtonEditModalidad({
+  id,
+  onSaved,
+}: ButtonEditModalidadProp) {
+  const { onUpdate, onShow } = useModalidad();
+  console.log("id", id);
 
-  const [fields, setFields] = useState<Role>({} as Role);
+  const [fields, setFields] = useState<Modalidad>({} as Modalidad);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -33,6 +34,7 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
     const { data } = await onShow(id);
 
     setFields(data);
+    console.log("data Modalidades", data);
     setTimeout(() => {
       onOpen();
     }, 200);
@@ -42,19 +44,21 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
     setIsOpen(!isOpen);
   };
 
-  const handleChangeRole = ({ clave, valor }: setterData) => {
+  const handleChangeModalidad = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
+    console.log("fields", fields);
   };
 
   const handleOnStore = async () => {
     const rest = await onUpdate(id, fields);
+    console.log("rest", rest);
     return rest;
   };
 
   const handleOnClick = async (e: any) => {
     await loadData(id);
+    console.log("id", id);
   };
-
   const handleOnClickSaved = async (e: any) => {
     const { data } = await handleOnStore();
     onSaved(data);
@@ -77,14 +81,14 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
             {(onClose) => (
               <>
                 <ModalHeader className='flex flex-col gap-1'>
-                  Editar Role
+                  Editar Modalidad
                 </ModalHeader>
                 <ModalBody>
                   <div>
                     {fields.id && (
-                      <FieldsRols
-                        role={fields}
-                        onChangeRole={handleChangeRole}
+                      <FieldsModalidades
+                        modalidades={fields}
+                        onchangeModalidad={handleChangeModalidad}
                       />
                     )}
                   </div>
