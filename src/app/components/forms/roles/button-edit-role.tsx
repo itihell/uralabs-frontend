@@ -13,7 +13,7 @@ import { IconPencilMinus } from "@tabler/icons-react";
 import FormEditRole from "./form-edit-role";
 import { getRoles } from "@/app/actions/post/save-roles";
 import { useRouter } from "next/navigation";
-import FieldsRols from "../../roles/fields-rols";
+import FieldsRols from "../../../(setup)/rolles/fields-rols";
 import { Role } from "@/app/interfaces/roles-interfaces";
 import { setterData } from "@/app/interfaces/setter-interfaces";
 import { useRoles } from "@/app/hooks/use-roles";

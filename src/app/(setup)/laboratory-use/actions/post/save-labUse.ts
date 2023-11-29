@@ -9,9 +9,9 @@ export async function saveLabUse(request: FormData) {
     const femaleCount = parseInt(request.get("female") as string, 10);
     const total = maleCount + femaleCount;
     const data = {
-        className: { id: request.get("className") },
+        className: request.get("className"),
         carrera: { id: request.get("carrera") },
-        docente: { id: request.get("docente") },
+        teacher: request.get("teacher"),
         date: request.get("date"),
         modality: { id: request.get("modality") },
         shift: request.get("shift"),
@@ -41,9 +41,9 @@ export const updateLabUse = async (id: number, request: FormData) => {
 
     const total = maleCount + femaleCount;
     const data = {
-        className: { id: request.get("className") },
+        className: request.get("className"),
         carrera: { id: request.get("carrera") },
-        docente: { id: request.get("docente") },
+        teacher: request.get("teacher"),
         date: request.get("date"),
         modality: { id: request.get("modality") },
         shift: request.get("shift"),
@@ -131,29 +131,6 @@ export const getAllModalidades = async () => {
     }
 
     return modalidades.data;
-};
-export const getAllAsignaturas = async () => {
-    const endPoind = `/asignatura`;
-
-    const asignatura = await feching(endPoind, "no-store", "GET");
-
-    if (!asignatura.data) {
-        throw new Error(asignatura);
-    }
-
-    return asignatura.data;
-};
-
-export const getAllDocentes = async () => {
-    const endPoind = `/docentes`;
-
-    const docentes = await feching(endPoind, "no-store", "GET");
-
-    if (!docentes.data) {
-        throw new Error(docentes);
-    }
-
-    return docentes.data;
 };
 
 export const getAllLaboratorio = async () => {
