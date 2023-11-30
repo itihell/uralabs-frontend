@@ -2,10 +2,25 @@ import { revalidatePath } from "next/cache";
 import ButtonDeleteLabUse from "../buttons/button-delete-labUse";
 import ButtonEditLabUse from "../buttons/button-edit-labUse";
 import { getAllLabUse } from "../../actions/post/save-labUse";
+import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
+import ButtonDeleteUsoLab from "../forms/laboratory-use/button-delete-usoLab";
+import ButtonEditUsoLab from "../forms/laboratory-use/button-edit-usoLab";
 
-const TableLabUse = async () => {
-  revalidatePath("/laboratory-use");
-  const data = await getAllLabUse();
+interface TableUsoLabProps {
+  onDeleted: (e: UsoLab) => void;
+  onUpdated: (e: UsoLab) => void;
+  usoLaboratorio: UsoLab[];
+}
+const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps) => {
+  const handlerOnDeleted = async (registroUsoLab: UsoLab) => {
+    onDeleted(registroUsoLab);
+  };
+
+  const handlerOnUpdate = async (registroUsoLab: UsoLab) => {
+    onUpdated(registroUsoLab);
+  };
+  //  const data = await getAllLabUse();
+  console.log(usoLaboratorio);
 
   return (
     <div>
@@ -32,7 +47,7 @@ const TableLabUse = async () => {
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            {Object.values(data).map((uselab: any) => (
+            {Object.values(usoLaboratorio).map((uselab: any) => (
               <tr key={`uselabs-${uselab.id}`}>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {uselab.id}
@@ -51,10 +66,20 @@ const TableLabUse = async () => {
                 <td className="px-6 py-4">{uselab.total}</td>
                 <td className="px-6 py-4">{uselab.hours}</td>
                 <td className="px-6 py-4">{uselab.laboratorio.labName}</td>
-                <td className="px-1 py-4">
+                <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
-                    <ButtonDeleteLabUse id={uselab.id} />
-                    <ButtonEditLabUse id={uselab.id} />
+                    <ButtonDeleteUsoLab
+                      onDeleted={async (e) => {
+                        await handlerOnDeleted(e);
+                      }}
+                      id={uselab.id}
+                    />
+                    <ButtonEditUsoLab
+                      onSaved={async (e) => {
+                        await handlerOnUpdate(e);
+                      }}
+                      id={uselab.id}
+                    />
                   </div>
                 </td>
               </tr>
