@@ -13,7 +13,9 @@ export default function ListRoles({ selected, datos }: ListRolesProps) {
   const [search, setSearch] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  // funcion para buscar los roles
   const onSearch = async (search: string) => {
+    // Buscar los roles
     const endPoind = `/catalogos/roles?buscar=${search}`;
     setLoading(true);
     let res = await feching(endPoind, "no-store", "GET");
@@ -23,9 +25,11 @@ export default function ListRoles({ selected, datos }: ListRolesProps) {
     });
   };
 
+  // cargar los roles
   useEffect(() => {
     const callLoadData = async () => {
       await onSearch("");
+      // todo: buscar el role
       setSearch(datos.role);
     };
 
