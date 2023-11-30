@@ -30,6 +30,15 @@ export default function ListRoles({ selected }: ListRolesProps) {
   const changeRol = (e: any) => {
     selected(e);
   };
+  
+  const onChangeSelect = async (e: any) => {
+    setSearch(e);
+    setTimeout(async () => {
+      await onSearch(e);
+    }, 200);
+  };
+
+  // probando git
 
   return (
     <Autocomplete
