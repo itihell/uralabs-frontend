@@ -1,6 +1,6 @@
 import { revalidatePath } from "next/cache";
 
-import FieldsPracticantes from "./fields-practicante";
+import FieldsPracticantes from "./FieldsPracticantes";
 import { savePracticante } from "../../actions/post/save-practicantes";
 
 export default function FormPracticante({ practicanteId = "" }) {
