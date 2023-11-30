@@ -3,11 +3,22 @@ import { revalidatePath } from "next/cache";
 import ButtonEditCarrera from "../forms/carreras/button-edit-carrera";
 import { getAllCarreras } from "@/app/actions/post/save-carreras";
 import ButtonDeletecarrera from "../forms/carreras/button-delete-carrera";
+import { Carrera } from "@/app/interfaces/carreras-interfaces";
 
-const TableCarreras = async () => {
-  revalidatePath("/registro-carreras");
-  const data = await getAllCarreras();
+interface TableCarreraProps {
+  onDeleted: (e: Carrera) => void;
+  onUpdated: (e: Carrera) => void;
+  carrera: Carrera[];
+}
+const TableCarreras = async ({ carrera, onDeleted, onUpdated }: TableCarreraProps) => {
 
+  const handlerOnDeleted = (carrera: Carrera) => {
+    onDeleted(carrera)
+  }
+
+  const handlerOnUpdate = (carrera: Carrera) => {
+    onUpdated(carrera)
+  }
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -21,15 +32,20 @@ const TableCarreras = async () => {
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            {Object.values(data).map((carrera: any) => (
+            {Object.values(carrera).map((carrera: any) => (
               <tr key={`registro-area-${carrera.id}`}>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{carrera.id}</td>
                 <td className="px-6 py-4"> {carrera.nombre}</td>
                 <td className="px-6 py-4"> {carrera.area.nombre}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
-                    <ButtonDeletecarrera id={carrera.id} />
-                    <ButtonEditCarrera id={carrera.id} />
+                    <ButtonDeletecarrera onDeleted={async (e) => {
+                      await handlerOnDeleted(e);
+                    }}
+                      id={carrera.id} />
+                    <ButtonEditCarrera
+                      onSaved={ async (e) => handlerOnUpdate(e)}
+                      id={carrera.id} />
                   </div>
                 </td>
               </tr>

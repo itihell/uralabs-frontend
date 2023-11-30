@@ -1,18 +1,38 @@
 "use client";
 import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import { IconArrowBackUpDouble, IconCheck, IconTrash } from "@tabler/icons-react";
-
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import {
+  IconArrowBackUpDouble,
+  IconCheck,
+  IconTrash,
+} from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
-import { deleteCarreraById } from "@/app/actions/post/save-carreras";
+import { Carrera } from "@/app/interfaces/carreras-interfaces";
+import { UseCarreras } from "@/app/hooks/use-carreras";
 
-export default function ButtonDeleteCarrera({ id }: { id: string }) {
+interface ButtonDeletedCarreraProps {
+  id: number;
+  onDeleted: (e: Carrera) => void;
+}
+export default function ButtonDeleteCarrera({
+  id,
+  onDeleted,
+}: ButtonDeletedCarreraProps) {
+  const { onDelete } = UseCarreras();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteCarrera = async (id: string) => {
-    await deleteCarreraById(parseInt(id));
-    router.refresh();
+  const deletedCarreras = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
 
   return (
@@ -38,7 +58,7 @@ export default function ButtonDeleteCarrera({ id }: { id: string }) {
                 <Button
                   color="primary"
                   onClick={() => {
-                    deleteCarrera(id);
+                    deletedCarreras(id);
                     onClose();
                   }}
                 >

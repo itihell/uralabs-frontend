@@ -15,7 +15,9 @@ export default async function FormCarreras({ carreraId = "" }) {
   return (
     <form action={crearCarrera}>
       <div>
-        <FieldsCarreras fields={{}} areas={data} />
+        {/* <FieldsCarreras fields={{}} areas={data} /> */}
+
+        <FieldsCarreras/> 
 
         <div>
           <button
