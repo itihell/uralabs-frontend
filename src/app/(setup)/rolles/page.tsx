@@ -5,20 +5,21 @@ import { Role } from "@/app/interfaces/roles-interfaces";
 import { useRoles } from "@/app/hooks/use-roles";
 import { useEffect, useState } from "react";
 import SearchRoles from "../../components/roles/search-roles";
+import BtnFilterRoles from "@/app/components/roles/btn-filter-roles";
+import useUtils from "@/app/hooks/use-utils";
+import { set } from "react-hook-form";
 
 function RolesPage() {
-  const { onShowAll, onStore } = useRoles();
+  const { onShowAll } = useRoles();
   const [roles, setRoles] = useState<Role[]>([]);
   const [search, setSearch] = useState<string>("");
   const [rolesSearch, setRolesSearch] = useState<Role[]>([]);
+  const { getParams } = useUtils();
 
   useEffect(() => {
     const loadRoles = async () => {
       await onShowAll("").then(({ data }) => {
-        setRoles(() => {
-          setRolesSearch(data);
-          return data;
-        });
+        setRolesAndSearch(data);
       });
     };
 
@@ -56,12 +57,27 @@ function RolesPage() {
     setRolesSearch(rows);
   };
 
+  const onFilteredRoles = async (fields: Role) => {
+    // TODO: Obetener los parametros de busqueda
+    const params = getParams(fields);
+
+    // TODO: Filtrar los roles
+    await onShowAll(params).then(({ data }) => {
+      setRolesAndSearch(data);
+    });
+  };
+
   return (
     <div>
       <div className="min-h-screen">
         <h1 className="mb-3">Listado de roles</h1>
 
         <div className="flex justify-between mb-2">
+          <BtnFilterRoles
+            onFilteredRoles={(value: Role) => {
+              onFilteredRoles(value);
+            }}
+          />
           <SearchRoles
             search={search}
             setSearch={(e) => {
