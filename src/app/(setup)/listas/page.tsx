@@ -12,6 +12,7 @@ import { useState } from "react";
 import ListReservaciones from "@/app/components/listas/ListReservaciones";
 import ListAsignatura from "@/app/components/listas/ListAsignatura";
 import ListDocentes from "@/app/components/listas/ListDocentes";
+import { checkIsOnDemandRevalidate } from "next/dist/server/api-utils";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -26,7 +27,10 @@ export default function ListasPages() {
     setFields({ ...fields, modalidad_id: e.id });
     console.log("desde la pagina ", e.id);
   };
-
+  const changeFechaCorte = (e: any) => {
+    setFields({ ...fields, modalidad_id: e.id });
+    console.log("desde la pagina ", e.id);
+  };
   const changeArea = (id: number) => {
     setFields({ ...fields, area_id: id });
   };
@@ -70,8 +74,8 @@ export default function ListasPages() {
       <h1>Modalidades</h1>
       <ListModalidades selected={changeModalidad} />
       <hr />
-      <h1>Corte Practcas</h1>
-      <ListCortePracticante />
+      <h1>Corte Practicas</h1>
+      <ListCortePracticante selected={changeFechaCorte} />
 
       <h1>Uso del laboratorio</h1>
       {/* <ListUsoLab selected={changeUsolab} /> */}
