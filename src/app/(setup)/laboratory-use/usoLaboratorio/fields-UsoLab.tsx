@@ -1,6 +1,6 @@
 import { setterData } from "@/app/interfaces/setter-interfaces";
 import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
-import { Input, Switch } from "@nextui-org/react";
+import {  Switch } from "@nextui-org/react";
 import { useEffect, useState } from "react";
 import { getAllAsignaturas, getAllCarreras, getAllDocentes, getAllLaboratorio, getAllModalidades } from "../actions/post/save-labUse";
 
@@ -66,7 +66,7 @@ export default function FieldsUsoLab(
     <div>
       <div className="mb-6">
             <div>
-              <label htmlFor="className" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Nombre de la Clase</label>
+              <label htmlFor="className" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Nombre de la Clase</label>
             </div>
             <select
               id="className"
@@ -87,7 +87,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="carrera" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Carrera</label>
+              <label htmlFor="carrera" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Carrera</label>
             </div>
             <select
               id="carrera"
@@ -108,7 +108,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="teacher" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Docente</label>
+              <label htmlFor="teacher" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Docente</label>
             </div>
             <select
               name="docente"
@@ -129,7 +129,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="date" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Fecha</label>
+              <label htmlFor="date" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Fecha</label>
             </div>
             <input
               type="date"
@@ -143,7 +143,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="modality" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Modalidad</label>
+              <label htmlFor="modality" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Modalidad</label>
             </div>
             <select
               id="modality"
@@ -164,7 +164,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="shift" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">
+              <label htmlFor="shift" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">
                 Turno
               </label>
             </div>
@@ -186,7 +186,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="year" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Año de la carrera</label>
+              <label htmlFor="year" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Año de la carrera</label>
             </div>
             <input
               type="number"
@@ -203,7 +203,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="semester" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Semestre</label>
+              <label htmlFor="semester" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Semestre</label>
             </div>
             <select
               id="semester"
@@ -231,7 +231,7 @@ export default function FieldsUsoLab(
           </div>
           <div className="mb-6">
             <div>
-              <label htmlFor="female" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Mujeres</label>
+              <label htmlFor="female" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Mujeres</label>
             </div>
             <input
             type="number"
@@ -246,12 +246,13 @@ export default function FieldsUsoLab(
               };
               handleChangeUsoLab(data);
             }}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
           </div>
 
           <div className="mb-6">
             <div>
-              <label htmlFor="male" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Varones</label>
+              <label htmlFor="male" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Varones</label>
             </div>
             <input
               type="number"
@@ -273,7 +274,7 @@ export default function FieldsUsoLab(
 
           <div className="mb-6">
             <div>
-              <label htmlFor="hours" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Horas</label>
+              <label htmlFor="hours" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Horas</label>
             </div>
             <input
               type="number"
@@ -292,7 +293,7 @@ export default function FieldsUsoLab(
             />
           </div>
           <div className="mb-6">
-            <label htmlFor="laboratorio" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">Laboratorio</label>
+            <label htmlFor="laboratorio" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Laboratorio</label>
             <select
               id="laboratorio"
               name="laboratorio"
