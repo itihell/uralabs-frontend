@@ -5,7 +5,7 @@ export function useLaboratorio() {
   const onStore = async (payload: UsoLab) => {
     const { male, female, className, carrera, docente, modality, laboratorio, ...restPayload } = payload;
   
-    // Asegurémonos de que las propiedades problemáticas sean objetos completos
+
     const formattedPayload = {
       ...restPayload,
       total: Number(male) + Number(female),

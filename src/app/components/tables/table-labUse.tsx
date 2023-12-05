@@ -1,6 +1,7 @@
-import ButtonDeleteUsoLab from "@/app/(setup)/laboratory-use/components/forms/laboratory-use/button-delete-usoLab";
-import ButtonEditUsoLab from "@/app/(setup)/laboratory-use/components/forms/laboratory-use/button-edit-usoLab";
+
 import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
+import ButtonDeleteUsoLab from "../forms/usoLaboratorio/button-delete-usoLab";
+import ButtonEditUsoLab from "../forms/usoLaboratorio/button-edit-usoLab";
 
 
 interface TableUsoLabProps {
@@ -16,8 +17,6 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
   const handlerOnUpdate = async (registroUsoLab: UsoLab) => {
     onUpdated(registroUsoLab);
   };
-  //  const data = await getAllLabUse();
-  console.log(usoLaboratorio);
 
   return (
     <div>

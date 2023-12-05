@@ -154,7 +154,7 @@ export default function FieldsUsoLab(
               type="date"
               name="date"
               id="date"
-              defaultValue={fields?.date || ""}
+             
               onChange={(e) => {
                 const data: setterData = {
                   clave: e.target.name,
