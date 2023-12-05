@@ -6,8 +6,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  Input,
-  Switch,
+  
 } from "@nextui-org/react";
 import { useState } from "react";
 import { setterData } from "@/app/interfaces/setter-interfaces";
@@ -22,7 +21,9 @@ interface BtnAddUsoLabProps {
 export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
   const [fields, setFields] = useState<UsoLab>({} as UsoLab);
   const handleChangeUsoLab = ({ clave, valor }: setterData) => {
+   
     setFields({ ...fields, [clave]: valor });
+    console.log(fields);
   };
   const { onStore } = useLaboratorio();
 
@@ -34,6 +35,7 @@ export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
 
   const handleOnStore = async () => {
     const rest = await onStore(fields);
+    console.log(rest);
     return rest;
   };
 
