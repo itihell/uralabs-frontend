@@ -74,7 +74,13 @@ export default function ButtonEditUsoLab({ id, onSaved }: ButtonEditUsoLabProps)
         <IconPencilMinus color="lime" />
       </Button>
       {isOpen && (
-        <Modal isOpen={isOpen} onOpenChange={onOpen} backdrop="blur">
+        <Modal
+        placement="top"
+        backdrop="blur"
+        isOpen={isOpen}
+        onOpenChange={onOpen}
+        isDismissable={false}
+      >
           <ModalContent>
             {(onClose) => (
               <>
