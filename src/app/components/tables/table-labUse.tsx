@@ -1,6 +1,7 @@
+import ButtonDeleteUsoLab from "@/app/(setup)/laboratory-use/components/forms/laboratory-use/button-delete-usoLab";
+import ButtonEditUsoLab from "@/app/(setup)/laboratory-use/components/forms/laboratory-use/button-edit-usoLab";
 import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
-import ButtonDeleteUsoLab from "../forms/laboratory-use/button-delete-usoLab";
-import ButtonEditUsoLab from "../forms/laboratory-use/button-edit-usoLab";
+
 
 interface TableUsoLabProps {
   onDeleted: (e: UsoLab) => void;

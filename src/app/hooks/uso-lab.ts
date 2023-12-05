@@ -3,10 +3,24 @@ import feching from "../utils/cliente-http";
 
 export function useLaboratorio() {
   const onStore = async (payload: UsoLab) => {
-    
+    const { male, female, className,carrera,docente,modality,laboratorio,...restPayload } = payload;
+    const total = Number(male)+Number(female);
     const url = `/uselab`;
-
-    const rest = await feching(url, "no-store", "POST", payload);
+  
+    const updatePayload = {
+      ...restPayload,
+      total,
+      male:Number(male),  
+      female:Number(female),
+      carrera: Number(carrera),
+      docente: Number(docente),
+      modality: Number(modality),
+      laboratorio: Number(laboratorio),
+      className: Number(className),
+    };
+    console.log(updatePayload);
+    const rest = await feching(url, "no-store", "POST", updatePayload);
+    console.log(rest);
     return rest;
   };
 
