@@ -1,6 +1,6 @@
 export interface Modalidades {
   id?: number;
-  modalidade: string;
+  modalidad: string;
   is_active: boolean;
   isActive?: string;
 }

@@ -18,7 +18,7 @@ import {
 } from "@tabler/icons-react";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
-import { deteteModalidadById } from "../actions/post/save-modalidades";
+import { deteteModalidadById } from "../../screens/actions/post/save-modalidades";
 
 export default function ButtonDeleteModalidades({ id }: { id: string }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();

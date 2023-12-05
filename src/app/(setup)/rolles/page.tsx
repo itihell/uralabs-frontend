@@ -69,10 +69,10 @@ function RolesPage() {
 
   return (
     <div>
-      <div className="min-h-screen">
-        <h1 className="mb-3">Listado de roles</h1>
+      <div className='min-h-screen'>
+        <h1 className='mb-3'>Listado de roles</h1>
 
-        <div className="flex justify-between mb-2">
+        <div className='flex justify-between mb-2'>
           <BtnFilterRoles
             onFilteredRoles={(value: Role) => {
               onFilteredRoles(value);

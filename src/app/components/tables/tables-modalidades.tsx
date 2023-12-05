@@ -1,13 +1,29 @@
 import { revalidatePath } from "next/cache";
-import { getAllModalidades } from "../actions/post/save-modalidades";
-import ButtonDeleteModalidades from "../forms/button-delete-modalidades";
-import ButtonEditModalidades from "../forms/button-edit-modalidades";
+import { getAllModalidades } from "../screens/actions/post/save-modalidades";
+import ButtonDeleteModalidades from "../forms/modalidades/button-delete-modalidades";
+import ButtonEditModalidades from "../forms/modalidades/button-edit-modalidades";
 import Link from "next/link";
 import { IconTrashFilled } from "@tabler/icons-react";
+import { Modalidades } from "@/app/interfaces/modalidades-interface";
 
-const TablesModalidades = async () => {
-  revalidatePath("/modalidades");
-  const data = await getAllModalidades();
+interface TableModalidadesProps {
+  onDeleted: (e: any) => void;
+  onUpdated: (e: any) => void;
+  modalidades: Modalidades[];
+}
+
+const TablesModalidades = async ({
+  modalidades,
+  onDeleted,
+  onUpdated,
+}: TableModalidadesProps) => {
+  const handlerOnDeleted = async (modalidades: Modalidades) => {
+    onDeleted(modalidades);
+  };
+
+  const handlerOnUpdate = async (modalidades: Modalidades) => {
+    onUpdated(modalidades);
+  };
   return (
     <div>
       <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
@@ -20,7 +36,7 @@ const TablesModalidades = async () => {
             </tr>
           </thead>
           <tbody className='bg-white border-b dark:bg-gray-900 dark:border-gray-700'>
-            {Object.values(data).map((modalidades: any) => (
+            {Object.values(modalidades).map((modalidades: any) => (
               <tr key={`modalidades-${modalidades.id}`}>
                 <td className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
                   {modalidades.id}

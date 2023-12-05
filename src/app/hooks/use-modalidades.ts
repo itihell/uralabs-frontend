@@ -1,6 +1,6 @@
 import feching from "../utils/cliente-http";
 import { Modalidades } from "../interfaces/modalidades-interface";
-export function Modalidades() {
+export default function useModalidades() {
   const onStore = async (payload: Modalidades) => {
     const url = `/modalidades`;
     const rest = await feching(url, "no-store", "POST", payload);
