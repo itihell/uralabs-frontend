@@ -42,10 +42,29 @@ export function useLaboratorio() {
   };
 
   const onUpdate = async (id: number, payload: UsoLab) => {
+    const { male, female, className, carrera, docente, modality, laboratorio, ...restPayload } = payload;
+  
+    const formattedPayload = {
+      ...restPayload,
+      total: Number(male) + Number(female),
+      male: Number(male),
+      female: Number(female),
+      className: { id: Number(className) },
+      carrera: { id: Number(carrera) },
+      docente: { id: Number(docente) },
+      modality: { id: Number(modality) },
+      laboratorio: { id: Number(laboratorio) },
+    };
+  
+    console.log(formattedPayload);
+    
     const url = `/uselab/${id}`;
-    const rest = await feching(url, "no-store", "PUT", payload);
+    const rest = await feching(url, "no-store", "PUT", formattedPayload);
+    
+    console.log(rest);
     return rest;
   };
+  
 
   const onShow = async (id: number) => {
     const url = `/uselab/${id}`;

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -7,14 +7,9 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  useDisclosure,
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
-import { getRoles } from "@/app/actions/post/save-roles";
-import { useRouter } from "next/navigation";
-import { Role } from "@/app/interfaces/roles-interfaces";
 import { setterData } from "@/app/interfaces/setter-interfaces";
-import { useRoles } from "@/app/hooks/use-roles";
 import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
 import { useLaboratorio } from "@/app/hooks/uso-lab";
 import FieldsUsoLab from "./fields-UsoLab";
