@@ -11,11 +11,11 @@ export function useLaboratorio() {
       total: Number(male) + Number(female),
       male: Number(male),
       female: Number(female),
-      className: { id: Number(className) },  // Ajusta el formato según lo que espere el servidor
-      carrera: { id: Number(carrera) },      // Ajusta el formato según lo que espere el servidor
-      docente: { id: Number(docente) },      // Ajusta el formato según lo que espere el servidor
-      modality: { id: Number(modality) },    // Ajusta el formato según lo que espere el servidor
-      laboratorio: { id: Number(laboratorio) },  // Ajusta el formato según lo que espere el servidor
+      className: { id: Number(className) },  
+      carrera: { id: Number(carrera) },      
+      docente: { id: Number(docente) },      
+      modality: { id: Number(modality) },    
+      laboratorio: { id: Number(laboratorio) },  
     };
   
     console.log(formattedPayload);
