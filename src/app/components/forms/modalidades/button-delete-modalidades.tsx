@@ -16,17 +16,27 @@ import {
   IconCheck,
   IconTrash,
 } from "@tabler/icons-react";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { deteteModalidadById } from "../../screens/actions/post/save-modalidades";
+import { Modalidades } from "@/app/interfaces/modalidades-interface";
+import useModalidades from "@/app/hooks/use-modalidades";
 
-export default function ButtonDeleteModalidades({ id }: { id: string }) {
+interface ButtonDeleteMoProps {
+  id: number;
+  onDeleted: (e: Modalidades) => void;
+}
+
+export default function ButtonDeleteModalidades({
+  id,
+  onDeleted,
+}: ButtonDeleteMoProps) {
+  const { onDelete } = useModalidades();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteModalidad = async (id: string) => {
-    const { data } = await deteteModalidadById(parseInt(id));
-    router.refresh();
+  const deleteModalidad = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
 
   return (

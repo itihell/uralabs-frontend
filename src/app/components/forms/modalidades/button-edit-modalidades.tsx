@@ -10,14 +10,8 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
-import FormEditModalidades from "./form-edit-modalidades";
-
-import { revalidatePath } from "next/cache";
-import { useRouter } from "next/navigation";
-import { getModalidades } from "../../screens/actions/post/save-modalidades";
 import useModalidades from "@/app/hooks/use-modalidades";
 import { Modalidades } from "@/app/interfaces/modalidades-interface";
-import FieldsModalidades from "./fields-modalidades";
 import FieldsModalidad from "../../modalidades/fields-modalidades";
 interface ButtonEditModalidadesProps {
   id: number;

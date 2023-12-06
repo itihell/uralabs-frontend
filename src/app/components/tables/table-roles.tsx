@@ -16,6 +16,7 @@ const TableRoles = ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
   const handlerOnUpdate = async (rol: Role) => {
     onUpdated(rol);
   };
+
   return (
     <div>
       <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>

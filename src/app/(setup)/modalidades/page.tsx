@@ -9,6 +9,7 @@ import useUtils from "@/app/hooks/use-utils";
 import { set } from "react-hook-form";
 import SearchModalidades from "@/app/components/modalidades/search-modalidades";
 import BtnAddModalidades from "@/app/components/modalidades/btn-add-modalidades";
+import BtnFilterModalidades from "@/app/components/modalidades/btn-filter-modalidad";
 
 export default function ModalidadesPage() {
   const { onShowAll } = useModalidades();
@@ -71,6 +72,12 @@ export default function ModalidadesPage() {
       <div className='min-h-screen'>
         <h1 className='mb-3'>Listado de modalidades</h1>
         <div className='flex justify-between mb-2'>
+          <BtnFilterModalidades
+            onFilteredModalidades={(value: Modalidades) => {
+              onFilteredModalidades(value);
+            }}
+          />
+
           <SearchModalidades
             search={search}
             setSearch={(e) => {

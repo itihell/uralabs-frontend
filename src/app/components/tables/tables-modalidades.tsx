@@ -17,13 +17,14 @@ const TablesModalidades = async ({
   onDeleted,
   onUpdated,
 }: TableModalidadesProps) => {
-  const handlerOnDeleted = async (modalidades: Modalidades) => {
-    onDeleted(modalidades);
+  const handlerOnDeleted = async (modalidad: Modalidades) => {
+    onDeleted(modalidad);
   };
 
-  const handlerOnUpdate = async (modalidades: Modalidades) => {
-    onUpdated(modalidades);
+  const handlerOnUpdate = async (modalidad: Modalidades) => {
+    onUpdated(modalidad);
   };
+  console.log(handlerOnUpdate);
   return (
     <div>
       <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
@@ -45,8 +46,19 @@ const TablesModalidades = async ({
 
                 <td className='px-6 py-4'>
                   <div className='flex flex-row items-center justify-end'>
-                    <ButtonDeleteModalidades id={modalidades.id} />
-                    <ButtonEditModalidades id={modalidades.id} />
+                    <ButtonDeleteModalidades
+                      onDeleted={async (e) => {
+                        alert("eliminado");
+                        await handlerOnDeleted(e);
+                      }}
+                      id={modalidades.id}
+                    />
+                    <ButtonEditModalidades
+                      onSaved={async (e) => {
+                        await handlerOnUpdate(e);
+                      }}
+                      id={modalidades.id}
+                    />
                   </div>
                 </td>
               </tr>
