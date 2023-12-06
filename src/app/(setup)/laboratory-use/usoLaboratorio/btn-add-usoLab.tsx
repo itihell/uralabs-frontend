@@ -6,7 +6,7 @@ import {
   ModalBody,
   ModalFooter,
   Button,
-  
+
 } from "@nextui-org/react";
 import { useState } from "react";
 import { setterData } from "@/app/interfaces/setter-interfaces";
@@ -16,12 +16,12 @@ import FieldsUsoLab from "./fields-UsoLab";
 
 
 interface BtnAddUsoLabProps {
-  onSavedUsoLab: (data:UsoLab) => void;
+  onSavedUsoLab: (data: UsoLab) => void;
 }
 export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
   const [fields, setFields] = useState<UsoLab>({} as UsoLab);
   const handleChangeUsoLab = ({ clave, valor }: setterData) => {
-   
+
     setFields({ ...fields, [clave]: valor });
     console.log(fields);
   };
@@ -69,12 +69,12 @@ export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
                 <Button
                   color="primary"
                   onPress={async (e) => {
-                    const {data } = await handleOnStore();
+                    const { data } = await handleOnStore();
 
                     if (data) {
                       onSavedUsoLab(data);
                       onClose();
-                      
+
                     }
                   }}
                 >

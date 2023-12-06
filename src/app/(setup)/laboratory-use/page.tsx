@@ -7,12 +7,15 @@ import { useLaboratorio } from "@/app/hooks/uso-lab";
 import SearchUsoLab from "@/app/components/forms/usoLaboratorio/search-UsoLab";
 import BtnAddUsoLab from "@/app/components/forms/usoLaboratorio/btn-add-usoLab";
 import TableLabUse from "@/app/components/tables/table-labUse";
+import useUtils from "@/app/hooks/use-utils";
+import BtnFilterUsoLab from "./usoLaboratorio/btn-filter-labUse";
 
 function LabUsePage() {
   const { onShowAll, onStore } = useLaboratorio();
   const [usoLaboratorio, setLaboratorio] = useState<UsoLab[]>([]);
   const [search, setSearch] = useState<string>("");
   const [usoLabSearch, setUsoLabSearch] = useState<UsoLab[]>([]);
+  const { getParams } = useUtils();
 
   useEffect(() => {
     const loadUsoLab = async () => {
@@ -58,12 +61,28 @@ function LabUsePage() {
     setUsoLabSearch(rows);
   };
 
+  const onFilteredUsoLab = async (fields: UsoLab) => {
+    // TODO: Obetener los parametros de busqueda
+    const params: any = getParams(fields);
+
+    // TODO: Filtrar los roles
+    await onShowAll(params).then(({ data }) => {
+      setUsoLabAndSearch(data);
+    });
+  };
+
   return (
     <div>
       <div className="min-h-screen">
         <h1 className="mb-3">Listado de los registros del uso del laboratrorio</h1>
 
+
         <div className="flex justify-between mb-2">
+          <BtnFilterUsoLab
+            onFilteredLabUse={(value: UsoLab) => {
+              onFilteredUsoLab(value);
+            }}
+          />
           <SearchUsoLab
             search={search}
             setSearch={(e) => {
