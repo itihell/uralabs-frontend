@@ -20,11 +20,12 @@ export default function ModalidadesPage() {
   useEffect(() => {
     const loadModalidades = async () => {
       await onShowAll("").then(({ data }) => {
-        setModalidadesSearch(data);
+        setModalidadesAndSearch(data);
+        console.log(data);
       });
     };
     loadModalidades();
-  });
+  }, []);
 
   const setModalidadesAndSearch = (data: Modalidades[]) => {
     setModalidades(() => {

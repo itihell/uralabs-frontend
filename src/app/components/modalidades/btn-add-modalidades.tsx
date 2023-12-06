@@ -43,7 +43,7 @@ export default function BtnAddModalidades({ onSaved }: BtnAddModalidadesProps) {
   return (
     <>
       <Button variant='light' size='sm' color='primary' onPress={onOpen}>
-        Agregar Rol
+        Agregar Modalidad
       </Button>
       <Modal
         placement='top'
