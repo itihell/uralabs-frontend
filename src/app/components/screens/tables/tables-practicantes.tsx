@@ -44,7 +44,7 @@ const TablePracticante = async (
                 </td>
                 <td className="px-6 py-4"> {practicante.nombres}</td>
                 <td className="px-6 py-4"> {practicante.apellidos}</td>
-                <td className="px-6 py-4"> {practicante.carrera}</td>
+                <td className="px-6 py-4"> {practicante.carreraId}</td>
                 <td className="px-6 py-4"> {practicante.fecha_inicio}</td>
                 <td className="px-6 py-4"> {practicante.fecha_fin}</td>
                 <td className="px-6 py-4"> {practicante.cantidad_horas}</td>

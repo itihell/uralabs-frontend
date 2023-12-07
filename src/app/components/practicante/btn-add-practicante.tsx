@@ -8,16 +8,17 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from
 interface BtnAddPracticanteProps {
     onSaved: (data: Practicante) => void;
 }
-export default function BtnAddPracticante(
-    { onSaved }: BtnAddPracticanteProps
-) {
+
+export default function BtnAddPracticante({ onSaved }: BtnAddPracticanteProps) {
     const [fields, setFields] = useState<Practicante>({} as Practicante);
+
     const handleChangePracticante = ({ clave, valor }: setterData) => {
         setFields({ ...fields, [clave]: valor });
     };
-    const { onStore } = usePracticante();
 
+    const { onStore } = usePracticante();
     const [isOpen, setOpen] = useState(false);
+
     const onOpen = () => {
         setOpen(!isOpen);
         setFields({} as Practicante);
@@ -43,7 +44,7 @@ export default function BtnAddPracticante(
                 <ModalContent>
                     {(onClose) => (
                         <>
-                            <ModalHeader className="flex flex-col gap-1">
+                            <ModalHeader>
                                 Datos del practicante
                             </ModalHeader>
                             <ModalBody>

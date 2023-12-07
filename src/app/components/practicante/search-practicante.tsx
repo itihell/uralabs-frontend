@@ -13,11 +13,13 @@ function SearchPracticante({ search, setSearch }: SearchPracticanteProps) {
                 size="sm"
                 defaultValue={search}
                 onKeyUp={(e) => {
-                    e.key === "Enter" && setSearch(e.target.value);
+                    if (e.key === "Enter") {
+                        setSearch((e.target as HTMLInputElement).value);
+                    }
                 }}
                 label="Buscar practicante"
                 onChange={(e) => {
-                    setSearch(e.target.value);
+                    setSearch((e.target as HTMLInputElement).value);
                 }}
             />
         </div>

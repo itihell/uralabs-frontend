@@ -1,61 +1,62 @@
-import { getCarreras } from "@/app/actions/post/save-carreras";
 import { useEffect, useState } from "react";
 import Practicante from "./interface/practicante";
 import { Input, Select } from "@nextui-org/react";
 import { setterData } from "@/app/interfaces/setter-interfaces";
+import { getCareers } from "@/app/reservations/utils/api";
 
 interface FieldsPracticanteProps {
   practicante?: Practicante;
   onChangePracticante: (data: setterData) => void;
 }
+
 export default function FieldsPracticantes(
   { practicante, onChangePracticante }: FieldsPracticanteProps = {
     practicante: {} as Practicante,
     onChangePracticante: () => {},
   }
 ) {
+
+
   const [fields, setFields] = useState<Practicante>({} as Practicante);
   const handleChangePracticante = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
     onChangePracticante({ clave, valor });
   };
-
-  const [carreras, setCarreras] = useState([]);
-  const [carrera, setCarrera] = useState("");
-  
-  // Obtener carreras para el select
-  useEffect(() => {
-    const obtenerCarreras = async () => {
-      try {
-        
-        const institucionId = obtenerInstitucionId();
-        const carrerasData = await getCarreras(institucionId);
-        setCarreras(carrerasData);
-      } catch (error) {
-        console.error("Error al obtener las carreras:", error);
-      }
-    };
-  
-    obtenerCarreras();
-  }, []);
-
   useEffect(() => {
     if (practicante) {
       setFields(practicante || ({} as Practicante));
     }
   }, [practicante]);
 
+  //obtener las carreras de la base de datos 
+  const [careers, setCareers] = useState([]);
+  useEffect(() => {
+    const loadCareers = async () => {
+      const { data } = await getCareers();
+      setCareers(data);
+    };
+    loadCareers();
+  }, []);
+
+    
   return (
     <div>
-      <div className="
+      <div
+        className="
         w-full flex flex-col
-      ">
-        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+      "
+      >
+        <div
+          className="
+          w-full flex flex-col
+          
+        "
+        >
           <Input
-            
+            className="mb-2"
             type="text"
-            label="Nombre"
-            name="nombre"
+            label="Nombres"
+            name="nombres"
             placeholder="Escriba un nombre..."
             defaultValue={practicante?.nombres}
             onChange={(e) => {
@@ -67,10 +68,11 @@ export default function FieldsPracticantes(
             }}
           />
           <Input
+            className="mb-2"
             size="sm"
             type="text"
-            label="Apellido"
-            name="apellido"
+            label="Apellidos"
+            name="apellidos"
             placeholder="Escriba un apellido..."
             defaultValue={practicante?.apellidos}
             onChange={(e) => {
@@ -82,23 +84,31 @@ export default function FieldsPracticantes(
             }}
           />
           <Select
+            className="mb-2"
             size="sm"
             label="Carrera"
-            placeholder="Seleccione una carrera"
+            name="carreraId"
+            placeholder="Seleccione una carrera..."
+            defaultValue={practicante?.carreraId}
             onChange={(e) => {
               const data: setterData = {
                 clave: e.target.name,
                 valor: e.target.value,
               };
               handleChangePracticante(data);
-              setCarrera(e.target.value);
             }}
-            name="carrera"
-            defaultValue={practicante?.carrera}
-          />
+          >
+            {careers.map((career: CarreraInterface) => (
+              <Select.Option key={career.id} value={career.id}>
+                {career.nombre}
+              </Select.Option>
+            ))}
+          </Select>
+            
           <Input
+            className="mb-2"
             size="sm"
-            type="text"
+            type="date"
             label="fecha de inicio"
             name="fecha_inicio"
             placeholder="Escriba una fecha de inicio..."
@@ -112,8 +122,9 @@ export default function FieldsPracticantes(
             }}
           />
           <Input
+            className="mb-2"
             size="sm"
-            type="text"
+            type="date"
             label="fecha de fin"
             name="fecha_fin"
             placeholder="Escriba una fecha de fin..."
@@ -125,15 +136,16 @@ export default function FieldsPracticantes(
               };
               handleChangePracticante(data);
             }}
-            />
+          />
 
           <Input
+            className="mb-2"
             size="sm"
-            type="text"
+            type="number"
             label="cantidad de horas"
             name="cantidad_horas"
             placeholder="Escriba las horas..."
-            defaultValue={practicante?.cantidad_horas}        
+            defaultValue={practicante?.cantidad_horas}
             onChange={(e) => {
               const data: setterData = {
                 clave: e.target.name,
@@ -141,14 +153,13 @@ export default function FieldsPracticantes(
               };
               handleChangePracticante(data);
             }}
-            />          
+          />
         </div>
       </div>
     </div>
-         
-) }
+  );
+}
 
 function obtenerInstitucionId() {
   throw new Error("Function not implemented.");
 }
-
