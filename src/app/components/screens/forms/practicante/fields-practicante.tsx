@@ -126,7 +126,7 @@ export default function FieldsPracticantes(
             <select
               id="carreraId"
               name="carreraId"
-              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+              className="appearance-none block w-full bg-[#27272A] text-gray-100 border-0  rounded-small py-4 px-4 mb-3 leading-tight hover:bg-[#3F3F46] focus:bg-[#3F3F46] focus:outline-none"
               onChange={(e) => {
                 const data: setterData = {
                   clave: "carreraId",
@@ -151,7 +151,7 @@ export default function FieldsPracticantes(
             <input
               type="number"
               name="cantidad_horas"
-              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none hover:border-gray-400 focus:no-outline focus:shadow-outline"
+              className="appearance-none block w-full bg-[#27272A] text-gray-100 border-0 rounded-small py-4 px-4 mb-3 leading-tight hover:bg-[#3F3F46] focus:bg-[#3F3F46] focus:outline-none"
               id="cantidad_horas"
               placeholder="Cantidad de horas del practicante"
               defaultValue={practicante?.cantidad_horas ||0}

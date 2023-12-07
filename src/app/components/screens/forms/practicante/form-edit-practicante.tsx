@@ -1,5 +1,4 @@
 "use client";
-
 import { setterData } from "@/app/interfaces/setter-interfaces";
 import Practicante from './interface/practicante';
 import {useEffect, useState } from "react";
@@ -70,7 +69,7 @@ export default function FormEditPracticante({ practicante, onChengaPracticante
             label="Carrera"
             name="carrera"
             placeholder="Escriba una carrera..."
-            defaultValue={practicante?.carrera}
+            defaultValue={practicante?.carreraId?.toString()}
             onChange={(e) => {
               const data: setterData = {
                 clave: e.target.name,
