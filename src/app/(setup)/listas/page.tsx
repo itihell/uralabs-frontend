@@ -23,6 +23,7 @@ export default function ListasPages() {
   const changeUsolab = (id: number) => {
     setFields({ ...fields, uso_lab_id: id });
   };
+  
   const changeModalidad = (e: any) => {
     setFields({ ...fields, modalidad_id: e.id });
     console.log("desde la pagina ", e.id);
@@ -78,7 +79,7 @@ export default function ListasPages() {
       <ListCortePracticante selected={changeFechaCorte} />
 
       <h1>Uso del laboratorio</h1>
-      {/* <ListUsoLab selected={changeUsolab} /> */}
+      <ListUsoLab selected={changeUsolab} />
 
       <h1>Listas de Areas</h1>
       <ListAreas selected={changeArea} />
