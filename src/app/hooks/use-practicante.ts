@@ -2,9 +2,8 @@ import Practicante from "../components/screens/forms/practicante/interface/pract
 import feching from "../utils/cliente-http";
 
 export function usePracticante(){
-    const onStore = async (payload: Practicante) => {
+    const onSave = async (payload: Practicante) => {
         const url = `/practicante`;
-    
         const rest = await feching(url, "no-store", "POST", payload);
         return rest;
     };
@@ -35,7 +34,7 @@ export function usePracticante(){
     
     return {
         onShowAll,
-        onStore,
+        onSave,
         onDelete,
         onUpdate,
         onShow

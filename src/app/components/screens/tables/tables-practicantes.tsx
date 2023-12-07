@@ -19,7 +19,6 @@ const TablePracticante = async (
 
   // revalidatePath("practicante");
   // const data = await getPracticantes();
-  console.log(practicante)
   
   return (
     <div>

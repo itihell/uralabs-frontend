@@ -14,22 +14,23 @@ export default function FieldsPracticantes(
   }
 ) {
   const [fields, setFields] = useState<Practicante>({} as Practicante);
+
   const handleChangePracticante = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
     onChangePracticante({ clave, valor });
-  };
+  };// aqui se hace el cambio de los datos del practicante
   useEffect(() => {
     if (practicante) {
       setFields(practicante || ({} as Practicante));
     }
-  }, [practicante]);
+  }, [practicante]);// este es el use effect que se encarga de actualizar los datos del practicante
 
   const [carrera, setCarrera] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const  data  = await getAllCarreras();
+        const data = await getAllCarreras();
         setCarrera(data);
       } catch (error) {
         console.error(`Error: ${error}`);
@@ -38,7 +39,6 @@ export default function FieldsPracticantes(
     fetchData();
   }, []);
 
-  console.log(`Carrera: ${carrera}`);
   return (
     <div>
       <div className="w-full flex flex-col">
@@ -102,21 +102,40 @@ export default function FieldsPracticantes(
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-sm font-semibold text-gray-700">
-              Carrera
+              Fecha fin
             </label>
-            <select
-              id="carrera"
-              name="carrera"
-              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+            <Input
+              size="sm"
+              type="date"
+              label="Fecha fin"
+              placeholder="Fecha inicio del practicante"
+              defaultValue={practicante?.fecha_fin}
               onChange={(e) => {
                 const data: setterData = {
-                  clave: "carrera",
+                  clave: "fecha_fin",
                   valor: e.target.value,
                 };
                 handleChangePracticante(data);
               }}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Carrera
+            </label>
+            <select
+              id="carreraId"
+              name="carreraId"
+              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: "carreraId",
+                  valor: parseInt(e.target.value, 10) || 0,
+                };
+                handleChangePracticante(data);
+              }}
             >
-              <option value="carrera">Seleccione una carrera</option>
+              <option value="">Seleccione una carrera</option>
               {carrera &&
                 carrera.map((carrera: any) => (
                   <option key={carrera.id} value={carrera.id}>
@@ -124,6 +143,25 @@ export default function FieldsPracticantes(
                   </option>
                 ))}
             </select>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Cantidad de horas
+            </label>
+            <Input
+              size="sm"
+              type="number"
+              label="Cantidad de horas"
+              placeholder="Cantidad de horas del practicante"
+              defaultValue={practicante?.cantidad_horas.toString()}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: e.target.name,                  
+                  valor: parseInt(e.target.value, 10) || 0,
+                };
+                handleChangePracticante(data);
+              }}
+            />
           </div>
         </div>
       </div>

@@ -11,24 +11,27 @@ interface BtnAddPracticanteProps {
 
 export default function BtnAddPracticante({ onSaved }: BtnAddPracticanteProps) {
     const [fields, setFields] = useState<Practicante>({} as Practicante);
-
+    const { onSave } = usePracticante();//llamo a la funcion de guardar practicante
+    
     const handleChangePracticante = ({ clave, valor }: setterData) => {
-        setFields({ ...fields, [clave]: valor });
-    };
+        setFields({ ...fields, [clave]: valor });  
+        console.log(fields);       
+    };// esta funcion se encarga de cambiar los datos del practicante
 
-    const { onStore } = usePracticante();
+    const handleOnStore = async () => {
+        const rest = await onSave(fields); 
+        console.log(rest);
+        return rest;
+    };// esta funcion se encarga de guardar los datos del practicante
+
     const [isOpen, setOpen] = useState(false);
 
     const onOpen = () => {
         setOpen(!isOpen);
         setFields({} as Practicante);
     };
-
-    const handleOnStore = async () => {
-        const rest = await onStore(fields);
-        return rest;
-    };
-
+    
+    
     return (
         <>
             <Button variant="light" size="sm" color="primary" onPress={onOpen}>

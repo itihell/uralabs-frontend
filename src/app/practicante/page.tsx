@@ -7,7 +7,7 @@ import SearchPracticante from '../components/practicante/search-practicante';
 import BtnAddPracticante from "../components/practicante/btn-add-practicante";
 
 export default function Practicante() {
-  const {onShowAll, onStore} = usePracticante();
+  const {onShowAll, onSave} = usePracticante();
   const [practicantes, setPracticantes] = useState<Practicante[]>([]);
   const [search, setSearch] = useState<string>("");
   const [practicantesSearch, setPracticantesSearch] = useState<Practicante[]>([]);
@@ -55,6 +55,7 @@ export default function Practicante() {
     });
     setPracticantesSearch(rows);
   };
+  
   return (
     <div>
       <div className="min-h-screen">
