@@ -16,14 +16,13 @@ export default function BtnAddPracticante({ onSaved }: BtnAddPracticanteProps) {
     const handleChangePracticante = ({ clave, valor }: setterData) => {
         setFields({ ...fields, [clave]: valor });  
         console.log(fields);       
-    };// esta funcion se encarga de cambiar los datos del practicante
+    };
 
     const handleOnStore = async () => {
         const rest = await onSave(fields); 
         console.log(rest);
         return rest;
-    };// esta funcion se encarga de guardar los datos del practicante
-
+    };
     const [isOpen, setOpen] = useState(false);
 
     const onOpen = () => {

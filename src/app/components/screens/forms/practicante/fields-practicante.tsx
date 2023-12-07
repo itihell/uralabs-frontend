@@ -148,12 +148,13 @@ export default function FieldsPracticantes(
             <label className="text-sm font-semibold text-gray-700">
               Cantidad de horas
             </label>
-            <Input
-              size="sm"
+            <input
               type="number"
-              label="Cantidad de horas"
+              name="cantidad_horas"
+              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none hover:border-gray-400 focus:no-outline focus:shadow-outline"
+              id="cantidad_horas"
               placeholder="Cantidad de horas del practicante"
-              defaultValue={practicante?.cantidad_horas.toString()}
+              defaultValue={practicante?.cantidad_horas ||0}
               onChange={(e) => {
                 const data: setterData = {
                   clave: e.target.name,                  
