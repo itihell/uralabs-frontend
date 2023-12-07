@@ -10,20 +10,34 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
-import { deletePracticanteById } from "../../actions/post/save-practicantes";
+import { deletePracticanteById } from '../../actions/post/save-practicantes';
 import {
   IconArrowBackUpDouble,
   IconCheck,
   IconTrash,
 } from "@tabler/icons-react";
+import Practicante from "./interface/practicante";
+import { usePracticante } from "@/app/hooks/use-practicante";
 
-export default function ButtonDeletePracticante({ id }: { id: string }) {
+interface ButtonDeletePracticanteProps {
+  id: number;
+  onDeleted: (e: Practicante) => void;
+}
+
+
+export default function ButtonDeletePracticante(
+  { id, onDeleted }: ButtonDeletePracticanteProps
+) {
+  const { onDelete } = usePracticante();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
-  const deletPracticante = async (id: string) => {
-    const { data } = await deletePracticanteById(parseInt(id));
-    router.refresh();
+
+  const deletPracticante = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
+
+
   return (
     <>
       <Button onPress={onOpen} variant="light" size="sm">
