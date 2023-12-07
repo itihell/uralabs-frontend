@@ -1,61 +1,67 @@
-"use client";
-import { useState } from "react";
+import { Carrera } from "@/app/interfaces/carreras-interfaces";
+import { setterData } from "@/app/interfaces/setter-interfaces";
+import { Input, Switch } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 
-interface Area {
-  id: number;
-  nombre: string;
+interface FieldsCarrerasProps {
+  carrera?: Carrera;
+  onChangeCarrera: (data: setterData) => void;
 }
 
-export default function FieldsCarreras({ fields, areas }: { fields: any; areas: Area[] }) {
-  const [field, setField] = useState(fields);
-
-  const handlerChange = (e: any) => {
-    const { name, value } = e.target;
-
-    setField({
-      ...field,
-      [name]: value,
-    });
+export default function FieldsCarreras(
+  { carrera, onChangeCarrera }: FieldsCarrerasProps = {
+    carrera: {} as Carrera,
+    onChangeCarrera: () => { },
+  }
+) {
+  const [fields, setFields] = useState<Carrera>({} as Carrera);
+  const handleChangeCarrera = ({ clave, valor }: setterData) => {
+    setFields({ ...fields, [clave]: valor });
+    onChangeCarrera({ clave, valor });
   };
+  useEffect(() => {
+    if (carrera) {
+      setFields(carrera || ({} as Carrera));
+    }
+  }, [carrera]);
 
   return (
-    <>
-      <input type="hidden" id="id" name="id" defaultValue={fields?.id || ""} />
+    <div>
+      <div className="w-full flex flex-col gap-4">
+        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+          <Input
+            size="sm"
+            type="text"
+            label="Carrera"
+            name="carrera"
+            placeholder="Escriba una carrera..."
+            defaultValue={carrera?.carrera}
+            onChange={(e) => {
+              const data: setterData = {
+                clave: e.target.name,
+                valor: e.target.value,
+              };
+              handleChangeCarrera(data);
+            }}
+          />
+        </div>
+      </div>
+      <div className="w-full flex flex-col gap-4 mt-2">
+        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
+          <Switch
+            name="is_active"
+            defaultSelected={carrera?.is_active}
+            onChange={(e) => {
+              const data: setterData = {
+                clave: e.target.name,
+                valor: e.target.checked,
+              };
 
-      <div>
-        <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Nombre de la carrera
-        </label>
+              handleChangeCarrera(data);
+            }}
+          />
+        </div>
       </div>
-      <div className="mb-6">
-        <input
-          type="text"
-          name="nombre"
-          id="nombre"
-          defaultValue={fields?.nombre || ""}
-          onChange={handlerChange}
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        />
-      </div>
-
-      <div>
-        <label htmlFor="area" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-          Area
-        </label>
-      </div>
-      <div className="mb-6">
-        <select
-          id="area"
-          name="area"
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        >
-          {areas.map((areas) => (
-            <option value={areas.id} key={areas.id}>
-              {areas.nombre}
-            </option>
-          ))}
-        </select>
-      </div>
-    </>
+    </div>
   );
 }

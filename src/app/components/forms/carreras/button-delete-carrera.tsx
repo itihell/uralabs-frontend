@@ -1,18 +1,39 @@
 "use client";
 import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import { IconArrowBackUpDouble, IconCheck, IconTrash } from "@tabler/icons-react";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure
+} from "@nextui-org/react";
+import {
+  IconArrowBackUpDouble,
+  IconCheck,
+  IconTrash
+} from "@tabler/icons-react";
 
 import { useRouter } from "next/navigation";
-import { deleteCarreraById } from "@/app/actions/post/save-carreras";
+import { Carrera } from "@/app/interfaces/carreras-interfaces";
+import { useCarreras } from "@/app/hooks/use-carrreras";
 
-export default function ButtonDeleteCarrera({ id }: { id: string }) {
+interface ButtonDeleteCarreraProps {
+  id: number;
+  onDeleted: (e: Carrera) => void;
+}
+export default function ButtonDeleteCarrera({
+  id,
+  onDeleted,
+}: ButtonDeleteCarreraProps) {
+  const { onDelete } = useCarreras();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteCarrera = async (id: string) => {
-    await deleteCarreraById(parseInt(id));
-    router.refresh();
+  const deleteRole = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
 
   return (
@@ -25,10 +46,10 @@ export default function ButtonDeleteCarrera({ id }: { id: string }) {
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-row justify-start">
-                <IconTrash color="red" /> Eliminar Carrera
+                <IconTrash color="red" /> Eliminar Role
               </ModalHeader>
               <ModalBody>
-                <h1>¿Está seguro que desea eliminar la carrera con id {id}?</h1>
+                <h1>¿Está seguro que desea eliminar el roleeee con id {id}?</h1>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
@@ -38,7 +59,7 @@ export default function ButtonDeleteCarrera({ id }: { id: string }) {
                 <Button
                   color="primary"
                   onClick={() => {
-                    deleteCarrera(id);
+                    deleteRole(id);
                     onClose();
                   }}
                 >
@@ -52,4 +73,5 @@ export default function ButtonDeleteCarrera({ id }: { id: string }) {
       </Modal>
     </>
   );
+
 }

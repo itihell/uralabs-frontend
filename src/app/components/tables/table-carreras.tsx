@@ -1,12 +1,22 @@
 import { revalidatePath } from "next/cache";
-// import { getAllAreas as getAllAreas } from "@/app/actions/post/save-areas";
 import ButtonEditCarrera from "../forms/carreras/button-edit-carrera";
-import { getAllCarreras } from "@/app/actions/post/save-carreras";
+import { Carrera } from "@/app/interfaces/carreras-interfaces";
 import ButtonDeletecarrera from "../forms/carreras/button-delete-carrera";
 
-const TableCarreras = async () => {
-  revalidatePath("/registro-carreras");
-  const data = await getAllCarreras();
+interface TableCarrerasProps {
+  onDeleted: (e: Carrera) => void;
+  onUpdated: (e: Carrera) => void;
+  carreras: Carrera[];
+}
+
+const TableCarreras = ({ carreras, onDeleted, onUpdated }: TableCarrerasProps) => {
+  const handlerOnDeleted = async (car: Carrera) => {
+    onDeleted(car);
+  };
+
+  const handlerOnUpdate = async (car: Carrera) => {
+    onUpdated(car);
+  }
 
   return (
     <div>
@@ -21,15 +31,27 @@ const TableCarreras = async () => {
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            {Object.values(data).map((carrera: any) => (
+            {Object.values(carreras).map((carrera: any) => (
               <tr key={`registro-area-${carrera.id}`}>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{carrera.id}</td>
                 <td className="px-6 py-4"> {carrera.nombre}</td>
                 <td className="px-6 py-4"> {carrera.area.nombre}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
-                    <ButtonDeletecarrera id={carrera.id} />
-                    <ButtonEditCarrera id={carrera.id} />
+
+                    <ButtonDeletecarrera
+                      onDeleted={async (e) => {
+                        alert("Eliminado");
+                        await handlerOnDeleted(e);
+                      }}
+                      id={carrera.id}
+                    />
+                    <ButtonEditCarrera
+                      onSaved={async (e) => {
+                        await handlerOnUpdate(e);
+                      }}
+                      id={carrera.id}
+                    />
                   </div>
                 </td>
               </tr>
@@ -39,5 +61,6 @@ const TableCarreras = async () => {
       </div>
     </div>
   );
-};
+}
+
 export default TableCarreras;
