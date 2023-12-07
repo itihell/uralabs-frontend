@@ -47,7 +47,7 @@ export async function updatePracticante(id: number, request: FormData) {
     return error;
   }
 
-  return practicante.data;
+  return practicante.data;// Path: src/app/components/screens/actions/post/save-practicantes.ts
 }
 export async function getPracticante(id: number) {
   const endPoind = `/practicante/${id}`;
