@@ -22,7 +22,7 @@ export default function ListUsoLab({ selected, datos }: ListUsoLabsProps) {
       let res = await feching(endPoind, "no-store", "GET");
       if (typeof res === "object" && res.hasOwnProperty("data")) {
         const data = res.data;
-        if (Array.isArray(data)) {
+        if (Object.values(data)) {
           setUsoLab(() => {
             setLoading(false);
             return [...data];
@@ -70,8 +70,8 @@ export default function ListUsoLab({ selected, datos }: ListUsoLabsProps) {
       inputValue={search}
       isLoading={loading}
       items={usoLab}
-      label="Seleccione un role"
-      placeholder="Escriba un role..."
+      label="Seleccione un docente"
+      placeholder="Escriba un docente..."
       variant="bordered"
       onInputChange={async (e) => {
         await onChangeSelect(e);

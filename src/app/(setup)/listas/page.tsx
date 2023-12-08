@@ -64,7 +64,15 @@ export default function ListasPages() {
     role: "Admin",
     is_active: true,
   };
-
+  const docente = {
+    id: 1,
+    docente: {
+      nombre: "Jairo",
+      apellido: "Lup",
+    },
+    is_active: true,
+  };
+ 
   return (
     <div className="min-h-screen flex-col items-center justify-between">
       <pre>{JSON.stringify(fields, null, 2)}</pre>
@@ -76,9 +84,10 @@ export default function ListasPages() {
       <hr />
       <h1>Corte Practicas</h1>
       <ListCortePracticante selected={changeFechaCorte} />
-
+      
       <h1>Uso del laboratorio</h1>
-      <ListUsoLab  selected={changeUsolab} /> 
+      <ListUsoLab datos={[docente]} selected={changeUsolab} />
+
 
       <h1>Listas de Areas</h1>
       <ListAreas selected={changeArea} />
