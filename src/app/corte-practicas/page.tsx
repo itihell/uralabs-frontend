@@ -1,19 +1,70 @@
-import React from "react";
-import FormCortePracticas from "../components/screens/forms/corte-practicas/form-corte";
+'use client';
+import { useEffect, useState } from "react";
+import { usePracticante } from "../hooks/use-practicante";
+import CortePracticas from "../components/screens/forms/corte-practicas/interface/corte-practicas";
 import TableCortePractica from "../components/screens/tables/table-corte-practica";
 
 export default function CortePracticas() {
-  return (
-    <div>
-      <div className="min-h-screen">
-        <h1 className="text-4xl font-bold text-center text-indigo-700 mb-6">
-          Corte Practicas
-        </h1>
-        <div className="mb-3">
-          <FormCortePracticas />
+  const { onShowAll, onSave } = usePracticante();
+  const [cortes, setCortes] = useState<CortePracticas[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [corteSearch, setCorteSearch] = useState<CortePracticas[]>([]);
+  useEffect(() => {
+    const loadCortes = async () => {
+      await onShowAll("").then(({ data }) => {
+        setCortes(() => {
+          setCorteSearch(data);
+          return data;
+        });
+      });
+    };
+
+    loadCortes();
+  }, []);
+
+  const setCortesAndSearch = (data: CortePracticas[]) => {
+    setCortes(() => {
+      setCorteSearch(data);
+      return data;
+    });
+  };
+
+  const onSaved = async (corte: CortePracticas) => {
+    const { data } = await onShowAll("");
+    setCortesAndSearch(data);
+  };
+
+  const onDeleted = async (corte: CortePracticas) => {
+    const { data } = await onShowAll("");
+    setCortesAndSearch(data);
+  };
+
+  const onUpdated = async (corte: CortePracticas) => {
+    const { data } = await onShowAll("");
+    setCortesAndSearch(data);
+  };
+
+  const onSearch = (buscar: string) => {
+    const rows = cortes.filter((corte) => {
+      const campo = corte.fecha_corte.toUpperCase();
+      const textSearch = buscar.toUpperCase();
+      return campo.includes(textSearch);
+    });
+    setCorteSearch(rows);
+    return (
+      <div>
+        <div className="main-h-screen">
+          <h1 className="text-center text-3xl font-bold">Corte Practicas</h1>
         </div>
-        <TableCortePractica />
+        <div className="flex flex-col gap-2">
+          
+        </div>
+        <TableCortePractica
+          corte={corteSearch}
+          onDeleted={onDeleted}
+          onUpdated={onUpdated}
+        />
       </div>
-    </div>
-  );
+    );
+  };
 }
