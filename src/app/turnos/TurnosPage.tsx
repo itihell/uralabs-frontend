@@ -1,5 +1,6 @@
 "use client";
 import { ChangeEvent, useEffect, useState } from "react";
+import { getAllTurnos } from "../(setup)/laboratory-use/actions/post/save-labUse";
 
 interface Turno {
   id: number;
@@ -11,7 +12,7 @@ const Turnos = (): JSX.Element => {
   const [nuevoTurno, setNuevoTurno] = useState<string>("");
   const [editTurno, setEditTurno] = useState<Turno | null>(null);
   const [editTurnoName, setEditTurnoName] = useState<string>(""); // Nuevo estado para el input de edición
-
+ 
   useEffect(() => {
     const fetchTurnos = async () => {
       try {
@@ -107,7 +108,7 @@ const Turnos = (): JSX.Element => {
           </tr>
         </thead>
         <tbody>
-          {turnos.map((turno) => (
+          {turnos.map((turno: any) => (
             <tr key={turno.id}>
               <td className="py-2 px-4 border-b">{turno.id}</td>
               <td className="py-2 px-4 border-b">

@@ -6,7 +6,7 @@ export interface UsoLab {
   docente?: number;
   modality?: number;
   laboratorio?: number;
-  shift?: string;
+  shift?: number;
   year?: number;
   semester?: string;
   female?: number;

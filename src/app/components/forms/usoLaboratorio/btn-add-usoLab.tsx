@@ -68,8 +68,9 @@ export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
                 <Button
                   color="primary"
                   onPress={async (e) => {
+                    
                     const {data } = await handleOnStore();
-
+                    console.log(data)
                     if (data) {
                       onSavedUsoLab(data);
                       onClose();
