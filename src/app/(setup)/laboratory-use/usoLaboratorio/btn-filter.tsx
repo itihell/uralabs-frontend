@@ -10,6 +10,7 @@ import {
   import { setterData } from "@/app/interfaces/setter-interfaces";
   import FieldsUsoLab from "./fields-UsoLab";
   import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
+import FieldsUsoLabModal from "@/app/components/forms/usoLaboratorio/fields-UsoLabModal";
   
   interface BtnFilterUsoLabProps {
     onFilteredLabUse: (fields: UsoLab) => void;
@@ -43,7 +44,7 @@ import {
                 </ModalHeader>
                 <ModalBody>
                   <div>
-                    <FieldsUsoLab usoLaboratorio={fields} onChangeUsoLab={setChangeFields} />
+                    <FieldsUsoLabModal usoLaboratorio={fields} onChangeUsoLab={setChangeFields} />
                   </div>
                 </ModalBody>
                 <ModalFooter>
