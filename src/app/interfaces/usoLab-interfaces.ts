@@ -2,6 +2,7 @@ export interface UsoLab {
   id?: number;
 
   className?: number;
+  date?: string;
   carrera?: number;
   docente?: number;
   modality?: number;
