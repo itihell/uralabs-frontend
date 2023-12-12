@@ -13,6 +13,7 @@ import ListReservaciones from "@/app/components/listas/ListReservaciones";
 import ListAsignatura from "@/app/components/listas/ListAsignatura";
 import ListDocentes from "@/app/components/listas/ListDocentes";
 import { checkIsOnDemandRevalidate } from "next/dist/server/api-utils";
+import ListTurnos from "@/app/components/listas/ListTurnos";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -58,6 +59,11 @@ export default function ListasPages() {
   const changeLaboratory = (e: any) => {
     setFields({ ...fields, laboratory_id: e.id });
   };
+
+  const changeTurnos = (id: number) => {
+    setFields({ ...fields, Turnos_id: id });
+  };
+
 
   const role = {
     id: 1,
@@ -116,6 +122,10 @@ export default function ListasPages() {
 
       <h1>Lista de Docentes</h1>
       <ListDocentes selected={changeDocente} />
+
+      <h1>Lista de Turnos</h1>
+      <ListTurnos selected={changeTurnos} />
+
     </div>
   );
 }
