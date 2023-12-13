@@ -15,6 +15,7 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
   };
 
   const handlerOnUpdate = async (registroUsoLab: UsoLab) => {
+    console.log(usoLaboratorio)
     onUpdated(registroUsoLab);
   };
 
@@ -44,7 +45,7 @@ const TableLabUse = ({ usoLaboratorio, onDeleted, onUpdated }: TableUsoLabProps)
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
             {Object.values(usoLaboratorio).map((uselab: any) => (
-              <tr key={`uselabs-${uselab.id}`}>
+              <tr key={`uselab-${uselab.id}`}>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {uselab.id}
                 </td>

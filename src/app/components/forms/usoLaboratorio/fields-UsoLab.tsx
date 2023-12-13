@@ -21,11 +21,7 @@ export default function FieldsUsoLab(
     onChangeUsoLab({ clave, valor });
   };
 
-  useEffect(() => {
-    if (usoLaboratorio) {
-      setFields(usoLaboratorio || ({} as UsoLab));
-    }
-  }, [usoLaboratorio]);
+  
 
   const [carreras, setCarreras] = useState([]);
   const [asignaturas, setAsignaturas] = useState([]);

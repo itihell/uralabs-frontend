@@ -67,8 +67,8 @@ export default function ListasPages() {
   const docente = {
     id: 1,
     docente: {
-      nombre: "Jairo",
-      apellido: "Lup",
+      nombre: "",
+      apellido: "",
     },
     is_active: true,
   };

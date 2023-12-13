@@ -28,6 +28,7 @@ const BtnFilterRoles = ({ onFilteredRoles }: BtnFilterRolesProps) => {
   };
 
   const onFilterRoles = () => {
+    console.log(fields)
     onFilteredRoles(fields);
   };
 

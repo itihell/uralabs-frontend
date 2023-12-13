@@ -7,11 +7,12 @@ import SearchUsoLab from "@/app/components/forms/usoLaboratorio/search-UsoLab";
 import BtnAddUsoLab from "@/app/components/forms/usoLaboratorio/btn-add-usoLab";
 import TableLabUse from "@/app/components/tables/table-labUse";
 import useUtils from "@/app/hooks/use-utils";
-import BtnFilterUsoLab from "./usoLaboratorio/btn-filter";
+import BtnFilterUsoLab from "@/app/components/forms/usoLaboratorio/btn-filter";
+
 
 
 function LabUsePage() {
-  const { onShowAll, onStore } = useLaboratorio();
+  const { onShowAll } = useLaboratorio();
   const [usoLaboratorio, setLaboratorio] = useState<UsoLab[]>([]);
   const [search, setSearch] = useState<string>("");
   const [usoLabSearch, setUsoLabSearch] = useState<UsoLab[]>([]);
@@ -37,37 +38,58 @@ function LabUsePage() {
     });
   };
 
-  const onSaved = async (rol: UsoLab) => {
+  const onSaved = async (uselab: UsoLab) => {
     const { data } = await onShowAll(0);
     setUsoLabAndSearch(data);
   };
 
-  const onDeleted = async (rol: UsoLab) => {
+  const onDeleted = async (uselab: UsoLab) => {
     const { data } = await onShowAll(0);
     setUsoLabAndSearch(data);
   };
 
-  const onUpdated = async (rol: UsoLab) => {
+  const onUpdated = async (uselab: UsoLab) => {
     const { data } = await onShowAll(0);
     setUsoLabAndSearch(data);
   };
 
+
+  // const onSearch = (buscar: string) => {
+  //   const rows = usoLaboratorio.filter((usolab) => {
+  //     const campo = usolab.docente?.id;
+  //     const textSearch = buscar;
+  //     return campo.includes(textSearch);
+  //   });
+  //   setUsoLabSearch(rows);
+  // };
   const onSearch = (buscar: string) => {
-    const rows = usoLaboratorio.filter((usoLab) => {
-      const campo = usoLab.className.nombre.toUpperCase();
-      const textSearch = buscar.toUpperCase();
-      return campo.includes(textSearch);
+    const rows = usoLaboratorio.filter((uselab) => {
+      const campo = uselab.docente?.id
+      const textSearch = buscar;
+  
+      // Verificar que campo no sea undefined y sea un número
+      if (typeof campo === 'number' && textSearch) {
+        // Utilizar comparación directa para números
+        return campo === Number(textSearch);
+      }
+  
+      // Si campo no es un número o textSearch es undefined, no incluir en los resultados
+      return false;
     });
+  
     setUsoLabSearch(rows);
   };
 
-  const onFilteredUsoLab = async (fields: UsoLab) => {
+  
+  
+
+  const onFilteredUsoLabs = async (fields: UsoLab) => {
     // TODO: Obetener los parametros de busqueda
-    const params: any = getParams(fields);
+    const params: any = getParams(fields.docente);
 
     // TODO: Filtrar los roles
     await onShowAll(params).then(({ data }) => {
-      setUsoLabAndSearch(data);
+      setUsoLabAndSearch(data.docente);
     });
   };
 
@@ -79,11 +101,11 @@ function LabUsePage() {
 
         <div className="flex justify-between mb-2">
           <BtnFilterUsoLab
-            onFilteredLabUse={(value: UsoLab) => {
-              onFilteredUsoLab(value);
+            onFilteredUsoLabs={(value: UsoLab) => {
+              onFilteredUsoLabs(value);
             }}
           />
-          <SearchUsoLab
+           <SearchUsoLab
             search={search}
             setSearch={(e) => {
               setSearch(e);

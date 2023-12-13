@@ -3,7 +3,11 @@ export interface UsoLab {
 
   className?: number;
   carrera?: number;
-  docente?: number;
+  docente?: {
+    id:number
+    nombre:string,
+    apellido:string
+  };
   modality?: number;
   laboratorio?: number;
   shift?: number;
