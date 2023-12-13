@@ -1,14 +1,25 @@
-import { revalidatePath } from "next/cache";
-import { getPracticantes } from "../actions/post/save-practicantes";
-
 import ButtonDeletePracticante from "../forms/practicante/button-delete-practicante";
 import ButtonEditPracicante from "../forms/practicante/button-edit-practicante";
+import Practicante from "../forms/practicante/interface/practicante";
+interface TablePracticanteProps {
+  onDeleted: (e: Practicante) => void;
+  onUpdated: (e: Practicante) => void;
+  practicante: Practicante[];
+}
+const TablePracticante = async (
+  { practicante, onDeleted, onUpdated }: TablePracticanteProps
+) => {
+  const handlerOnDeleted = async (practicante: Practicante) => {
+    onDeleted(practicante);
+  };
 
-const TablePracticante = async () => {
-  revalidatePath("practicante");
-  const data = await getPracticantes();
-  console.log(data);
+  const handlerOnUpdate = async (practicante: Practicante) => {
+    onUpdated(practicante);
+  };
 
+  // revalidatePath("practicante");
+  // const data = await getPracticantes();
+  
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -16,7 +27,8 @@ const TablePracticante = async () => {
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th className="px-6 py-3">ID</th>
-              <th className="px-6 py-3">Nombre</th>
+              <th className="px-6 py-3">Nombres</th>
+              <th className="px-6 py-3">Apellidos</th>
               <th className="px-6 py-3">Carrera</th>
               <th className="px-6 py-3">Fecha_inicio</th>
               <th className="px-6 py-3">Fecha_fin</th>
@@ -25,20 +37,28 @@ const TablePracticante = async () => {
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            {Object.values(data).map((practicante: any) => (
+            {Object.values(practicante).map((practicante: any) => (
               <tr key={`practicante-${practicante.id}`}>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {practicante.id}
                 </td>
-                <td className="px-6 py-4"> {practicante.nombre}</td>
-                <td className="px-6 py-4"> {practicante.carrera}</td>
+                <td className="px-6 py-4"> {practicante.nombres}</td>
+                <td className="px-6 py-4"> {practicante.apellidos}</td>
+                <td className="px-6 py-4"> {practicante.carrera.nombre}</td>
                 <td className="px-6 py-4"> {practicante.fecha_inicio}</td>
                 <td className="px-6 py-4"> {practicante.fecha_fin}</td>
                 <td className="px-6 py-4"> {practicante.cantidad_horas}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
-                    <ButtonDeletePracticante id={practicante.id} />
-                    <ButtonEditPracicante id={practicante.id} />
+                    <ButtonDeletePracticante onDeleted={async (e)=>{
+                      await handlerOnDeleted(e);
+                    }} 
+                    id={practicante.id} />
+                    <ButtonEditPracicante onSaved={
+                      async (e)=>{
+                        await handlerOnUpdate(e);
+                      }
+                    } id={practicante.id} />
                   </div>
                 </td>
               </tr>

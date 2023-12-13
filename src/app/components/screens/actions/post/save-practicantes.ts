@@ -4,7 +4,8 @@ import feching from "@/app/utils/cliente-http";
 
 export async function savePracticante(request: FormData) {
   const data = {
-    nombre: request.get("nombre"),
+    nombres: request.get("nombres"),
+    apellidos: request.get("apellidos"),
     carrera: request.get("carrera"),
     fecha_inicio: request.get("fecha_inicio"),
     fecha_fin: request.get("fecha_fin"),
@@ -27,7 +28,8 @@ export async function savePracticante(request: FormData) {
 
 export async function updatePracticante(id: number, request: FormData) {
   const data = {
-    nombre: request.get("nombre"),
+    nombres: request.get("nombres"),
+    apellidos: request.get("apellidos"),
     carrera: request.get("carrera"),
     fecha_inicio: request.get("fecha_inicio"),
     fecha_fin: request.get("fecha_fin"),

@@ -8,7 +8,7 @@ interface TableRolesProps {
   onUpdated: (e: Role) => void;
   roles: Role[];
 }
-const TableRoles = ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
+const   TableRoles = ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
   const handlerOnDeleted = async (rol: Role) => {
     onDeleted(rol);
   };
@@ -42,6 +42,7 @@ const TableRoles = ({ roles, onDeleted, onUpdated }: TableRolesProps) => {
                   <div className="flex flex-row items-center justify-end">
                     <ButtonDeleteRole
                       onDeleted={async (e) => {
+                        alert("Eliminado");
                         await handlerOnDeleted(e);
                       }}
                       id={role.id}

@@ -147,7 +147,7 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
           </div>
 
           <div className="mb-6">
-            <div>
+            {/* <div>
               <label htmlFor="shift" className="block mb-4 text-sm font-medium text-gray-900 dark:text-black">
                 Turno
               </label>
@@ -164,6 +164,21 @@ export default function FieldsLabuse({ usoLaboratorios }: { usoLaboratorios: any
               <option>Mañana</option>
               <option>Tarde</option>
               <option>Noche</option>
+            </select> */}
+            <select
+              id="shift"
+              name="shift"
+              onChange={handlerChange}
+              className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 bg-gray-900"
+            >
+              <option value="shift" >
+                Seleccionar Asignatura
+              </option>
+              {asignaturas.map((asignatura: any) => (
+                <option  key={asignatura.id} value={asignatura.id}  >
+                  {asignatura.nombre}
+                </option>
+              ))}
             </select>
           </div>
 

@@ -21,9 +21,8 @@ interface BtnAddUsoLabProps {
 export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
   const [fields, setFields] = useState<UsoLab>({} as UsoLab);
   const handleChangeUsoLab = ({ clave, valor }: setterData) => {
-   
     setFields({ ...fields, [clave]: valor });
-    console.log(fields);
+  console.log(fields);
   };
   const { onStore } = useLaboratorio();
 
@@ -35,7 +34,7 @@ export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
 
   const handleOnStore = async () => {
     const rest = await onStore(fields);
-    console.log(rest);
+    console.log('Hola esto es una prueba');
     return rest;
   };
 
@@ -69,8 +68,9 @@ export default function BtnAddUsoLab({ onSavedUsoLab }: BtnAddUsoLabProps) {
                 <Button
                   color="primary"
                   onPress={async (e) => {
+                    
                     const {data } = await handleOnStore();
-
+                    console.log(data)
                     if (data) {
                       onSavedUsoLab(data);
                       onClose();

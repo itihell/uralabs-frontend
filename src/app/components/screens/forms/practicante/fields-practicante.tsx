@@ -1,162 +1,169 @@
-"use client";
-import { getCarreras } from "@/app/actions/post/save-carreras";
 import { useEffect, useState } from "react";
-
-interface Carrera {
-  id: number;
-  nombre: string;
+import Practicante from "./interface/practicante";
+import { Input, Select } from "@nextui-org/react";
+import { setterData } from "@/app/interfaces/setter-interfaces";
+import { getAllCarreras } from "@/app/actions/post/save-carreras";
+interface FieldsPracticanteProps {
+  practicante?: Practicante;
+  onChangePracticante: (data: setterData) => void;
 }
-export default function FieldsPracticantes({ fields }: { fields: any }) {
-  const [fieldsData, setFieldsData] = useState(fields);
+export default function FieldsPracticantes(
+  { practicante, onChangePracticante }: FieldsPracticanteProps = {
+    practicante: {} as Practicante,
+    onChangePracticante: (data: setterData) => {},
+  }
+) {
+  const [fields, setFields] = useState<Practicante>({} as Practicante);
 
-  const handlerChange = (e: any) => {
-    const { name, value } = e.target;
+  const handleChangePracticante = ({ clave, valor }: setterData) => {
+    setFields({ ...fields, [clave]: valor });
+    onChangePracticante({ clave, valor });
+  };// aqui se hace el cambio de los datos del practicante
+  useEffect(() => {
+    if (practicante) {
+      setFields(practicante || ({} as Practicante));
+    }
+  }, [practicante]);// este es el use effect que se encarga de actualizar los datos del practicante
 
-    setFieldsData({
-      ...fieldsData,
-      [name]: value,
-    });
-  };
-
-  const [carreras, setCarreras] = useState<Carrera[]>([]);
-  const [carreraSeleccionada, setCarreraSeleccionada] = useState("");
+  const [carrera, setCarrera] = useState([]);
 
   useEffect(() => {
-    async function fetchCarreras() {
+    const fetchData = async () => {
       try {
-        const id = fields?.carrera || "";
-        const data = await getCarreras(id);
-        setCarreras(data); // Establece la lista de carreras en el estado
+        const data = await getAllCarreras();
+        setCarrera(data);
       } catch (error) {
-        console.error("Error al obtener las carreras", error);
+        console.error(`Error: ${error}`);
       }
-    }
-
-    fetchCarreras();
+    };
+    fetchData();
   }, []);
-  const handler_Change = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCarreraSeleccionada(e.target.value);
-  };
 
   return (
-    <div
-      className="
-        flex flex-col
-        justify-center
-        sm:py-5
-    "
-    >
-      <div
-        className="bg-white shadow-md rounded-lg px-2 py-1 text-gray-700
-        flex flex-wrap
-        justify-center
-        sm:justify-between
-      "
-      >
-        <input
-          type="hidden"
-          id="id"
-          name="id"
-          defaultValue={fields?.id || ""}
-        />
-
-        <div
-          className="w-full md:w-1/2 px-3 mb-6 md:mb-0 
-          p-1
-        "
-        >
-          <label
-            htmlFor="nombre"
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          >
-            Nombre
-          </label>
-          <input
-            type="text"
-            name="nombre"
-            id="nombre"
-            defaultValue={fields?.nombre || ""}
-            onChange={handlerChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          />
-        </div>
-
-        <div
-          className="w-full md:w-1/2 px-3 mb-6 md:mb-0 
-          p-1
-        "
-        >
-          <label
-            htmlFor="carrera"
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          >
-            Carrera
-          </label>
-          <select
-            name="carrera"
-            id="carrera"
-            value={carreraSeleccionada}
-            onChange={handler_Change}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          >
-            <option value="">Selecciona una carrera</option>
-            {carreras.map((carrera, index) => (
-              <option key={index} value={carrera.nombre}>
-                {carrera.nombre}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">
-          <label
-            htmlFor="fecha_inicio"
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          >
-            Fecha de Inicio
-          </label>
-          <input
-            type="date"
-            name="fecha_inicio"
-            id="fecha_inicio"
-            defaultValue={fields?.fecha_inicio || ""}
-            onChange={handlerChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          />
-        </div>
-
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">
-          <label
-            htmlFor="fecha_fin"
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          >
-            Fecha de Fin
-          </label>
-          <input
-            type="date"
-            name="fecha_fin"
-            id="fecha_fin"
-            defaultValue={fields?.fecha_fin || ""}
-            onChange={handlerChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          />
-        </div>
-
-        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0 p-1">
-          <label
-            htmlFor="cantidad_horas"
-            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-          >
-            Cantidad de Horas
-          </label>
-          <input
-            type="number"
-            name="cantidad_horas"
-            id="cantidad_horas"
-            defaultValue={fields?.cantidad_horas || ""}
-            onChange={handlerChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full"
-          />
+    <div>
+      <div className="w-full flex flex-col">
+        <div className="w-full flex flex-col gap-1">
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Nombres
+            </label>
+            <Input
+              size="sm"
+              type="text"
+              label="Nombres"
+              placeholder="Nombres del practicante"
+              defaultValue={practicante?.nombres}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: "nombres",
+                  valor: e.target.value,
+                };
+                handleChangePracticante(data);
+              }}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Apellidos
+            </label>
+            <Input
+              size="sm"
+              type="text"
+              label="Apellidos"
+              placeholder="Apellidos del practicante"
+              defaultValue={practicante?.apellidos}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: "apellidos",
+                  valor: e.target.value,
+                };
+                handleChangePracticante(data);
+              }}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Fecha inicio
+            </label>
+            <Input
+              size="sm"
+              type="date"
+              label="Fecha inicio"
+              placeholder="Fecha inicio del practicante"
+              defaultValue={practicante?.fecha_inicio}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: "fecha_inicio",
+                  valor: e.target.value,
+                };
+                handleChangePracticante(data);
+              }}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Fecha fin
+            </label>
+            <Input
+              size="sm"
+              type="date"
+              label="Fecha fin"
+              placeholder="Fecha inicio del practicante"
+              defaultValue={practicante?.fecha_fin}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: "fecha_fin",
+                  valor: e.target.value,
+                };
+                handleChangePracticante(data);
+              }}
+            />
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Carrera
+            </label>
+            <select
+              id="carreraId"
+              name="carreraId"
+              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline"
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: "carreraId",
+                  valor: parseInt(e.target.value, 10) || 0,
+                };
+                handleChangePracticante(data);
+              }}
+            >
+              <option value="">Seleccione una carrera</option>
+              {carrera &&
+                carrera.map((carrera: any) => (
+                  <option key={carrera.id} value={carrera.id}>
+                    {carrera.nombre}
+                  </option>
+                ))}
+            </select>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="text-sm font-semibold text-gray-700">
+              Cantidad de horas
+            </label>
+            <input
+              type="number"
+              name="cantidad_horas"
+              className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none hover:border-gray-400 focus:no-outline focus:shadow-outline"
+              id="cantidad_horas"
+              placeholder="Cantidad de horas del practicante"
+              defaultValue={practicante?.cantidad_horas ||0}
+              onChange={(e) => {
+                const data: setterData = {
+                  clave: e.target.name,                  
+                  valor: parseInt(e.target.value, 10) || 0,
+                };
+                handleChangePracticante(data);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
