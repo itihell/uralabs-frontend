@@ -74,7 +74,9 @@ export default function FieldsUsoLab(
         <select
           id="className"
           name="className"
+          value={fields?.className?.id }
           onChange={(e) => {
+            console.log(e.target.value);
             const data: setterData = {
               clave: e.target.name,
               valor: e.target.value,
@@ -87,7 +89,7 @@ export default function FieldsUsoLab(
             Seleccionar Asignatura
           </option>
           {asignaturas.map((asignatura: any) => (
-            <option key={asignatura.id} value={asignatura.id}  >
+            <option key={asignatura.id} value={asignatura.id}   >
               {asignatura.nombre}
             </option>
           ))}
@@ -101,6 +103,7 @@ export default function FieldsUsoLab(
         <select
           id="carrera"
           name="carrera"
+          value={fields?.carrera?.id }
           onChange={(e) => {
             const data: setterData = {
               clave: e.target.name,
@@ -128,6 +131,7 @@ export default function FieldsUsoLab(
         <select
           name="docente"
           id="docente"
+          value={fields?.docente?.id }
           onChange={(e) => {
             const data: setterData = {
               clave: e.target.name,
@@ -156,7 +160,7 @@ export default function FieldsUsoLab(
           type="date"
           name="date"
           id="date"
-
+          defaultValue={fields?.date || ""}
           onChange={(e) => {
             const data: setterData = {
               clave: e.target.name,
@@ -175,6 +179,7 @@ export default function FieldsUsoLab(
         <select
           id="modality"
           name="modality"
+          value={fields?.modality?.id }
           onChange={(e) => {
             const data: setterData = {
               clave: e.target.name,
@@ -204,6 +209,7 @@ export default function FieldsUsoLab(
         <select
           id="shift"
           name="shift"
+          value={fields?.shift?.id }
           onChange={(e) => {
             const data: setterData = {
               clave: e.target.name,
@@ -255,6 +261,7 @@ export default function FieldsUsoLab(
         <select
           id="semester"
           name="semester"
+          value={fields?.semester || "" }
           onChange={(e) => {
             const data: setterData = {
               clave: e.target.name,
@@ -350,6 +357,7 @@ export default function FieldsUsoLab(
         <select
           id="laboratorio"
           name="laboratorio"
+          value={fields?.laboratorio?.id }
           className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onChange={(e) => {
             const data: setterData = {
