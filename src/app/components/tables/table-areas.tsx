@@ -31,7 +31,7 @@ const TableAreas = async ({areas, onDeleted, onUpdated}: TableAreasProps) => {
         </thead>
         <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
           {Object.values(areas).map((area: any) => (
-            <tr key={`role-${area.id}`}>
+            <tr key={`registro-area-${area.id}`}>
               <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 {area.id}
               </td>
