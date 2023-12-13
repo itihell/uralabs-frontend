@@ -18,14 +18,15 @@ export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
   const changeRole = (id: number) => {
     setFields({ ...fields, role_id: id });
+    console.log("desde la pagina ", id);
   };
 
   const changeUsolab = (id: number) => {
     setFields({ ...fields, uso_lab_id: id });
   };
-  const changeModalidad = (e: any) => {
-    setFields({ ...fields, modalidad_id: e.id });
-    console.log("desde la pagina ", e.id);
+  const changeModalidad = (id: number) => {
+    setFields({ ...fields, modalidad_id: id });
+    console.log("desde la pagina ", id);
   };
   const changeFechaCorte = (e: any) => {
     setFields({ ...fields, modalidad_id: e.id });
@@ -64,6 +65,12 @@ export default function ListasPages() {
     role: "Admin",
     is_active: true,
   };
+  const modalidad = {
+    id: 1,
+    modalidad: "A distancia",
+    is_active: true,
+  };
+
   const docente = {
     id: 1,
     docente: {
@@ -79,20 +86,19 @@ export default function ListasPages() {
   };
 
   return (
-    <div className="min-h-screen flex-col items-center justify-between">
+    <div className='min-h-screen flex-col items-center justify-between'>
       <pre>{JSON.stringify(fields, null, 2)}</pre>
       <h1>Listas Pages</h1>
       <ListRoles datos={role} selected={changeRole} />
       <hr />
       <h1>Modalidades</h1>
-      <ListModalidades selected={changeModalidad} />
+      <ListModalidades datos={modalidad} selected={changeModalidad} />
       <hr />
       <h1>Corte Practicas</h1>
       <ListCortePracticante selected={changeFechaCorte} />
 
       <h1>Uso del laboratorio</h1>
       <ListUsoLab datos={[docente]} selected={changeUsolab} />
-
 
       <h1>Listas de Areas</h1>
       <ListAreas selected={changeArea} />

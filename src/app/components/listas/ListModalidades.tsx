@@ -1,10 +1,12 @@
 "use client";
+import { Modalidades } from "@/app/interfaces/modalidades-interface";
 import feching from "@/app/utils/cliente-http";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useAsyncList } from "@react-stately/data";
 
 interface ListModalidadesProps {
   selected: (e: number) => void;
+  datos: Modalidades;
 }
 
 type SWCharacter = {
