@@ -5,20 +5,20 @@ import TableAreas from "@/app/components/tables/table-areas";
 import { useAreas } from "@/app/hooks/use-area";
 import { Area } from "@/app/interfaces/areas-interfaces";
 import { useEffect, useState } from "react";
+import BtnFilterAreas from "@/app/components/areas/btn-filter-areas";
+import useUtils from "@/app/hooks/use-utils";
 
 function AreasPage() {
   const { onShowAll, onStore } = useAreas();
   const [areas, setAreas] = useState<Area[]>([]);
   const [search, setSearch] = useState<string>("");
   const [areasSearch, setAreasSearch] = useState<Area[]>([]);
+  const { getParams } = useUtils();
 
   useEffect(() => {
     const loadAreas = async () => {
       await onShowAll("").then(({ data }) => {
-        setAreas(() => {
-          setAreasSearch(data);
-          return data;
-        });
+          setAreasAndSearch(data);
       });
     };
 
@@ -32,12 +32,12 @@ function AreasPage() {
     });
   };
 
-  const onSaved = async (rol: Area) => {
+  const onSaved = async (area: Area) => {
     const { data } = await onShowAll("");
     setAreasAndSearch(data);
   };
 
-  const onDeleted = async (rol: Area) => {
+  const onDeleted = async (area: Area) => {
     const { data } = await onShowAll("");
     setAreasAndSearch(data);
   };
@@ -56,12 +56,27 @@ function AreasPage() {
     setAreasSearch(rows);
   };
 
+  const onFilteredAreas = async (fields: Area) => {
+    // TODO: Obetener los parametros de busqueda
+    const params = getParams(fields);
+
+    // TODO: Filtrar las areas
+    await onShowAll(params).then(({ data }) => {
+      setAreasAndSearch(data);
+    });
+  };
+
   return (
     <div>
       <div className="min-h-screen">
         <h1 className="mb-3">Listado de Areas</h1>
 
         <div className="flex justify-between mb-2">
+          <BtnFilterAreas
+            onFilteredAreas={(value: Area) => {
+              onFilteredAreas(value);
+            }}
+          />
           <SearchAreas
             search={search}
             setSearch={(e) => {

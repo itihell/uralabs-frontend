@@ -21,10 +21,14 @@ interface BtnAddAreaProps {
 }
 export default function BtnAddArea({ onSaved }: BtnAddAreaProps) {
   const [fields, setFields] = useState<Area>({} as Area);
+
   const handleChangeArea = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
   };
   const { onStore } = useAreas();
+
+
+  
 
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => {
@@ -68,8 +72,11 @@ export default function BtnAddArea({ onSaved }: BtnAddAreaProps) {
                   color="primary"
                   onPress={async (e) => {
                     const { data } = await handleOnStore();
+
+                    if (data.id) {
                       onSaved(data);
                       onClose();
+                    }
                     
                   }}
                 >
