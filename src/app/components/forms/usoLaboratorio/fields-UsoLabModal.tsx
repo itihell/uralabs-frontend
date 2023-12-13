@@ -47,7 +47,7 @@ export default function FieldsUsoLabModal(
     <div>
       <div className="mb-6">
             <div>
-              <label htmlFor="className" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Nombre de la Clase</label>
+              <label htmlFor="className" className="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Docente</label>
             </div>
             <select
           name="docente"
