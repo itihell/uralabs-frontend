@@ -72,7 +72,12 @@ export default function ListasPages() {
     },
     is_active: true,
   };
- 
+
+  const practicante = {
+    id: 1,
+    nombres: "practicante",
+  };
+
   return (
     <div className="min-h-screen flex-col items-center justify-between">
       <pre>{JSON.stringify(fields, null, 2)}</pre>
@@ -84,7 +89,7 @@ export default function ListasPages() {
       <hr />
       <h1>Corte Practicas</h1>
       <ListCortePracticante selected={changeFechaCorte} />
-      
+
       <h1>Uso del laboratorio</h1>
       <ListUsoLab datos={[docente]} selected={changeUsolab} />
 
@@ -92,8 +97,8 @@ export default function ListasPages() {
       <h1>Listas de Areas</h1>
       <ListAreas selected={changeArea} />
 
-      {/* <h1>Lista de Practicante</h1>
-      <ListPracticante selected={changePracticante} /> */}
+      <h1>Lista de Practicante</h1>
+      <ListPracticante datos={practicante} selected={changePracticante} />
 
       <h1>Lista de Usuarios</h1>
       <ListUsers selected={changeUser} />
