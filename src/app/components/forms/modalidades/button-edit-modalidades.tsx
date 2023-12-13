@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Modal,
   ModalContent,
@@ -10,22 +10,20 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
-import FormEditRole from "./form-edit-role";
-import { getRoles } from "@/app/actions/post/save-roles";
-import { useRouter } from "next/navigation";
-import FieldsRols from "../../roles/fields-rols";
-import { Role } from "@/app/interfaces/roles-interfaces";
-import { setterData } from "@/app/interfaces/setter-interfaces";
-import { useRoles } from "@/app/hooks/use-roles";
-
-interface ButtonEditRoleProps {
+import useModalidades from "@/app/hooks/use-modalidades";
+import { Modalidades } from "@/app/interfaces/modalidades-interface";
+import FieldsModalidad from "../../modalidades/fields-modalidades";
+interface ButtonEditModalidadesProps {
   id: number;
-  onSaved: (e: Role) => void;
+  onSaved: (e: any) => void;
 }
-export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
-  const { onUpdate, onShow } = useRoles();
+export default function ButtonEditModalidades({
+  id,
+  onSaved,
+}: ButtonEditModalidadesProps) {
+  const { onUpdate, onShow } = useModalidades();
 
-  const [fields, setFields] = useState<Role>({} as Role);
+  const [fields, setFields] = useState<Modalidades>({} as Modalidades);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -42,7 +40,7 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
     setIsOpen(!isOpen);
   };
 
-  const handleChangeRole = ({ clave, valor }: setterData) => {
+  const handleChangeModalidades = ({ clave, valor }: any) => {
     setFields({ ...fields, [clave]: valor });
   };
 
@@ -77,14 +75,14 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
             {(onClose) => (
               <>
                 <ModalHeader className='flex flex-col gap-1'>
-                  Editar Role
+                  Editar Modalidad
                 </ModalHeader>
                 <ModalBody>
                   <div>
                     {fields.id && (
-                      <FieldsRols
-                        role={fields}
-                        onChangeRole={handleChangeRole}
+                      <FieldsModalidad
+                        modalidades={fields}
+                        onChangeModalidades={handleChangeModalidades}
                       />
                     )}
                   </div>

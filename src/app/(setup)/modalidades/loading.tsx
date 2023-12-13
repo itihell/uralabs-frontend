@@ -5,12 +5,12 @@ export default function LoadingPage() {
   return (
     <div>
       <div className='min-h-screen'>
-        <h1 className='mb-3'>Listado de roles</h1>
+        <h1 className='mb-3'>Listado de Modalidades</h1>
 
         <div className='mb-3 flex content-end justify-items-end'>
           <Skeleton className='rounded-lg'>
             <Button variant='light' size='sm' color='primary'>
-              Agregar Rol
+              Agregar Modalidad
             </Button>
           </Skeleton>
         </div>
