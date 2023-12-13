@@ -34,7 +34,7 @@ import FieldsUsoLabModal from "@/app/components/forms/usoLaboratorio/fields-UsoL
   
     return (
       <>
-        <Button onPress={onOpen}>Buscar Registro del laboratorio</Button>
+        <Button onPress={onOpen}>Filtro por Docentes</Button>
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top">
           <ModalContent>
             {(onClose) => (
