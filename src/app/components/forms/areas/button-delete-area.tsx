@@ -1,17 +1,39 @@
 "use client";
 import React from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-import { IconArrowBackUpDouble, IconCheck, IconTrash } from "@tabler/icons-react";
-import { deleteAreaById } from "@/app/actions/post/save-areas";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  Button,
+  useDisclosure,
+} from "@nextui-org/react";
+import {
+  IconArrowBackUpDouble,
+  IconCheck,
+  IconTrash,
+} from "@tabler/icons-react";
+import { deteteRoleById } from "@/app/actions/post/save-roles";
 import { useRouter } from "next/navigation";
+import { useAreas } from "@/app/hooks/use-area";
+import { Area } from "@/app/interfaces/areas-interfaces";
 
-export default function ButtonDeleteArea({ id }: { id: string }) {
+interface ButtonDeleteAreaProps {
+  id: number;
+  onDeleted: (e: Area) => void;
+}
+export default function ButtonDeleteArea({
+  id,
+  onDeleted,
+}: ButtonDeleteAreaProps) {
+  const { onDelete } = useAreas();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteArea = async (id: string) => {
-    await deleteAreaById(parseInt(id));
-    router.refresh();
+  const deleteArea = async (id: number) => {
+    const { data } = await onDelete(id);
+    onDeleted(data);
   };
 
   return (
@@ -27,7 +49,7 @@ export default function ButtonDeleteArea({ id }: { id: string }) {
                 <IconTrash color="red" /> Eliminar Area
               </ModalHeader>
               <ModalBody>
-                <h1>¿Está seguro que desea eliminar el area con id {id}?, tambien se eliminaran las carreras pertenecientes a esta area.</h1>
+                <h1>¿Está seguro que desea eliminar el area con id {id}?</h1>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
