@@ -14,7 +14,7 @@ export async function saveLabUse(request: FormData) {
         docente: { id: request.get("docente") },
         date: request.get("date"),
         modality: { id: request.get("modality") },
-        shift: request.get("shift"),
+        shift: { id: request.get("shift") },
         year: request.get("year"),
         semester: request.get("semester"),
         female: request.get("female"),
@@ -115,10 +115,24 @@ export const getAllCarreras = async () => {
     const carreras = await feching(endPoind, "no-store", "GET");
 
     if (!carreras.data) {
+        console.log('Contenido de turnos:', carreras);
         throw new Error(carreras);
+        
     }
 
     return carreras.data;
+};
+export const getAllTurnos = async () => {
+    const endPoind = `/turnos`;
+
+    const turnos = await feching(endPoind, "no-store", "GET");
+
+    if (!turnos) {
+        throw new Error(turnos);
+  
+    }
+
+    return turnos;
 };
 
 export const getAllModalidades = async () => {

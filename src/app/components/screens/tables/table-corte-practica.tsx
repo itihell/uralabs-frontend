@@ -2,10 +2,23 @@ import { revalidatePath } from "next/cache";
 import { getCortePracticas } from "../actions/post/save-corte-practicas";
 import ButtonDeleteCorte from "../forms/corte-practicas/button-delete-corte";
 import ButtonEditCorte from "../forms/corte-practicas/button-edit-corte";
+import CortePracticas from "../forms/corte-practicas/interface/corte-practicas";
+interface TableCortePracticaProps {
+  onDeleted: (e: any) => void;
+  onUpdated: (e: any) => void;
+  corte: CortePracticas[];
+}
+const TableCortePractica = async (
+  { corte, onDeleted, onUpdated }: TableCortePracticaProps
+) => {
+  const handlerOnDeleted = async (corte: CortePracticas) => {
+    onDeleted(corte);
+  };
 
-const TableCortePractica = async () => {
-  revalidatePath("/horas-practicas/corte-practica");
-  const data = await getCortePracticas();
+  const handlerOnUpdate = async (corte: CortePracticas) => {
+    onUpdated(corte);
+  };
+
   return (
     <div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -21,7 +34,7 @@ const TableCortePractica = async () => {
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            {Object.values(data).map((corte: any) => (
+            {Object.values(corte).map((corte: any) => (
               <tr key={`corte-${corte.id}`}>
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {corte.id}

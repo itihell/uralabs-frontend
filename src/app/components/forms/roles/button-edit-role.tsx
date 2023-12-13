@@ -66,17 +66,17 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
         onPress={async (e) => {
           await handleOnClick(e);
         }}
-        variant="light"
-        size="sm"
+        variant='light'
+        size='sm'
       >
-        <IconPencilMinus color="lime" />
+        <IconPencilMinus color='lime' />
       </Button>
       {isOpen && (
-        <Modal isOpen={isOpen} onOpenChange={onOpen} backdrop="blur">
+        <Modal isOpen={isOpen} onOpenChange={onOpen} backdrop='blur'>
           <ModalContent>
             {(onClose) => (
               <>
-                <ModalHeader className="flex flex-col gap-1">
+                <ModalHeader className='flex flex-col gap-1'>
                   Editar Role
                 </ModalHeader>
                 <ModalBody>
@@ -90,11 +90,11 @@ export default function ButtonEditRole({ id, onSaved }: ButtonEditRoleProps) {
                   </div>
                 </ModalBody>
                 <ModalFooter>
-                  <Button color="danger" variant="light" onPress={onClose}>
+                  <Button color='danger' variant='light' onPress={onClose}>
                     Cancelar
                   </Button>
                   <Button
-                    color="primary"
+                    color='primary'
                     onPress={async (e) => {
                       await handleOnClickSaved(e);
                       setTimeout(() => {

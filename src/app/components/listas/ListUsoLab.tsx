@@ -1,79 +1,92 @@
-// import feching from "@/app/utils/cliente-http";
 
-// export default async function ListUsoLab() {
-//   const getUselab = async () => {
-//     const endPoind = "/catalogos/uselab";
-//     const uselab = await feching(endPoind, "no-store", "GET");
-//     return uselab;
-//   };
-
-//   const uselab = await getUselab();
-//   return (
-//    <div className="mt-8">
-//     <h1>Uso de laboratorio</h1>
-//     <select
-//     className="mt-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-//     >
-//     <option key="default">usoLab</option>
-//       {uselab.map((uselab: any) => {
-//             return <option key={`uselab-${uselab.id}`}>{`El docente ${uselab.teacher} reservo el laboratorio`}</option>;
-//       })}
-//     </select>
-//     </div>
-//   );
-// }
 "use client";
 import feching from "@/app/utils/cliente-http";
-import SelectSearch from "../select/select";
 import { useEffect, useState } from "react";
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
-import { useAsyncList } from "@react-stately/data";
+import { Role } from "@/app/interfaces/roles-interfaces";
+import { UsoLab } from "@/app/interfaces/usoLab-interfaces";
 
-interface ListUsoLabProps {
+interface ListUsoLabsProps {
   selected: (e: number) => void;
+  datos: UsoLab;
 }
+export default function ListUsoLab({ selected, datos }: ListUsoLabsProps) {
+  const [usoLab, setUsoLab] = useState<UsoLab[]>([]);
+  const [search, setSearch] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
-type SWCharacter = {
-  isActive: boolean;
-  id: number;
-  teacher: string;
-  delete_at: string;
-};
-export default function ListUsoLab({ selected }: ListUsoLabProps) {
-  let list = useAsyncList<SWCharacter>({
-    async load({ signal, filterText }) {
-      const endPoind = `/catalogos/uselab?buscar=${filterText}`;
+  const onSearch = async (search: string) => {
+    try {
+      const endPoind = `/catalogos/uselab?buscar=${search}`;
+      setLoading(true);
       let res = await feching(endPoind, "no-store", "GET");
+      if (typeof res === "object" && res.hasOwnProperty("data")) {
+        const data = res.data;
+        if (Object.values(data)) {
+          setUsoLab(() => {
+            setLoading(false);
+            return [...data];
+          });
+        } else {
+          console.error("'data' is not an array:", data);
+          setLoading(false);
+        }
+      } else {
+        console.error("Invalid response format:", res);
+        setLoading(false);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    const callLoadData = async () => {
+      await onSearch("");
+      if(datos && datos.docente) {
+      setSearch(datos.docente);
+    };
+  }
+    callLoadData();
+  }, []);
 
-      return {
-        items: res,
-      };
-    },
-  });
 
-  const changeRol = (e: any) => {
+  const changeUsoLab = (e: any) => {
     selected(e);
   };
+
+  const onChangeSelect = async (e: any) => {
+    setSearch(e);
+    setTimeout(async () => {
+      await onSearch(e);
+    }, 200);
+  };
+
+  // probando git
 
   return (
     <Autocomplete
       className="max-w-xs"
-      inputValue={list.filterText}
-      isLoading={list.isLoading}
-      items={list.items}
+      inputValue={search}
+      isLoading={loading}
+      items={usoLab}
       label="Seleccione un docente"
       placeholder="Escriba un docente..."
       variant="bordered"
-      onInputChange={list.setFilterText}
+      onInputChange={async (e) => {
+        await onChangeSelect(e);
+      }}
       onSelectionChange={(e) => {
-        changeRol(e);
+        console.log("escribiendo", e);
+
+        changeUsoLab(e);
       }}
     >
-      {(item) => (
-        <AutocompleteItem key={item.id} className="capitalize">
-          {item.teacher}
+      {usoLab.map((item, index) => (
+        <AutocompleteItem key={index} className="capitalize">
+          {item.docente}
         </AutocompleteItem>
-      )}
+      ))}
     </Autocomplete>
   );
 }

@@ -13,6 +13,7 @@ import ListReservaciones from "@/app/components/listas/ListReservaciones";
 import ListAsignatura from "@/app/components/listas/ListAsignatura";
 import ListDocentes from "@/app/components/listas/ListDocentes";
 import { checkIsOnDemandRevalidate } from "next/dist/server/api-utils";
+import ListTurnos from "@/app/components/listas/ListTurnos";
 
 export default function ListasPages() {
   const [fields, setFields] = useState<any>({});
@@ -59,10 +60,28 @@ export default function ListasPages() {
     setFields({ ...fields, laboratory_id: e.id });
   };
 
+  const changeTurnos = (id: number) => {
+    setFields({ ...fields, Turnos_id: id });
+  };
+
+
   const role = {
     id: 1,
     role: "Admin",
     is_active: true,
+  };
+  const docente = {
+    id: 1,
+    docente: {
+      nombre: "Jairo",
+      apellido: "Lup",
+    },
+    is_active: true,
+  };
+
+  const practicante = {
+    id: 1,
+    nombres: "practicante",
   };
 
   return (
@@ -78,13 +97,14 @@ export default function ListasPages() {
       <ListCortePracticante selected={changeFechaCorte} />
 
       <h1>Uso del laboratorio</h1>
-      {/* <ListUsoLab selected={changeUsolab} /> */}
+      <ListUsoLab datos={[docente]} selected={changeUsolab} />
+
 
       <h1>Listas de Areas</h1>
       <ListAreas selected={changeArea} />
 
       <h1>Lista de Practicante</h1>
-      <ListPracticante selected={changePracticante} />
+      <ListPracticante datos={practicante} selected={changePracticante} />
 
       <h1>Lista de Usuarios</h1>
       <ListUsers selected={changeUser} />
@@ -102,6 +122,10 @@ export default function ListasPages() {
 
       <h1>Lista de Docentes</h1>
       <ListDocentes selected={changeDocente} />
+
+      <h1>Lista de Turnos</h1>
+      <ListTurnos selected={changeTurnos} />
+
     </div>
   );
 }

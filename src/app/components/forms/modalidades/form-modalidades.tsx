@@ -1,6 +1,7 @@
 import { revalidatePath } from "next/cache";
-import { saveModalidades } from "../actions/post/save-modalidades";
+
 import FieldsModalidades from "./fields-modalidades";
+import { saveModalidades } from "../../screens/actions/post/save-modalidades";
 
 export default function FormModalidades({ modalidadId = "modalidades" }) {
   const crearModalidad = async (formData: FormData) => {

@@ -9,33 +9,64 @@ import {
   ModalBody,
   Button,
   useDisclosure,
+  ModalFooter,
 } from "@nextui-org/react";
 import { IconPencilMinus } from "@tabler/icons-react";
 import FormEditPracticante from "./form-edit-practicante";
+import Practicante from "./interface/practicante";
+import { setterData } from "@/app/interfaces/setter-interfaces";
 
-export default function ButtonEditPracicante({ id }: { id: string }) {
-  const router = useRouter();
-  const [fields, setFields] = useState({});
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const loadData = async (id: number) => {
-    const datos = await getPracticante(id);
+interface ButtonEditPracticanteProps {
+  id: number;
+  onSaved: (e: any) => void;
+}
 
-    setFields(datos);
-  };
-  console.log(id);
+export default function ButtonEditPracicante({id, onSaved}:ButtonEditPracticanteProps) {
+
+  const [fields, setFields] = useState<Practicante>({} as Practicante);
+  const [ isOpen, setIsOpen]  = useState(false);
+const loadData = async (id: number) => {
+  const { data } = await getPracticante(id);
+
+  setFields(data);
+  setTimeout(() => {
+    onOpen();
+  }, 200);
+}
+
+  const onOpen = () => {
+    setIsOpen(!isOpen);
+  }
+
+  const handleChangePracticante = ({ clave, valor }: setterData) => {
+    setFields({ ...fields, [clave]: valor });
+  }
+
+  const handleOnStore = async () => {
+    const rest = await getPracticante(id);
+    return rest;
+  }
+
+  const handleOnClickSave = async (e: any) => {
+    await loadData(id);
+  }
+
+  const handleOnClickSaved = async (e: any) => {
+    const { data } = await handleOnStore();
+    onSaved(data);
+  }
   return (
     <>
       <Button
-        onPress={() => {
-          onOpen();
-          loadData(parseInt(id));
+        onPress={ async () => {
+          await handleOnClickSave(id);
         }}
         variant="light"
         size="sm"
       >
         <IconPencilMinus color="lime" />
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpen} backdrop="blur">
         <ModalContent>
           {(onClose) => (
             <>
@@ -43,15 +74,30 @@ export default function ButtonEditPracicante({ id }: { id: string }) {
                 Editar Practicante
               </ModalHeader>
               <ModalBody>
-                <FormEditPracticante
-                  fields={fields}
-                  closeModal={(e: any) => {
-                    onClose();
-                    setFields({});
-                    router.refresh();
-                  }}
-                />
+                <div>
+                  {fields && (
+                    <FormEditPracticante
+                      practicante={fields}
+                      onChengaPracticante={handleChangePracticante}
+                    />
+                  )
+                  }
+                </div>
               </ModalBody>
+              <ModalFooter>
+                <Button color="danger" variant="light" onPress={onClose}>
+                  Cancelar
+                </Button>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    handleOnClickSaved(id);
+                    onClose();
+                  }}
+                >
+                  Si
+                </Button>
+              </ModalFooter>
             </>
           )}
         </ModalContent>
