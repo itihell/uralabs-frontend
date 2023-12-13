@@ -17,8 +17,6 @@ const TablePracticante = async (
     onUpdated(practicante);
   };
 
-  // revalidatePath("practicante");
-  // const data = await getPracticantes();
   
   return (
     <div>
