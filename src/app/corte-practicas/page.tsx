@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { usePracticante } from "../hooks/use-practicante";
 import CortePracticas from "../components/screens/forms/corte-practicas/interface/corte-practicas";
 import TableCortePractica from "../components/screens/tables/table-corte-practica";
+import SearchCortePracticas from "../components/cortePracticas/search-corte";
 
 export default function CortePracticas() {
   const { onShowAll, onSave } = usePracticante();
   const [cortes, setCortes] = useState<CortePracticas[]>([]);
   const [search, setSearch] = useState<string>("");
   const [corteSearch, setCorteSearch] = useState<CortePracticas[]>([]);
+
   useEffect(() => {
     const loadCortes = async () => {
       await onShowAll("").then(({ data }) => {
@@ -57,6 +59,15 @@ export default function CortePracticas() {
           <h1 className="text-center text-3xl font-bold">Corte Practicas</h1>
         </div>
         <div className="flex flex-col gap-2">
+          <SearchCortePracticas
+            search={search}
+            setSearch={
+              (e) => {
+                setSearch(e);
+                onSearch(e);
+              }
+            }
+          />
           
         </div>
         <TableCortePractica

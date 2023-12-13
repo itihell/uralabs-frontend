@@ -24,3 +24,4 @@ function SearchCortePracticas({search, setSearch}: SearchCortePracticasProps){
         </div>
     )
 }
+export default SearchCortePracticas;
