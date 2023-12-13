@@ -1,13 +1,12 @@
 'use client'
-import BtnAddCarrera from "@/app/components/forms/carreras/btn-add-carreras";
-import BtnFilterCarreras from "@/app/components/forms/carreras/btn-filter-carreras";
-import SearchCarreras from "@/app/components/forms/carreras/search-carrreras";
 import TableCarreras from "@/app/components/tables/table-carreras";
-import { useCarreras } from "@/app/hooks/use-carrreras";
-import useUtils from "@/app/hooks/use-utils";
+import BtnAddCarrera from "@/app/components/forms/carreras/btn-add-carreras";
 import { Carrera } from "@/app/interfaces/carreras-interfaces";
-
+import { useCarreras } from "@/app/hooks/use-carrreras";
 import { useEffect, useState } from "react";
+import SearchCarreras from "@/app/components/forms/carreras/search-carrreras";
+import BtnFilterCarreras from "@/app/components/forms/carreras/btn-filter-carreras";
+import useUtils from "@/app/hooks/use-utils";
 
 function CarrerasPage() {
   const { onShowAll } = useCarreras();
@@ -43,7 +42,7 @@ function CarrerasPage() {
     setCarrerasAndSearch(data);
   };
 
-  const onUpdated = async (rol: Carrera) => {
+  const onUpdated = async (car: Carrera) => {
     const { data } = await onShowAll("");
     setCarrerasAndSearch(data);
   };

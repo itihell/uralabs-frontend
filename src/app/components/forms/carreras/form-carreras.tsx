@@ -1,4 +1,4 @@
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 import { getAllAreas } from "../../../actions/post/save-areas";
 import FieldsCarreras from "./fields-carreras";
 import { saveCarreras } from "@/app/actions/post/save-carreras";
@@ -15,7 +15,8 @@ export default async function FormCarreras({ carreraId = "" }) {
   return (
     <form action={crearCarrera}>
       <div>
-        <FieldsCarreras fields={{}} areas={data} />
+        
+        <FieldsCarreras/>
 
         <div>
           <button

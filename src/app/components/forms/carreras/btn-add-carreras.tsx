@@ -8,10 +8,10 @@ import {
   Button,
 } from "@nextui-org/react";
 import { useState } from "react";
-import { setterData } from "@/app/interfaces/setter-interfaces";
-import { Carrera } from "@/app/interfaces/carreras-interfaces";
 import { useCarreras } from "@/app/hooks/use-carrreras";
+import { Carrera } from "@/app/interfaces/carreras-interfaces";
 import FieldsCarreras from './fields-carreras';
+import { setterData } from "@/app/interfaces/setter-interfaces";
 
 interface BtnAddCarreraProps {
   onSaved: (data: Carrera) => void;
