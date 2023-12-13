@@ -60,6 +60,7 @@ function RolesPage() {
   const onFilteredRoles = async (fields: Role) => {
     // TODO: Obetener los parametros de busqueda
     const params = getParams(fields);
+    console.log(params);
 
     // TODO: Filtrar los roles
     await onShowAll(params).then(({ data }) => {

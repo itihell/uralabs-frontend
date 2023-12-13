@@ -11,7 +11,7 @@ import BtnFilterUsoLab from "./usoLaboratorio/btn-filter";
 
 
 function LabUsePage() {
-  const { onShowAll, onStore } = useLaboratorio();
+  const { onShowAll } = useLaboratorio();
   const [usoLaboratorio, setLaboratorio] = useState<UsoLab[]>([]);
   const [search, setSearch] = useState<string>("");
   const [usoLabSearch, setUsoLabSearch] = useState<UsoLab[]>([]);
@@ -64,6 +64,7 @@ function LabUsePage() {
   const onFilteredUsoLab = async (fields: UsoLab) => {
     // TODO: Obetener los parametros de busqueda
     const params: any = getParams(fields);
+    console.log(params);
 
     // TODO: Filtrar los roles
     await onShowAll(params).then(({ data }) => {
