@@ -29,19 +29,19 @@ const BtnFilterModalidades = ({
     setFields({ ...fields, [value.clave]: value.valor });
   };
 
-  const onFilterRoles = () => {
+  const onFilterModalidades = () => {
     onFilteredModalidades(fields);
   };
 
   return (
     <>
-      <Button onPress={onOpen}>Buscar Modalidades</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Button onPress={onOpen}>Filtrar Modadalidades </Button>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement='top'>
         <ModalContent>
           {(onClose) => (
             <>
               <ModalHeader className='flex flex-col gap-1'>
-                Modal Title
+                Filtro modalidades
               </ModalHeader>
               <ModalBody>
                 <div>
@@ -74,7 +74,7 @@ const BtnFilterModalidades = ({
                     setTimeout(() => {
                       onClose();
                     }, 200);
-                    onFilterRoles();
+                    onFilterModalidades();
                   }}
                 >
                   Filtrar
