@@ -20,8 +20,6 @@ export default function FormEditPracticante(
   const handleChangePracticante = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
     onChangePracticante({ clave, valor });
-
-    console.log(fields);
   };
 
   useEffect(() => {

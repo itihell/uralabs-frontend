@@ -42,7 +42,6 @@ const loadData = async (id: number) => {
 
   const handleChangePracticante = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
-    console.log(fields);
   }
 
   const handleOnStore = async () => {

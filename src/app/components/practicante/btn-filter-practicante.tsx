@@ -63,7 +63,12 @@ const BtnFilterPracticante = ({onFilteredPracticante}: BtnFilterPracticanteProps
                     >
                     Cancelar
                     </Button>
-                    <Button color="success" onPress={onFilterPracticante}>
+                    <Button color="success" onPress={
+                        async (e) => {
+                            await onFilterPracticante();
+                            onClose();
+                        }
+                    }>
                     Buscar
                     </Button>
                 </ModalFooter>
