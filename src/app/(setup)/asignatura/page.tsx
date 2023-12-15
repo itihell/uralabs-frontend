@@ -80,14 +80,14 @@ return (
             onFilteredAsignatura(value);
           }}
         />
-        {/* <SearchAsignatura
+        <SearchAsignatura
           search={search}
           setSearch={(e) => {
             setSearch(e);
             onSearch(e);
           }}
           
-        /> */}
+        />
         <BtnAddAsignatura onSaved={onSaved} />
       </div>
 
