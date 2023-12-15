@@ -9,20 +9,20 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/react";
-import FieldsPracticantes from "../screens/forms/practicante/fields-practicante";
+import FieldsPracticantesSearch from "../screens/forms/practicante/fields-practicante-search";
 
 interface BtnFilterPracticanteProps {
   onFilteredPracticante: (fields: Practicante) => void;
 }
-const BtnFilterPracticante = ({
-  onFilteredPracticante,
-}: BtnFilterPracticanteProps) => {
+const BtnFilterPracticante = ({onFilteredPracticante}: BtnFilterPracticanteProps) => {
+  
   const [fields, setFields] = useState<Practicante>({} as Practicante);
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => setOpen(true);
   const onOpenChange = (open: boolean) => {
     setOpen(open);
   };
+  
   const setChangeFields = (value: setterData) => {
     setFields({ ...fields, [value.clave]: value.valor });
   };
@@ -38,13 +38,11 @@ const BtnFilterPracticante = ({
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">
-                Modal Title
+                Buscar Practicante
               </ModalHeader>
               <ModalBody>
                 <div>
-                  <FieldsPracticantes
-                    practicante={fields}
-                    onChangePracticante={setChangeFields}
+                  <FieldsPracticantesSearch practicante={fields} onChangePracticante={setChangeFields}
                   />
                 </div>
               </ModalBody>
