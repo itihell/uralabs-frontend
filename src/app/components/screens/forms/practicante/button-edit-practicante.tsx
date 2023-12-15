@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { getPracticante } from "../../actions/post/save-practicantes";
 import {
   Modal,
   ModalContent,
@@ -15,18 +14,21 @@ import { IconPencilMinus } from "@tabler/icons-react";
 import FormEditPracticante from "./form-edit-practicante";
 import Practicante from "./interface/practicante";
 import { setterData } from "@/app/interfaces/setter-interfaces";
+import FieldsPracticantes from "./fields-practicante";
+import { usePracticante } from "@/app/hooks/use-practicante";
 
 interface ButtonEditPracticanteProps {
   id: number;
-  onSaved: (e: any) => void;
+  onSaved: (e: Practicante) => void;
 }
 
 export default function ButtonEditPracicante({id, onSaved}:ButtonEditPracticanteProps) {
 
+  const {onUpdate, onShow} = usePracticante();
   const [fields, setFields] = useState<Practicante>({} as Practicante);
   const [ isOpen, setIsOpen]  = useState(false);
 const loadData = async (id: number) => {
-  const { data } = await getPracticante(id);
+  const { data } = await onShow(id);
 
   setFields(data);
   setTimeout(() => {
@@ -40,10 +42,11 @@ const loadData = async (id: number) => {
 
   const handleChangePracticante = ({ clave, valor }: setterData) => {
     setFields({ ...fields, [clave]: valor });
+    console.log(fields);
   }
 
   const handleOnStore = async () => {
-    const rest = await getPracticante(id);
+    const rest = await onUpdate (id, fields);
     return rest;
   }
 
@@ -66,42 +69,43 @@ const loadData = async (id: number) => {
       >
         <IconPencilMinus color="lime" />
       </Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpen} backdrop="blur">
-        <ModalContent>
-          {(onClose) => (
-            <>
-              <ModalHeader className="flex flex-col gap-1">
-                Editar Practicante
-              </ModalHeader>
-              <ModalBody>
-                <div>
-                  {fields && (
-                    <FormEditPracticante
-                      practicante={fields}
-                      onChengaPracticante={handleChangePracticante}
-                    />
-                  )
-                  }
-                </div>
-              </ModalBody>
-              <ModalFooter>
-                <Button color="danger" variant="light" onPress={onClose}>
-                  Cancelar
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() => {
-                    handleOnClickSaved(id);
-                    onClose();
-                  }}
-                >
-                  Si
-                </Button>
-              </ModalFooter>
-            </>
-          )}
-        </ModalContent>
-      </Modal>
+      {isOpen &&(
+          <Modal isOpen={isOpen} onOpenChange={onOpen} backdrop="blur">
+          <ModalContent>
+            {(onClose) => (
+              <>
+                <ModalHeader className="flex flex-col gap-1">
+                  Editar Practicante
+                </ModalHeader>
+                <ModalBody>
+                  <div>
+                    {fields.id && (
+                      <FormEditPracticante
+                        practicante={fields}
+                        onChangePracticante={handleChangePracticante}
+                      />
+                    )}
+                  </div>
+                </ModalBody>
+                <ModalFooter>
+                  <Button color="danger" variant="light" onPress={onClose}>
+                    Cancelar
+                  </Button>
+                  <Button
+                    color="primary"
+                    onClick={() => {
+                      handleOnClickSaved(id);
+                      onClose();
+                    }}
+                  >
+                    Si
+                  </Button>
+                </ModalFooter>
+              </>
+            )}
+          </ModalContent>
+        </Modal>
+      )}
     </>
   );
 }
