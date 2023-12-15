@@ -27,7 +27,6 @@ const TableCortePractica = async (
               <th className="px-6 py-3">Practicante</th>
               <th className="px-6 py-3">Fecha Corte</th>
               <th className="px-6 py-3">Horas Actuales</th>
-              <th className="px-6 py-3">Horas Totales</th>
               <th className="px-6 py-3">config</th>
             </tr>
           </thead>
@@ -40,7 +39,6 @@ const TableCortePractica = async (
                 <td className="px-6 py-4"> {corte.practicante.nombres}</td>
                 <td className="px-6 py-4"> {corte.fecha_corte}</td>
                 <td className="px-6 py-4"> {corte.horas_actuales}</td>
-                <td className="px-6 py-4"> {corte.horas_totales}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
                     <ButtonDeleteCorte id={corte.id} />

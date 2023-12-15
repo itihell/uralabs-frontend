@@ -119,24 +119,6 @@ export default function FieldsCortePracticas(
               }}
             />
           </div>
-          <div className="w-full flex flex-col gap-1">
-            <label className="text-sm font-semibold text-gray-700">
-              Horas Totales
-            </label>
-            <input
-              type="number"
-              name="horas_totales"
-              className="appearance-none block w-full bg-[#27272A] text-gray-100 border-0  rounded-small py-4 px-4 mb-3 leading-tight hover:bg-[#3F3F46] focus:bg-[#3F3F46] focus:outline-none"
-              defaultValue={cortePracticas?.horas_totales||0}
-              onChange={(e) => {
-                const data: setterData = {
-                  clave: e.target.name,
-                  valor: parseInt(e.target.value, 10) || 0,
-                };
-                handleChangeCortePracticas(data);
-              }}
-            />
-            </div>
         </div>
       </div>
     </div>
