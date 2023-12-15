@@ -2,18 +2,23 @@
 import { useEffect, useState } from "react";
 import TablePracticante from "../components/screens/tables/tables-practicantes";
 import { usePracticante } from "../hooks/use-practicante";
-import Practicante from "../components/screens/forms/practicante/interface/practicante";
-import SearchPracticante from '../components/practicante/search-practicante';
+
+import SearchPracticante from "../components/practicante/search-practicante";
 import BtnAddPracticante from "../components/practicante/btn-add-practicante";
 import BtnFilterPracticante from "../components/practicante/btn-filter-practicante";
+import Practicante from "../components/screens/forms/practicante/interface/practicante";
 import useUtils from "../hooks/use-utils";
 
 export default function Practicante() {
-  const {onShowAll, onSave} = usePracticante();
+  const { onShowAll, onSave } = usePracticante();
   const [practicantes, setPracticantes] = useState<Practicante[]>([]);
   const [search, setSearch] = useState<string>("");
-  const [practicantesSearch, setPracticantesSearch] = useState<Practicante[]>([]);
-const { getParams } = useUtils();
+  const [practicantesSearch, setPracticantesSearch] = useState<Practicante[]>(
+    []
+  );
+
+  const { getParams } = useUtils();
+
   useEffect(() => {
     const loadPracticantes = async () => {
       await onShowAll("").then(({ data }) => {
@@ -58,37 +63,38 @@ const { getParams } = useUtils();
     setPracticantesSearch(rows);
   };
 
-  const onFilteredPracticante = async (fields: Practicante) => {
-    const params = getParams(fields);
+  const onFilteredPracticantes = async (value: Practicante) => {
+    const params = getParams(value);
 
     await onShowAll(params).then(({ data }) => {
       setPracticantesAndSearch(data);
     });
   };
-  
+
   return (
     <div>
       <div className="min-h-screen">
         <h1 className="text-center text-3xl font-bold">Practicantes</h1>
-      <div className="flex justify-between mb-2">
-        <BtnFilterPracticante
-          onFilteredPracticante={(value: Practicante) => {
-            onFilteredPracticante(value);
-          }}
-        />
-          <SearchPracticante search={search} setSearch={
-            (e)=>{
+        <div className="flex justify-between mb-2">
+          <BtnFilterPracticante
+            onFilteredPracticante={(value: Practicante) => {
+              onFilteredPracticantes(value);
+            }}
+          />
+          <SearchPracticante
+            search={search}
+            setSearch={(e) => {
               setSearch(e);
               onSearch(e);
-            }
-          } />
+            }}
+          />
           <BtnAddPracticante onSaved={onSaved} />
         </div>
         <TablePracticante
-            practicante={practicantesSearch}
-            onDeleted={onDeleted}
-            onUpdated={onUpdated}
-          />
+          practicante={practicantesSearch}
+          onDeleted={onDeleted}
+          onUpdated={onUpdated}
+        />
       </div>
     </div>
   );

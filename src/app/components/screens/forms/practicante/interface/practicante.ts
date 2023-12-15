@@ -1,5 +1,5 @@
 interface Practicante {
-  id: number;
+  id?: number;
   nombres: string;
   apellidos: string;
   carreraId: number;

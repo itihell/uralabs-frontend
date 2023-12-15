@@ -1,11 +1,9 @@
-import { revalidatePath } from "next/cache";
-import { getCortePracticas } from "../actions/post/save-corte-practicas";
 import ButtonDeleteCorte from "../forms/corte-practicas/button-delete-corte";
 import ButtonEditCorte from "../forms/corte-practicas/button-edit-corte";
 import CortePracticas from "../forms/corte-practicas/interface/corte-practicas";
 interface TableCortePracticaProps {
-  onDeleted: (e: any) => void;
-  onUpdated: (e: any) => void;
+  onDeleted: (e: CortePracticas) => void;
+  onUpdated: (e: CortePracticas) => void;
   corte: CortePracticas[];
 }
 const TableCortePractica = async (
@@ -29,7 +27,6 @@ const TableCortePractica = async (
               <th className="px-6 py-3">Practicante</th>
               <th className="px-6 py-3">Fecha Corte</th>
               <th className="px-6 py-3">Horas Actuales</th>
-              <th className="px-6 py-3">Horas Totales</th>
               <th className="px-6 py-3">config</th>
             </tr>
           </thead>
@@ -39,10 +36,9 @@ const TableCortePractica = async (
                 <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                   {corte.id}
                 </td>
-                <td className="px-6 py-4"> {corte.practicante}</td>
+                <td className="px-6 py-4"> {corte.practicante.nombres}</td>
                 <td className="px-6 py-4"> {corte.fecha_corte}</td>
                 <td className="px-6 py-4"> {corte.horas_actuales}</td>
-                <td className="px-6 py-4"> {corte.horas_totales}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
                     <ButtonDeleteCorte id={corte.id} />

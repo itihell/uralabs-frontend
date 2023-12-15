@@ -1,8 +1,7 @@
-interface CortePracticas{
+interface CortePracticas {
     fecha_corte: string;
-    practicanteId: number;
+    practicante: number;
     horas_actuales: number;
     horas_ateriores: number;
-    horas_totales: number;
 }
 export default CortePracticas;
