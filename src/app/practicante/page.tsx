@@ -5,15 +5,13 @@ import { usePracticante } from "../hooks/use-practicante";
 import Practicante from "../components/screens/forms/practicante/interface/practicante";
 import SearchPracticante from '../components/practicante/search-practicante';
 import BtnAddPracticante from "../components/practicante/btn-add-practicante";
-import BtnFilterPracticante from "../components/practicante/btn-filter-practicante";
-import useUtils from "../hooks/use-utils";
 
 export default function Practicante() {
   const {onShowAll, onSave} = usePracticante();
   const [practicantes, setPracticantes] = useState<Practicante[]>([]);
   const [search, setSearch] = useState<string>("");
   const [practicantesSearch, setPracticantesSearch] = useState<Practicante[]>([]);
-const { getParams } = useUtils();
+
   useEffect(() => {
     const loadPracticantes = async () => {
       await onShowAll("").then(({ data }) => {
@@ -57,25 +55,12 @@ const { getParams } = useUtils();
     });
     setPracticantesSearch(rows);
   };
-
-  const onFilteredPracticante = async (fields: Practicante) => {
-    const params = getParams(fields);
-
-    await onShowAll(params).then(({ data }) => {
-      setPracticantesAndSearch(data);
-    });
-  };
   
   return (
     <div>
       <div className="min-h-screen">
         <h1 className="text-center text-3xl font-bold">Practicantes</h1>
       <div className="flex justify-between mb-2">
-        <BtnFilterPracticante
-          onFilteredPracticante={(value: Practicante) => {
-            onFilteredPracticante(value);
-          }}
-        />
           <SearchPracticante search={search} setSearch={
             (e)=>{
               setSearch(e);
