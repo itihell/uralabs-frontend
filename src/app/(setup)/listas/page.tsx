@@ -36,9 +36,8 @@ export default function ListasPages() {
     setFields({ ...fields, area_id: id });
   };
 
-  const changeUser = (e: any) => {
-    setFields({ ...fields, user_id: e.id });
-    console.log("desde la pagina ", e.id);
+  const changeUser = (e: number) => {
+    setFields({ ...fields, user_id: e });
   };
 
   const changePracticante = (id: number) => {
@@ -84,6 +83,15 @@ export default function ListasPages() {
     nombres: "practicante",
   };
 
+  const user={
+    id: 1,
+    name: 'Users',
+    email:'Email',
+    telefono:'0000000',
+    token: null,
+    isActive: true,
+  }
+
   return (
     <div className="min-h-screen flex-col items-center justify-between">
       <pre>{JSON.stringify(fields, null, 2)}</pre>
@@ -107,7 +115,7 @@ export default function ListasPages() {
       <ListPracticante datos={practicante} selected={changePracticante} />
 
       <h1>Lista de Usuarios</h1>
-      <ListUsers selected={changeUser} />
+      <ListUsers datos={user} selected={changeUser} />
 
       <h1>Lista de Laboratorios</h1>
       <ListLab selected={changeLaboratory} />
