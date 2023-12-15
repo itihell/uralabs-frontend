@@ -13,7 +13,7 @@ export default function FormCortePracticas({ corteId = "" }) {
   return (
     <form action={crearCorte}>
       <div>
-        <FieldsCortePracticas />
+        <FieldsCortePracticas fields={{}} />
         <div>
           <button
             type="submit"

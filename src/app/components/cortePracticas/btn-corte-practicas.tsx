@@ -1,4 +1,3 @@
-'use client'
 import {
     Modal,
     ModalContent,
@@ -29,7 +28,7 @@ export default function BtnAddCortePracticas({ onSaved }: BtnAddCortePracticasPr
 
     const handleOnStore = async () => {
         const rest = await onSave(fields);
-        console.log(rest);
+        console.log("respuesta", rest);
         return rest;
     };
     const [isOpen, setOpen] = useState(false);
@@ -74,6 +73,8 @@ export default function BtnAddCortePracticas({ onSaved }: BtnAddCortePracticasPr
                                             onSaved(data);
                                             onClose();
                                         }
+
+                                        console.log(data)
                                     }}
                                 >
                                     Guardar

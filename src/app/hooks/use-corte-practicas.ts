@@ -5,6 +5,7 @@ export function useCortePracticas(){
     const onSave = async (payload: CortePracticas) => {
         const url = `/corte-practicas`;
         const rest = await feching(url, "no-store", "POST", payload);
+        console.log('probando',rest) 
         return rest;
     }
 
