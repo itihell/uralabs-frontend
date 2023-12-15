@@ -44,7 +44,7 @@ const BtnFilterData = ({ onFilteredData }: BtnFilterDataProps) => {
           {(onClose) => (
             <>
               <ModalHeader className='flex flex-col gap-1'>
-                Modal Title
+                Filtro de datos
               </ModalHeader>
               <ModalBody>
                 <FieldsModalidadDocentes
