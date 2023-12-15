@@ -7,7 +7,7 @@ import SearchCortePracticas from "../components/cortePracticas/search-corte";
 import BtnAddCortePracticas from "../components/cortePracticas/btn-corte-practicas";
 
 export default function CortePracticas() {
-  const { onShowAll, onSave } = useCortePracticas();
+  const { onShowAll} = useCortePracticas();
   const [cortes, setCortes] = useState<CortePracticas[]>([]);
   const [search, setSearch] = useState<string>("");
   const [corteSearch, setCorteSearch] = useState<CortePracticas[]>([]);
@@ -60,7 +60,7 @@ export default function CortePracticas() {
       <div className="main-h-screen">
         <h1 className="text-center text-3xl font-bold">Corte Practicas</h1>
       </div>
-      <div  className="flex justify-between mb-2">
+      <div className="flex justify-between mb-2">
         <SearchCortePracticas
           search={search}
           setSearch={
@@ -70,7 +70,7 @@ export default function CortePracticas() {
             }
           }
         />
-        <BtnAddCortePracticas onSaved={onSaved}/>
+        <BtnAddCortePracticas onSaved={onSaved} />
       </div>
       <TableCortePractica
         corte={corteSearch}

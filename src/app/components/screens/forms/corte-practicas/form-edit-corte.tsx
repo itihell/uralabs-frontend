@@ -1,4 +1,4 @@
-import { updateCortePractica } from "../../actions/post/save-practicantes";
+import { updateCortePractica } from "../../actions/post/save-corte-practicas";
 import ButtonUpdateCorte from "./button-update-corte";
 import FieldsCortePracticas from "./filds-corte";
 
