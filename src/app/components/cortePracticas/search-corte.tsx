@@ -4,8 +4,8 @@ interface SearchCortePracticasProps {
     search: string;
     setSearch: (search: string) => void;
 }
-function SearchCortePracticas({search, setSearch}: SearchCortePracticasProps){
-    return(
+function SearchCortePracticas({ search, setSearch }: SearchCortePracticasProps) {
+    return (
         <div>
             <Input
                 type="text"
