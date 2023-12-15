@@ -4,14 +4,25 @@ import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDi
 import { IconArrowBackUpDouble, IconCheck, IconTrash } from "@tabler/icons-react";
 import { useRouter } from "next/navigation";
 import { deleteAsignaturaById } from "@/app/actions/post/save-asignatura";
+import { useAsignatura } from "@/app/hooks/use-asignatura";
+import { Asignatura } from "@/app/interfaces/asignatura-interfaces";
 
-export default function ButtonDeleteAsignatura({ id }: { id: string }) {
+interface ButtonDeleteAsignaturaProps {
+  id: number;
+  onDeleted: (e: Asignatura) => void;
+}
+
+export default function ButtonDeleteAsignatura({ 
+  id, 
+  onDeleted, 
+ }: ButtonDeleteAsignaturaProps ) {
+  const {onDelete} = useAsignatura();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
 
-  const deleteAsignatura= async (id: string) => {
-    await deleteAsignaturaById(parseInt(id));
-    router.refresh();
+  const deleteAsignatura= async (id: number) => {
+    const {data} = await onDelete(id);
+    onDeleted(data);
   };
 
   return (
