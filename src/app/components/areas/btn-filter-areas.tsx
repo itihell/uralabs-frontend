@@ -15,7 +15,7 @@ import {
     onFilteredAreas: (fields: Area) => void;
   }
   
-  const BtnFilterAreas = ({ onFilteredAreas: onFilteredAreas }: BtnFilterAreasProps) => {
+  const BtnFilterAreas = ({ onFilteredAreas} : BtnFilterAreasProps) => {
     const [fields, setFields] = useState<Area>({} as Area);
     const [isOpen, setOpen] = useState(false);
     const onOpen = () => setOpen(true);
@@ -29,6 +29,7 @@ import {
   
     const onFilterAreas = () => {
       onFilteredAreas(fields);
+      console.log(fields);     
     };
   
     return (
@@ -39,7 +40,7 @@ import {
             {(onClose) => (
               <>
                 <ModalHeader className="flex flex-col gap-1">
-                  Modal Title
+                  Area Modal Title
                 </ModalHeader>
                 <ModalBody>
                   <div>
@@ -58,7 +59,7 @@ import {
                       setFields(() => {
                         onFilteredAreas({} as Area);
                         return {} as Area;
-                      });
+                      });        
                     }}
                   >
                     Cancelar
@@ -69,8 +70,8 @@ import {
                       setTimeout(() => {
                         onClose();
                       }, 200);
-                      onFilterAreas();
-                    }}
+                      onFilterAreas(); 
+                    }}                   
                   >
                     Filtrar
                   </Button>

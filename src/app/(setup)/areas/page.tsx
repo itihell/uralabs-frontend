@@ -1,15 +1,15 @@
 "use client";
-import BtnAddArea from "@/app/components/areas/btn-add-area";
-import SearchAreas from "@/app/components/areas/search-areas";
 import TableAreas from "@/app/components/tables/table-areas";
-import { useAreas } from "@/app/hooks/use-area";
+import BtnAddArea from "@/app/components/areas/btn-add-area";
 import { Area } from "@/app/interfaces/areas-interfaces";
+import { useAreas } from "@/app/hooks/use-area";
 import { useEffect, useState } from "react";
+import SearchAreas from "@/app/components/areas/search-areas";
 import BtnFilterAreas from "@/app/components/areas/btn-filter-areas";
 import useUtils from "@/app/hooks/use-utils";
 
 function AreasPage() {
-  const { onShowAll, onStore } = useAreas();
+  const { onShowAll } = useAreas();
   const [areas, setAreas] = useState<Area[]>([]);
   const [search, setSearch] = useState<string>("");
   const [areasSearch, setAreasSearch] = useState<Area[]>([]);
@@ -45,6 +45,7 @@ function AreasPage() {
   const onUpdated = async (rol: Area) => {
     const { data } = await onShowAll("");
     setAreasAndSearch(data);
+    
   };
 
   const onSearch = (buscar: string) => {
@@ -54,6 +55,7 @@ function AreasPage() {
       return campo.includes(textSearch);
     });
     setAreasSearch(rows);
+    
   };
 
   const onFilteredAreas = async (fields: Area) => {
@@ -83,6 +85,7 @@ function AreasPage() {
               setSearch(e);
               onSearch(e);
             }}
+            
           />
           <BtnAddArea onSaved={onSaved} />
         </div>
