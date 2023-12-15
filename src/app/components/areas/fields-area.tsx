@@ -10,7 +10,7 @@ interface FieldsAreasProps {
 export default function FieldsAreass(
   { area, onChangeArea }: FieldsAreasProps = {
     area: {} as Area,
-    onChangeArea: () => {},
+    onChangeArea: () => { },
   }
 ) {
   const [fields, setFields] = useState<Area>({} as Area);

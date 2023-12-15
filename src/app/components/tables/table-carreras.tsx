@@ -31,11 +31,11 @@ const TableCarreras = ({ carreras, onDeleted, onUpdated }: TableCarrerasProps) =
             </tr>
           </thead>
           <tbody className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-            {Object.values(carreras).map((carrera: any) => (
-              <tr key={`registro-area-${carrera.id}`}>
-                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{carrera.id}</td>
-                <td className="px-6 py-4"> {carrera.nombre}</td>
-                <td className="px-6 py-4"> {carrera.area.nombre}</td>
+            {Object.values(carreras).map((carreras: any) => (
+              <tr key={`registro-carreras-${carreras.id}`}>
+                <td className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{carreras.id}</td>
+                <td className="px-6 py-4"> {carreras.nombre}</td>
+                <td className="px-6 py-4"> {carreras.area.nombre}</td>
                 <td className="px-6 py-4">
                   <div className="flex flex-row items-center justify-end">
 
@@ -44,13 +44,13 @@ const TableCarreras = ({ carreras, onDeleted, onUpdated }: TableCarrerasProps) =
                         alert("Eliminado");
                         await handlerOnDeleted(e);
                       }}
-                      id={carrera.id}
+                      id={carreras.id}
                     />
                     <ButtonEditCarrera
                       onSaved={async (e) => {
                         await handlerOnUpdate(e);
                       }}
-                      id={carrera.id}
+                      id={carreras.id}
                     />
                   </div>
                 </td>

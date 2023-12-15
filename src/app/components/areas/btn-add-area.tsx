@@ -28,7 +28,7 @@ export default function BtnAddArea({ onSaved }: BtnAddAreaProps) {
   const { onStore } = useAreas();
 
 
-  
+
 
   const [isOpen, setOpen] = useState(false);
   const onOpen = () => {
@@ -77,7 +77,7 @@ export default function BtnAddArea({ onSaved }: BtnAddAreaProps) {
                       onSaved(data);
                       onClose();
                     }
-                    
+
                   }}
                 >
                   Guardar

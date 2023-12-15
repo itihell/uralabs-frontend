@@ -18,7 +18,7 @@ function AreasPage() {
   useEffect(() => {
     const loadAreas = async () => {
       await onShowAll("").then(({ data }) => {
-          setAreasAndSearch(data);
+        setAreasAndSearch(data);
       });
     };
 
@@ -45,7 +45,7 @@ function AreasPage() {
   const onUpdated = async (rol: Area) => {
     const { data } = await onShowAll("");
     setAreasAndSearch(data);
-    
+
   };
 
   const onSearch = (buscar: string) => {
@@ -55,7 +55,7 @@ function AreasPage() {
       return campo.includes(textSearch);
     });
     setAreasSearch(rows);
-    
+
   };
 
   const onFilteredAreas = async (fields: Area) => {
@@ -85,7 +85,7 @@ function AreasPage() {
               setSearch(e);
               onSearch(e);
             }}
-            
+
           />
           <BtnAddArea onSaved={onSaved} />
         </div>
