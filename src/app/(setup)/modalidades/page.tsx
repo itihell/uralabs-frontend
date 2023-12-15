@@ -6,10 +6,10 @@ import useModalidades from "@/app/hooks/use-modalidades";
 import { useEffect, useState } from "react";
 import { Modalidades } from "@/app/interfaces/modalidades-interface";
 import useUtils from "@/app/hooks/use-utils";
-import { set } from "react-hook-form";
 import SearchModalidades from "@/app/components/modalidades/search-modalidades";
 import BtnAddModalidades from "@/app/components/modalidades/btn-add-modalidades";
 import BtnFilterModalidades from "@/app/components/modalidades/btn-filter-modalidad";
+import { DocentesModalidades } from "@/app/interfaces/docentes-modalidades";
 
 export default function ModalidadesPage() {
   const { onShowAll } = useModalidades();
@@ -67,6 +67,7 @@ export default function ModalidadesPage() {
       setModalidadesAndSearch(data);
     });
   };
+
   return (
     <div>
       <div className='min-h-screen'>
