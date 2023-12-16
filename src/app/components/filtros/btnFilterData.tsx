@@ -38,7 +38,7 @@ const BtnFilterData = ({ onFilteredData }: BtnFilterDataProps) => {
 
   return (
     <>
-      <Button onPress={onOpen}>Filtrar Datas</Button>
+      <Button onPress={onOpen}>Filtrar Reportes</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (

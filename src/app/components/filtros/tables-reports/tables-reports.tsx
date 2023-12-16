@@ -17,24 +17,22 @@ const TablesReports = ({ reports }: TablesReports) => {
           <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
             <tr>
               <th className='px-6 py-3'>ID</th>
-              <th className='px-6 py-3'>Fecha</th>
-              <th className='px-6 py-3'>Horas</th>
-              <th className='px-6 py-3'>Carrera</th>
               <th className='px-6 py-3'>Docente</th>
-              <th className='px-6 py-3'>Apellido</th>
+              <th className='px-6 py-3'>Asignatura</th>
+              <th className='px-6 py-3'>Horas</th>
+              <th className='px-6 py-3'>Mes</th>
+              <th className='px-6 py-3'>Año</th>
             </tr>
           </thead>
           <tbody className='bg-white border-b dark:bg-gray-900 dark:border-gray-700'>
-            {Object.values(reports).map((reports: any) => (
-              <tr key={`reports-${reports.id}`}>
-                <td className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                  {reports.id}
-                </td>
-                <td className='px-6 py-4'> {reports.fecha}</td>
-                <td className='px-6 py-4'> {reports.horas}</td>
-                <td className='px-6 py-4'> {reports.carrera}</td>
+            {Object.values(reports).map((reports: any, index: number) => (
+              <tr key={`reports-${index + 1}`}>
+                <td className='px-6 py-4'>{reports.id}</td>
                 <td className='px-6 py-4'> {reports.docente}</td>
-                <td className='px-6 py-4'> {reports.apellido}</td>
+                <td className='px-6 py-4'> {reports.asignatura}</td>
+                <td className='px-6 py-4'> {reports.horas}</td>
+                <td className='px-6 py-4'> {reports.mes}</td>
+                <td className='px-6 py-4'> {reports.anio}</td>
               </tr>
             ))}
           </tbody>

@@ -1,10 +1,12 @@
 "use client";
 
 import BtnFilterData from "@/app/components/filtros/btnFilterData";
+import SearchData from "@/app/components/filtros/tables-reports/search-data";
 import TablesReports from "@/app/components/filtros/tables-reports/tables-reports";
 import useDocentesModalidades from "@/app/hooks/use-modalidade-docentes";
 import useUtils from "@/app/hooks/use-utils";
 import { DocentesModalidades } from "@/app/interfaces/docentes-modalidades";
+import { on } from "events";
 import React, { use, useEffect, useState } from "react";
 
 // Importaciones ...
@@ -58,7 +60,7 @@ export default function FiltrosPage() {
 
   const onSearch = (buscar: string) => {
     const rows = reports.filter((report) => {
-      const campo = report.carrera.toUpperCase();
+      const campo = report.docente.toUpperCase();
       const textSearch = buscar.toUpperCase();
       return campo.includes(textSearch);
     });
@@ -70,6 +72,7 @@ export default function FiltrosPage() {
 
     await onShowAll(params).then(({ data }) => {
       setReportsAndSearch(data);
+      console.log("Probando", data);
     });
   };
 
@@ -78,7 +81,11 @@ export default function FiltrosPage() {
       <div className='min-h-screen'>
         <h1 className='mb-3'>Filtros</h1>
         <div className='flex justify-between mb-2'>
-          <BtnFilterData onFilteredData={onFilteredReports} />
+          <BtnFilterData
+            onFilteredData={(value: DocentesModalidades) => {
+              onFilteredReports(value);
+            }}
+          />
         </div>
         <TablesReports
           reports={searchReport}
