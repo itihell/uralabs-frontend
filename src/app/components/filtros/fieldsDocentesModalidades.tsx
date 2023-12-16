@@ -4,13 +4,13 @@ import { Input, Switch } from "@nextui-org/react";
 import { DocentesModalidades } from "@/app/interfaces/docentes-modalidades";
 
 interface FieldsReportesProps {
-  modalidadDocentes?: DocentesModalidades;
+  reports?: DocentesModalidades;
   onChangeModalidadesDocents: (data: setterData) => void;
 }
 
 export default function FieldsModalidadDocentes(
-  { modalidadDocentes, onChangeModalidadesDocents }: FieldsReportesProps = {
-    modalidadDocentes: {} as DocentesModalidades,
+  { reports, onChangeModalidadesDocents }: FieldsReportesProps = {
+    reports: {} as DocentesModalidades,
     onChangeModalidadesDocents: () => {},
   }
 ) {
@@ -21,12 +21,12 @@ export default function FieldsModalidadDocentes(
     setFields({ ...fields, [clave]: valor });
     onChangeModalidadesDocents({ clave, valor });
   };
-  console.log(modalidadDocentes);
+  console.log(reports);
   useEffect(() => {
-    if (modalidadDocentes) {
-      setFields(modalidadDocentes || ({} as DocentesModalidades));
+    if (reports) {
+      setFields(reports || ({} as DocentesModalidades));
     }
-  }, [modalidadDocentes]);
+  }, [reports]);
 
   return (
     <div>
@@ -38,7 +38,7 @@ export default function FieldsModalidadDocentes(
             label='Fecha'
             name='fecha'
             placeholder='Escriba la hora...'
-            defaultValue={modalidadDocentes?.horas?.toString()}
+            defaultValue={reports?.horas?.toString()}
             onChange={(e) => {
               const data: setterData = {
                 clave: e.target.name,
@@ -54,7 +54,7 @@ export default function FieldsModalidadDocentes(
             label='Docente'
             name='Data filter '
             placeholder='Escriba el docente...'
-            defaultValue={modalidadDocentes?.docente}
+            defaultValue={reports?.docente}
             onChange={(e) => {
               const data: setterData = {
                 clave: e.target.name,
@@ -68,10 +68,10 @@ export default function FieldsModalidadDocentes(
           <Input
             size='sm'
             type='text'
-            label='Modalidad'
-            name='modalidad'
+            label='Asignatura'
+            name='Asignatura'
             placeholder='Escriba la asignatura...'
-            defaultValue={modalidadDocentes?.asignatura}
+            defaultValue={reports?.asignatura}
             onChange={(e) => {
               const data: setterData = {
                 clave: e.target.name,

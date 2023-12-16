@@ -6,10 +6,8 @@ import TablesReports from "@/app/components/filtros/tables-reports/tables-report
 import useDocentesModalidades from "@/app/hooks/use-modalidade-docentes";
 import useUtils from "@/app/hooks/use-utils";
 import { DocentesModalidades } from "@/app/interfaces/docentes-modalidades";
-import { on } from "events";
-import React, { use, useEffect, useState } from "react";
 
-// Importaciones ...
+import React, { use, useEffect, useState } from "react";
 
 export default function FiltrosPage() {
   const { onShowAll } = useDocentesModalidades();
@@ -21,19 +19,16 @@ export default function FiltrosPage() {
 
   useEffect(() => {
     const loadReports = async () => {
-      try {
-        const { data } = await onShowAll("");
+      await onShowAll("").then(({ data }) => {
         setReportsAndSearch(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error loading reports:", error);
-      }
+      });
+      console.log("Probando", loadReports);
     };
     loadReports();
   }, []);
 
   const setReportsAndSearch = (data: DocentesModalidades[]) => {
-    setReportsSearch(() => {
+    setReports(() => {
       setReportsSearch(data);
       return data;
     });
@@ -41,12 +36,8 @@ export default function FiltrosPage() {
   };
 
   const onSaved = async (report: DocentesModalidades) => {
-    try {
-      const { data } = await onShowAll("");
-      setReportsAndSearch(data);
-    } catch (error) {
-      console.error("Error saving reports:", error);
-    }
+    const { data } = await onShowAll("");
+    setReportsAndSearch(data);
   };
 
   const handleDataChange = async () => {
@@ -58,22 +49,22 @@ export default function FiltrosPage() {
     }
   };
 
-  const onSearch = (buscar: string) => {
-    const rows = reports.filter((report) => {
-      const campo = report.docente.toUpperCase();
-      const textSearch = buscar.toUpperCase();
-      return campo.includes(textSearch);
-    });
-    setReports(rows);
-  };
-
   const onFilteredReports = async (fields: DocentesModalidades) => {
     const params = getParams(fields);
 
     await onShowAll(params).then(({ data }) => {
       setReportsAndSearch(data);
-      console.log("Probando", data);
     });
+  };
+
+  const onSearchChange = async (searchText: string) => {
+    setSearch(searchText);
+
+    const filteredData = reports.filter((report) =>
+      report.docente.toLowerCase().includes(searchText.toLowerCase())
+    );
+
+    setReportsSearch(filteredData);
   };
 
   return (
@@ -81,9 +72,18 @@ export default function FiltrosPage() {
       <div className='min-h-screen'>
         <h1 className='mb-3'>Filtros</h1>
         <div className='flex justify-between mb-2'>
+          {/* Renderiza el componente BtnFilterData aquí */}
           <BtnFilterData
-            onFilteredData={(value: DocentesModalidades) => {
+            onFilteredReports={(value: DocentesModalidades) => {
               onFilteredReports(value);
+            }}
+          />
+
+          <SearchData
+            search={search}
+            setSearch={(e) => {
+              setSearch(e);
+              onSearchChange(e);
             }}
           />
         </div>

@@ -14,7 +14,7 @@ function SearchData({ search, setSearch }: SearchDataProps) {
         onKeyUp={(e) => {
           e.key === "Enter" && setSearch(e.target.value);
         }}
-        label='Buscar rol'
+        label='Buscar por docente'
         onChange={(e) => {
           setSearch(e.target.value);
         }}

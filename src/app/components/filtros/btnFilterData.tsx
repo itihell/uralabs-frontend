@@ -12,18 +12,15 @@ import { DocentesModalidades } from "@/app/interfaces/docentes-modalidades";
 import { setterData } from "@/app/interfaces/setter-interfaces";
 
 interface BtnFilterDataProps {
-  onFilteredData: (fields: DocentesModalidades) => void;
+  onFilteredReports: (fields: DocentesModalidades) => void;
 }
 
-const BtnFilterData = ({ onFilteredData }: BtnFilterDataProps) => {
+const BtnFilterData = ({ onFilteredReports }: BtnFilterDataProps) => {
   const [fields, setFields] = useState<DocentesModalidades>(
     {} as DocentesModalidades
   );
-
   const [isOpen, setOpen] = useState(false);
-
   const onOpen = () => setOpen(true);
-
   const onOpenChange = (open: boolean) => {
     setOpen(open);
   };
@@ -32,10 +29,9 @@ const BtnFilterData = ({ onFilteredData }: BtnFilterDataProps) => {
     setFields({ ...fields, [value.clave]: value.valor });
   };
 
-  const onFilterData = () => {
-    onFilteredData(fields);
+  const onFilterReports = () => {
+    onFilteredReports(fields);
   };
-
   return (
     <>
       <Button onPress={onOpen}>Filtrar Reportes</Button>
@@ -48,12 +44,25 @@ const BtnFilterData = ({ onFilteredData }: BtnFilterDataProps) => {
               </ModalHeader>
               <ModalBody>
                 <FieldsModalidadDocentes
-                  modalidadDocentes={fields}
+                  reports={fields}
                   onChangeModalidadesDocents={setChangeFields}
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color='danger' variant='light' onPress={onClose}>
+                <Button
+                  color='danger'
+                  variant='light'
+                  onPress={() => {
+                    setTimeout(() => {
+                      onClose();
+                    }, 200);
+
+                    setFields(() => {
+                      onFilteredReports({} as DocentesModalidades);
+                      return {} as DocentesModalidades;
+                    });
+                  }}
+                >
                   Cancelar
                 </Button>
                 <Button
@@ -62,7 +71,7 @@ const BtnFilterData = ({ onFilteredData }: BtnFilterDataProps) => {
                     setTimeout(() => {
                       onClose();
                     }, 200);
-                    onFilterData();
+                    onFilterReports();
                   }}
                 >
                   Filtrar Datos
